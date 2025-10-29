@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #0ea5e9;
+  --color-secondary: #facc15;
+  --color-bg: #0f0f0f;
+  --color-cardBg: #1a1a1a;
+  --color-text: #e5e7eb;
+
+  --color-border: #2d2d2d;
+  --color-outline: #3b82f6;
+  --color-shadow: #000000;
+
+  --color-mutedText: #9ca3af;
+  --color-highlight: #fbbf24;
+  --color-inputBg: #111827;
+  --color-placeholder: #6b7280;
+
+  --color-danger: #ef4444;
+  --color-success: #22c55e;
+  --color-warning: #eab308;
+  --color-info: #3b82f6;
+
+  --color-hoverPrimary: #38bdf8;
+  --color-hoverSecondary: #fde047;
+  --color-hoverCardBg: #262626;
+
+  --font-family: 'Montserrat';
+}
+
+.light {
+  --color-primary: #0ea5e9;
+  --color-secondary: #facc15;
+  --color-bg: #ffffff;
+  --color-cardBg: #f3f4f6;
+  --color-text: #1f2937;
+
+  --color-border: #d1d5db;
+  --color-outline: #3b82f6;
+  --color-shadow: #a1a1aa;
+
+  --color-mutedText: #6b7280;
+  --color-highlight: #f59e0b;
+  --color-inputBg: #f9fafb;
+  --color-placeholder: #9ca3af;
+
+  --color-danger: #b91c1c;
+  --color-success: #16a34a;
+  --color-warning: #ca8a04;
+  --color-info: #2563eb;
+
+  --color-hoverPrimary: #38bdf8;
+  --color-hoverSecondary: #fde047;
+  --color-hoverCardBg: #e5e7eb;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-family);
+}
+input, textarea, select {
+  background-color: var(--color-inputBg);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+}
+input:focus, textarea:focus, select:focus {
+  border: none;
+  outline: 1px solid var(--color-outline);
+}

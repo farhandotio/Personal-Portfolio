@@ -2,7 +2,7 @@
 
 Farhan Agency is a modern Full-Stack Digital Agency Platform built for managing your freelance web development work like a professional SaaS.
 
-Clients can explore services, place project orders, communicate via real-time chat, track progress, and manage their profiles — while you (Farhan) control everything through an admin dashboard.
+Clients can explore services, can see our projects, place project orders, communicate via real-time chat, track progress, and manage their profiles — while you (Farhan) control everything through an admin dashboard.
 
 🪄 Overview
 
@@ -23,7 +23,7 @@ React.js (Vite) – Fast and modular frontend
 
 React Router DOM – Page navigation
 
-Redux Toolkit – State management (only state, no logic)
+Redux Toolkit – State management
 
 Axios – API requests
 
@@ -51,16 +51,14 @@ Bcrypt – Password hashing
 
 Nodemailer – Email verification & OTP
 
-Manual Payoneer Payment Requests – Admin generates link → client pays
+Manual Payment Integration – Admin generates link → client pays → order updated
 
 ☁️ Cloud & Deployment
-
-Frontend → Vercel
-
-Backend → Render
-
-Database → MongoDB Atlas
-
+Platform	Usage
+Vercel	Frontend
+Render	Backend
+MongoDB Atlas	Database
+Manual Payment	Payoneer
 📂 Project Structure
 Farhan-Agency/
 │
@@ -73,25 +71,16 @@ Farhan-Agency/
 │   │   │   ├── api.js
 │   │   │   ├── socket.js
 │   │   │   ├── hooks/
-│   │   │   │   ├── useAuth.js
-│   │   │   │   ├── useOrders.js
-│   │   │   │   ├── useChat.js
 │   │   │   ├── slices/
-│   │   │   │   ├── authSlice.js
-│   │   │   │   ├── orderSlice.js
-│   │   │   │   ├── projectSlice.js
-│   │   │   │   ├── chatSlice.js
-│   │   │   │   ├── uiSlice.js
-│   │   │   │   └── adminSlice.js
 │   │   ├── components/
-│   │   │   ├── common/...
-│   │   │   ├── home/...
-│   │   │   ├── services/...
-│   │   │   ├── projects/...
-│   │   │   ├── chat/...
-│   │   │   ├── auth/...
-│   │   │   ├── dashboard/...
-│   │   ├── pages/...
+│   │   │   ├── common/
+│   │   │   ├── home/
+│   │   │   ├── services/
+│   │   │   ├── projects/
+│   │   │   ├── chat/
+│   │   │   ├── auth/
+│   │   │   └── dashboard/
+│   │   ├── pages/
 │   │   ├── App.jsx
 │   │   ├── main.jsx
 │   │   └── index.css
@@ -99,25 +88,43 @@ Farhan-Agency/
 ├── backend/
 │   ├── src/
 │   │   ├── config/
-│   │   ├── db/db.js
+│   │   │   ├── config.js
+│   │   ├── db/
+│   │   │   ├── db.js
 │   │   ├── middleware/
+│   │   │   ├── auth.middleware.js
+│   │   │   ├── validate.middleware.js
 │   │   ├── models/
-│   │   │   ├── payment.model.js
+│   │   │   ├── user
+│   │   │   ├── project
+│   │   │   ├── service
+│   │   │   ├── order
 │   │   ├── controllers/
-│   │   │   ├── payment.controller.js
+│   │   │   ├── auth.controller.js
+│   │   │   ├── admin.controller.js
+│   │   │   ├── project.controller.js
+│   │   │   ├── service.controller.js
+│   │   │   ├── order.controller.js
 │   │   ├── routes/
-│   │   │   ├── payment.route.js
+│   │   │   ├── auth.route.js
+│   │   │   ├── admin.route.js
+│   │   │   ├── project.route.js
+│   │   │   ├── service.route.js
+│   │   │   ├── order.route.js
 │   │   ├── utils/
+│   │   │   ├── email.js
 │   │   ├── services/
+│   │   │   ├── gemini.service.js
+│   │   │   ├── socketio.service.js
 │   │   ├── app.js
 │   │   └── server.js
+│
 ├── .env
 ├── .gitignore
 └── README.md
 
 🔐 Authentication Flow
-
-Register
+🧾 Register
 
 User submits name, email, password → OTP email sent
 
@@ -127,13 +134,13 @@ JWT token set in httpOnly cookie
 
 Welcome email sent
 
-Login
+🔑 Login
 
 Verify credentials
 
-Issue JWT (httpOnly cookie)
+Issue JWT token (httpOnly cookie)
 
-Protected Routes
+🛡️ Protected Routes
 
 Accessible only with valid token (profile, order, chat, dashboard)
 
@@ -150,33 +157,51 @@ Each conversation stored in Message collection:
   "createdAt": "2025-10-28T12:00:00Z"
 }
 
-💰 Manual Payoneer Payment Flow
+💰 Payment Flow (Manual / Client Request)
 
-Admin generates Payment Request Link from Payoneer dashboard.
+Client requests payment for an order
 
-Paste the link in Order page / Client Dashboard.
+Admin generates Payment Request Link (Payoneer / Stripe)
 
-Client clicks “Pay Now” → redirected to Payoneer to complete payment.
+Link shared to client via dashboard or order page
 
-After payment, client confirms via Upload proof or Admin verifies manually.
+Client clicks Pay Now → completes payment
 
-Project starts after 50% advance; final 50% after project completion.
+Order updated with:
 
-⚠️ Note: Client cannot generate Payoneer link themselves. All links generated by admin.
+amount
+
+currency
+
+payment status
+
+Project starts after 50% advance
+
+Final 50% collected after project completion
+
+Important: Only admin can generate payment links. No other payment gateway option is available.
 
 🧠 API Endpoints
 Auth (/api/auth)
 Method	Endpoint	Description
-POST	/register	Register user + OTP verify
-POST	/verify-email	Verify OTP
+<!-- POST	/register	Register user + OTP verify
+POST	/verify-email	Verify OTP -->
 POST	/login	Login user
 GET	/profile	Get user info
+
+Services (/api/services)
+Method	Endpoint	Description
+POST	/create	Create new order
+PUT	/update/:id	Update services
+DELETE	/cancel/:id	Cancel order
+
 Orders (/api/orders)
 Method	Endpoint	Description
 POST	/create	Create new order
 GET	/user/:id	Get user orders
 PUT	/update/:id	Update order status
 DELETE	/cancel/:id	Cancel order
+
 Projects (/api/projects)
 Method	Endpoint	Description
 GET	/	Get all projects
@@ -184,21 +209,25 @@ GET	/category/:type	Get projects by category
 POST	/add	Add project (admin)
 PUT	/edit/:id	Edit project
 DELETE	/delete/:id	Delete project
+
 Messages (/api/messages)
 Method	Endpoint	Description
 GET	/chat/:userId	Get user messages
 POST	/send	Send message
 WS	socket.io	Real-time updates
+
 Admin (/api/admin)
 Method	Endpoint	Description
 GET	/dashboard	Stats overview
 GET	/projects	Manage projects
 GET	/clients	View all clients
 GET	/payments	View all payments
+
 Payment (/api/payments)
 Method	Endpoint	Description
-POST	/manual-link	Admin posts Payoneer link to order
+POST	/manual-link	Admin posts payment link to order
 GET	/order/:id	Get payment info for an order
+
 ⚙️ Environment Variables (.env)
 PORT=5000
 MONGO_URI=your_mongodb_atlas_link
@@ -206,18 +235,15 @@ JWT_SECRET=your_jwt_secret
 EMAIL_USER=your_email
 EMAIL_PASS=your_email_password
 CLIENT_URL=http://localhost:5173
+STRIPE_SECRET_KEY=your_stripe_key
 
 🚀 Run Locally
-
 Frontend
-
 cd frontend
 npm install
 npm run dev
 
-
 Backend
-
 cd backend
 npm install
 npm run server
@@ -227,13 +253,19 @@ Platform	Usage
 Vercel	Frontend
 Render	Backend
 MongoDB Atlas	Database
+Stripe / Payoneer	Payments (Manual link)
 🧠 Future Enhancements
 
-✅ AI Chat Assistant (Gemini/OpenAI)
+✅ AI Chat Assistant (Gemini / OpenAI)
+
 ✅ Auto Project Quotation Generator
+
 ✅ Admin Analytics Dashboard
+
 ✅ CMS for dynamic services
+
 ✅ Real-time notifications
+
 ✅ Multi-currency payment support
 
 👨‍💻 Author
@@ -242,3 +274,9 @@ MD Farhan Sadik
 Frontend & Full-Stack Web Developer
 🌍 Portfolio
 📧 farhansadik@example.com
+
+✅ Notes:
+
+Payment integration is manual: client requests → admin generates → client pays → order updated.
+
+Only one payment per order is allowed. No alternative gateways/options.
