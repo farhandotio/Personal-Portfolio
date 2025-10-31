@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
-import ProjectCard from "../components/common/ProjectCard";
-import { Link } from "react-router-dom";
-import { IoArrowDown } from "react-icons/io5";
+import ProjectCard from "../components/projects/ProjectCard";
 import axios from "axios";
 
 const Projects = () => {

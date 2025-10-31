@@ -2,7 +2,7 @@ import React from "react";
 import HeroSection from "../components/agency/HeroSection";
 import ServiceSection from "../components/agency/ServiceSection";
 import HowToWork from "../components/agency/HowToWork";
-import ProjectSection from "../components/agency/ProjectSection";
+// import ProjectSection from "../components/agency/ProjectSection";
 import Testimonials from "../components/agency/Testimonials";
 
 const Agency = () => {
@@ -11,7 +11,7 @@ const Agency = () => {
       <HeroSection />
       <ServiceSection />
       <HowToWork />
-      <ProjectSection />
+      {/* <ProjectSection /> */}
       <Testimonials />
     </>
   );

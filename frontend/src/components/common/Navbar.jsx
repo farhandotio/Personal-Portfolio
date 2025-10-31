@@ -13,19 +13,19 @@ const Navbar = () => {
   ];
 
   return (
-    <header className="fixed top-0 w-full bg-bg text-text py-5 z-[1000]">
+    <header className="fixed top-0 w-full bg-bg text-text py-5 z-1000">
       <div className="max-w-[1900px] mx-auto flex justify-between items-center px-5 sm:px-7 lg:px-10">
         {/* Logo/Brand Name */}
         <Link to="/">
-          <h1 className="text-xl uppercase font-bold tracking-widest">
+          <h1 className="text-xl lg:text-3xl whitespace-nowrap uppercase font-bold tracking-widest">
             Farhan <span className="text-secondary">Agency</span>
             <span className="text-primary">.</span>
           </h1>
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-8 lg:space-x-12">
-          <ul className="flex space-x-6 lg:space-x-8 uppercase text-sm font-medium tracking-wide">
+        <nav className="hidden md:flex items-center space-x-5 lg:space-x-12">
+          <ul className="flex space-x-6 lg:space-x-8 uppercase text-sm md:text-xs lg:text-sm font-medium tracking-wide">
             {navLinks.map((link) => (
               <li key={link.name}>
                 <NavLink
