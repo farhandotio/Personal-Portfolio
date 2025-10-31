@@ -3,7 +3,7 @@ import React from "react";
 const HeroSection = () => {
   return (
     <section
-      className="bg-bg overflow-hidden min-h-[650px] md:pt-20 flex items-center"
+      className="bg-bg overflow-hidden min-h-[650px] pt-20 flex items-center"
       aria-label="Farhan Agency Solutions"
       itemScope
       itemType="https://schema.org/WebPage"
