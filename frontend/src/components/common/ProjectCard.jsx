@@ -5,10 +5,16 @@ const ProjectCard = ({ project }) => {
   const headingId = `project-heading-${project.title}`;
 
   return (
-    <section aria-labelledby={headingId} className="mb-30">
+    <section
+      aria-labelledby={headingId}
+      className="bg-cardBg shadow-lg hover:shadow-2xl hover:bg-hoverCardBg transition-all duration-300 p-5 lg:p-10 border border-border rounded-2xl mb-10"
+    >
       <div className="w-full">
         <div className="flex justify-between">
-          <h2 id={headingId} className="text-4xl md:text-5xl font-bold mb-8">
+          <h2
+            id={headingId}
+            className="text-2xl md:text-3xl font-bold mb-8 text-text"
+          >
             {project.title}
           </h2>
 
@@ -28,7 +34,7 @@ const ProjectCard = ({ project }) => {
         </p>
       </div>
 
-      <div className="flex flex-col-reverse md:flex-row border-t border-border">
+      <div className="flex flex-col-reverse md:flex-row justify-between border-t border-border">
         {/* Left Column: Key Insights */}
         <div className="w-full md:w-2/3 pt-8 pr-4">
           <h3 className="text-lg font-bold mb-6 text-mutedText">
@@ -42,19 +48,21 @@ const ProjectCard = ({ project }) => {
                   #{item.id}
                 </span>
 
-                <p className="text-base text-gray-300">{item.insight}</p>
+                <p className="text-base md:text-lg max-w-3xl text-mutedText">
+                  {item.insight}
+                </p>
               </div>
             ))}
           </div>
         </div>
 
         {/* Right Column: Visual */}
-        <div className="w-full md:w-1/3 pt-8 md:pl-4 flex flex-col justify-end items-end relative min-h-[200px] md:min-h-0">
+        <div className="w-full md:w-1/3 pt-8 relative min-h-40 md:ml-10 md:min-h-0">
           <img
             src={project.image}
             alt={`${project.title} preview`}
             loading="lazy"
-            className="h-full w-full object-contain rounded"
+            className="h-full w-full md:max-h-70 object-right object-contain rounded"
           />
         </div>
       </div>

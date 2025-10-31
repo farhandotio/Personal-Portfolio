@@ -7,11 +7,13 @@ import Footer from "./components/common/Footer";
 const App = () => {
   return (
     <BrowserRouter>
-      <Navbar />
-      <div className="max-w-[1900px] mx-auto">
-        <MainRoutes />
+      <div className="">
+        <Navbar />
+        <div className="max-w-[1900px] mx-auto">
+          <MainRoutes />
+        </div>
+        <Footer />
       </div>
-      <Footer />
     </BrowserRouter>
   );
 };

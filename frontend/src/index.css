@@ -32,13 +32,13 @@
 
 .light {
   --color-bg: #ffffff;
-  --color-cardBg: #f3f4f6;
-  --color-text: #1f2937;
+  --color-cardBg: #f1fff1;
+  --color-text: #010101;
 
   --color-border: #d1d5db;
   --color-outline: #3b82f6;
 
-  --color-mutedText: #6b7280;
+  --color-mutedText: #2c2d2f;
   --color-highlight: #f59e0b;
   --color-inputBg: #f9fafb;
   --color-placeholder: #9ca3af;

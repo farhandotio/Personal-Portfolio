@@ -79,7 +79,7 @@ const Testimonials = () => {
               id="testimonials-heading"
               className="text-4xl md:text-5xl font-extrabold w-full"
             >
-              What clients say about Farhan Agency
+              What clients say about Us
             </h2>
             <Link
               to={"/reviews"}
@@ -90,7 +90,7 @@ const Testimonials = () => {
               <IoArrowDown className="text-xl md:text-2xl -rotate-135" />
             </Link>
           </div>
-          <p className="mt-2 text-mutedText max-w-3xl text-lg">
+          <p className="mt-2 text-mutedText max-w-4xl text-lg">
             Real feedback from brands and founders who trusted us to craft their
             product websites and experiences.
           </p>
