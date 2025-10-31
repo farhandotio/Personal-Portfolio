@@ -83,7 +83,7 @@ const Testimonials = () => {
             </h2>
             <Link
               to={"/reviews"}
-              className="flex whitespace-nowrap h-fit max-md:hidden w-fit mx-auto gap-2 bg-primary hover:bg-hoverPrimary text-text font-semibold px-6 py-3 rounded-full transition-all"
+              className="flex whitespace-nowrap h-fit max-md:hidden w-fit mx-auto gap-2 bg-cardBg hover:bg-primary text-text font-semibold px-6 py-3 rounded-full transition-all"
               aria-label="Contact Farhan Agency"
             >
               <span> All Reviews </span>{" "}

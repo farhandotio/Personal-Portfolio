@@ -91,7 +91,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-bg  max-w-[1900px] mx-auto text-mutedText">
+    <footer className="bg-cardBg  max-w-[1900px] mx-auto text-mutedText">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -99,7 +99,7 @@ const Footer = () => {
 
       <div className="px-5 md:px-7 lg:px-10 py-16 lg:py-24">
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-10">
-          <div className="space-y-4 col-span-2">
+          <div className="space-y-4 md:col-span-2">
             <Link
               to="/"
               aria-label={`${data.brand.name} - Home`}

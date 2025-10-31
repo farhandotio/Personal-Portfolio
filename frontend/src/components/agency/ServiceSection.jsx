@@ -58,15 +58,15 @@ const ServiceSection = () => {
     >
       <div className="mx-auto px-5 sm:px-7 lg:px-10">
         {/* === Header Section === */}
-        <header className="mb-12 md:mb-16">
+        <header className="mb-16 md:mb-24">
           <h2
             id="services-heading"
-            className="text-4xl md:text-5xl font-extrabold text-text tracking-tight"
+            className="text-4xl md:text-5xl font-extrabold text-text tracking-tight  mb-8"
           >
             Our Services
           </h2>
           <p
-            className="mt-4 text-xl max-w-4xl text-mutedText"
+            className="text-xl max-w-4xl text-mutedText"
             itemProp="description"
           >
             Comprehensive fullstack development solutions tailored to elevate
