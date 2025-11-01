@@ -97,8 +97,8 @@ const Footer = () => {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <div className="px-5 md:px-7 lg:px-10 py-16 lg:py-24">
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-10">
+      <div className="px-5 md:px-7 lg:px-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-10  py-16 lg:py-24 border-t border-border">
           <div className="space-y-4 md:col-span-2">
             <Link
               to="/"

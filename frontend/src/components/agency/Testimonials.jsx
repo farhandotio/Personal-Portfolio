@@ -77,7 +77,7 @@ const Testimonials = () => {
           <div className="flex justify-between w-full gap-2">
             <h2
               id="testimonials-heading"
-              className="text-4xl md:text-5xl font-extrabold w-full"
+              className="text-4xl md:text-5xl font-extrabold w-full mb-8"
             >
               What clients say about Us
             </h2>

@@ -24,7 +24,7 @@
   --color-warningBg: #ffae0009;
   --color-info: #3b82f6;
 
-  --color-hoverSecondary: #fde047;
+  --color-hoverSecondary: #ff6200;
   --color-hoverPrimary: #0ac25a;
   --color-hoverCardBg: #1f1f1f;
 
@@ -32,6 +32,7 @@
 }
 
 .light {
+  --color-secondary: #ff6a00;
   --color-bg: #ffffff;
   --color-cardBg: #f1fff1;
   --color-text: #010101;
@@ -51,6 +52,7 @@
   --color-info: #2563eb;
 
   --color-hoverPrimary: #0ac25a;
+  --color-hoverSecondary: #ff6200;
   --color-hoverCardBg: #e5e7eb;
 }
 
