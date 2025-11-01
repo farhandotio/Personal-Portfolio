@@ -21,6 +21,7 @@
   --color-danger: #ef4444;
   --color-success: #22c55e;
   --color-warning: #eab308;
+  --color-warningBg: #ffae0009;
   --color-info: #3b82f6;
 
   --color-hoverSecondary: #fde047;
@@ -46,6 +47,7 @@
   --color-danger: #b91c1c;
   --color-success: #16a34a;
   --color-warning: #ca8a04;
+  --color-warningBg: #ffae0009;
   --color-info: #2563eb;
 
   --color-hoverPrimary: #0ac25a;

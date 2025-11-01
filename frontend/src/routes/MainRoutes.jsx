@@ -5,6 +5,7 @@ import About from "../pages/About";
 import Services from "../pages/Services";
 import ServiceDetailsPage from "../pages/ServiceDetailsPage";
 import Projects from "../pages/Projects";
+import Process from "../pages/Process";
 
 const MainRoutes = () => {
   return (
@@ -14,6 +15,7 @@ const MainRoutes = () => {
       <Route path="/services" element={<Services />} />
       <Route path="/services/:slug" element={<ServiceDetailsPage />} />
       <Route path="/projects" element={<Projects />} />
+      <Route path="/process" element={<Process />} />
     </Routes>
   );
 };
