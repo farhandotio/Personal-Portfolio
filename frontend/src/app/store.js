@@ -5,7 +5,7 @@ import authReducer from "./features/auth/authSlice";
 const store = configureStore({
   reducer: {
     counters: counterReducer,
-    user: authReducer,
+    auth: authReducer,
   },
 });
 

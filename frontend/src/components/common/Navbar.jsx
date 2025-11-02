@@ -13,19 +13,21 @@ const navLinks = [
 ];
 
 const Navbar = () => {
-  const user = useSelector((state) => state.auth?.user ?? null);
-  const isLoading = useSelector((state) => state.auth?.isLoading ?? false);
   const dispatch = useDispatch();
+  const { user, isLoading } = useSelector((state) => state.auth);
+
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     dispatch(fetchUser());
   }, [dispatch]);
 
-  const isLoggedIn = !!(user && Object.keys(user).length > 0);
+  // handle nested user if needed (from authSlice)
+  const currentUser = user?.user ?? user ?? null;
+  const isLoggedIn = !!(currentUser && Object.keys(currentUser).length > 0);
 
   return (
-    <header className="fixed top-0 w-full bg-bg text-text py-5 z-1000">
+    <header className="fixed top-0 w-full bg-bg text-text py-5 z-50">
       <div className="max-w-[1900px] mx-auto flex justify-between items-center px-5 sm:px-7 lg:px-10">
         {/* Logo/Brand Name */}
         <Link to="/" aria-label="Farhan Agency home">
@@ -54,19 +56,18 @@ const Navbar = () => {
             ))}
           </ul>
 
-          {/* "PROFILE" Button */}
+          {/* Profile / Join Us Button */}
           <NavLink
             to={isLoggedIn ? "/profile" : "/register"}
             className="flex items-center px-6 py-3 bg-primary hover:bg-hoverPrimary text-white font-semibold rounded-full text-sm transition duration-300 shadow-xl"
             aria-label={isLoggedIn ? "Go to profile" : "Join us / Register"}
           >
-            {/* show loading state optionally */}
             {isLoading ? "Loading..." : isLoggedIn ? "PROFILE" : "JOIN US"}
             <SlPencil className="ml-2 text-base" />
           </NavLink>
         </nav>
 
-        {/* Mobile MENU button */}
+        {/* Mobile Menu Button */}
         <button
           onClick={() => setMenuOpen(true)}
           className="lg:hidden uppercase text-sm font-semibold tracking-wider border-2 border-primary px-5 py-2 rounded-full hover:bg-hoverPrimary hover:text-white transition duration-300"
@@ -77,16 +78,15 @@ const Navbar = () => {
         </button>
       </div>
 
-      {/* Full-screen mobile menu overlay */}
+      {/* Mobile Menu Overlay */}
       <div
         role="dialog"
         aria-modal="true"
-        aria-hidden={!menuOpen}
         className={`fixed top-0 right-0 h-screen w-full sm:w-[60%] bg-bg text-text flex flex-col items-center justify-center gap-10 text-lg uppercase transform transition-transform duration-500 ${
           menuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        {/* Close button */}
+        {/* Close Button */}
         <button
           onClick={() => setMenuOpen(false)}
           className="absolute top-6 right-8 text-xl font-bold hover:text-primary transition"
@@ -114,7 +114,7 @@ const Navbar = () => {
           ))}
         </ul>
 
-        {/* "PROFILE" Button */}
+        {/* Profile / Join Us Button */}
         <NavLink
           to={isLoggedIn ? "/profile" : "/register"}
           onClick={() => setMenuOpen(false)}

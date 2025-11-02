@@ -1,42 +1,106 @@
-import React, { useState, useCallback } from "react";
-import {
-  Package,
-  Eye,
-  EyeOff,
-  Mail,
-  Lock,
-  LogIn,
-  Chrome,
-  User,
-  Image as ImageIcon,
-} from "lucide-react";
-
-// Combined Input Class: This represents your custom 'input' class
-const INPUT_CLASSES = `w-full p-3 pl-12 border border-border rounded-xl focus:ring-primary focus:border-primary transition duration-150 text-sm bg-cardBg text-text placeholder-mutext-mutedText`;
+// Register.jsx
+import React, { useState, useCallback, useEffect } from "react";
+import { Eye, EyeOff, Mail, Lock, LogIn, Chrome, User } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { registerUser } from "../../app/features/auth/authSlice";
 
 const Register = () => {
+  const dispatch = useDispatch();
+  const { isLoading } = useSelector(
+    (state) => state.user || { isLoading: false }
+  );
+
   const [showPassword, setShowPassword] = useState(false);
-  // State to store the URL for the selected profile picture preview
   const [profilePicturePreview, setProfilePicturePreview] = useState(null);
+  const navigate = useNavigate();
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    watch,
+    formState: { errors, isSubmitting },
+  } = useForm({
+    defaultValues: {
+      firstName: "",
+      lastName: "",
+      email: "",
+      password: "",
+      profilePicture: null,
+    },
+  });
 
   const togglePasswordVisibility = useCallback(() => {
     setShowPassword((prev) => !prev);
   }, []);
 
+  // watch file so React Hook Form knows about it (optional)
+  const watchedFile = watch("profilePicture");
+
   const handleImageChange = useCallback(
     (e) => {
-      const file = e.target.files[0];
+      const file = e.target.files && e.target.files[0];
       if (file) {
         if (profilePicturePreview) {
           URL.revokeObjectURL(profilePicturePreview);
         }
-        setProfilePicturePreview(URL.createObjectURL(file));
+        const objectUrl = URL.createObjectURL(file);
+        setProfilePicturePreview(objectUrl);
+        // set file to react-hook-form
+        setValue("profilePicture", file, { shouldValidate: true });
       } else {
+        if (profilePicturePreview) {
+          URL.revokeObjectURL(profilePicturePreview);
+        }
         setProfilePicturePreview(null);
+        setValue("profilePicture", null, { shouldValidate: true });
       }
     },
-    [profilePicturePreview]
+    [profilePicturePreview, setValue]
   );
+
+  // cleanup when component unmounts
+  useEffect(() => {
+    return () => {
+      if (profilePicturePreview) {
+        URL.revokeObjectURL(profilePicturePreview);
+      }
+    };
+  }, [profilePicturePreview]);
+
+  const onSubmit = async (data) => {
+    try {
+      // build FormData (include both key styles to be safe)
+      const formData = new FormData();
+      formData.append("firstName", data.firstName || "");
+      formData.append("lastName", data.lastName || "");
+      // also append fullname.* in case backend expects nested fields
+      formData.append("fullname.firstName", data.firstName || "");
+      formData.append("fullname.lastName", data.lastName || "");
+      formData.append("email", data.email || "");
+      formData.append("password", data.password || "");
+      if (data.profilePicture) {
+        formData.append("picture", data.profilePicture);
+      }
+
+      // dispatch thunk (registerUser expects FormData or plain object)
+      const action = await dispatch(registerUser(formData));
+
+      if (action.error) {
+        // registration failed — action.error may contain message
+        console.error("Register failed:", action.error);
+        return;
+      }
+
+      navigate("/");
+      // success
+      console.log("Registration success:", action.payload);
+      // TODO: navigate or show toast if you want
+    } catch (err) {
+      console.error("Registration exception:", err);
+    }
+  };
 
   return (
     <div
@@ -44,25 +108,29 @@ const Register = () => {
     >
       <div className="flex items-center justify-center h-full">
         <div
-          className={`w-full max-w-lg bg-cardBg p-5 sm:p-5 lg:p-10 rounded-3xl shadow-2xl transition-all duration-300 transform hover:shadow-xl border border-border md:scale-85`}
+          className={`w-full max-w-sm bg-cardBg p-5 sm:p-7 rounded-3xl shadow-2xl transition-all duration-300 transform hover:shadow-3xl border border-border  md:scale-90`}
         >
-          {/* --- Form Fields --- */}
-          <form className="space-y-5">
-            {/* Profile Picture Upload Section (New Logic) */}
+          <div className="text-center mb-5">
+            <h1 className="text-2xl font-bold text-text">Join Us</h1>
+          </div>
+
+          <form
+            className="space-y-5"
+            onSubmit={handleSubmit(onSubmit)}
+            encType="multipart/form-data"
+          >
             <div className="flex justify-center items-center gap-2">
-              {/* Hidden File Input: This is the actual file selector */}
               <input
                 type="file"
                 id="profilePictureInput"
                 accept="image/*"
                 onChange={handleImageChange}
-                className="hidden" // Hides the ugly default file input
+                className="hidden"
               />
 
-              {/* Visual Profile Picture Circle / Label: Clickable area for file upload */}
               <label
                 htmlFor="profilePictureInput"
-                className={`cursor-pointer w-24 h-24 rounded-full border-4 border-primary/50 shadow-lg bg-inputBg flex items-center justify-center overflow-hidden transition-all duration-200 hover:border-primary hover:shadow-xl`}
+                className={`cursor-pointer w-24 h-24 rounded-full border-4 border-primary bg-inputBg flex items-center justify-center overflow-hidden transition-all duration-200 hover:border-hoverPrimary shadow-lg shadow-primary/50`}
                 title="Click to upload profile picture"
               >
                 {profilePicturePreview ? (
@@ -83,96 +151,98 @@ const Register = () => {
               </label>
             </div>
 
-            {/* First Name & Last Name (Side by Side) */}
             <div className="flex gap-4">
-              {/* First Name (Uses flex-1 for equal width) */}
               <div className="flex-1">
-                <label
-                  htmlFor="firstName"
-                  className={`block text-sm font-medium text-text mb-1`}
-                >
-                  First Name
-                </label>
                 <div className="relative">
                   <input
                     type="text"
                     id="firstName"
-                    placeholder="John"
+                    placeholder="First name"
                     className="w-full p-3 pl-12 input"
+                    {...register("firstName", {
+                      required: "First name is required",
+                    })}
                   />
                   <User
                     className={`absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-mutedText`}
                   />
                 </div>
+                {errors.firstName && (
+                  <p className="mt-1 text-xs text-red-500">
+                    {errors.firstName.message}
+                  </p>
+                )}
               </div>
 
-              {/* Last Name (Uses flex-1 for equal width) */}
               <div className="flex-1">
-                <label
-                  htmlFor="lastName"
-                  className={`block text-sm font-medium text-text mb-1`}
-                >
-                  Last Name
-                </label>
                 <div className="relative">
                   <input
                     type="text"
                     id="lastName"
-                    placeholder="Doe"
+                    placeholder="Last name"
                     className="w-full p-3 pl-12 input"
+                    {...register("lastName", {
+                      required: "Last name is required",
+                    })}
                   />
                   <User
                     className={`absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-mutedText`}
                   />
                 </div>
+                {errors.lastName && (
+                  <p className="mt-1 text-xs text-red-500">
+                    {errors.lastName.message}
+                  </p>
+                )}
               </div>
             </div>
 
-            {/* Email Input */}
             <div>
-              <label
-                htmlFor="email"
-                className={`block text-sm font-medium text-text mb-1`}
-              >
-                Email
-              </label>
               <div className="relative">
                 <input
                   type="email"
                   id="email"
                   placeholder="john@gmail.com"
                   className="w-full p-3 pl-12 input"
+                  {...register("email", {
+                    required: "Email is required",
+                    pattern: {
+                      value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                      message: "Enter a valid email",
+                    },
+                  })}
                 />
                 <Mail
                   className={`absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-mutedText`}
                 />
               </div>
+              {errors.email && (
+                <p className="mt-1 text-xs text-red-500">
+                  {errors.email.message}
+                </p>
+              )}
             </div>
 
-            {/* Password Input with Hide/Show Toggle */}
             <div>
-              <label
-                htmlFor="password"
-                className={`block text-sm font-medium text-text mb-1`}
-              >
-                Password
-              </label>
               <div className="relative">
                 <input
                   type={showPassword ? "text" : "password"}
                   id="password"
                   placeholder="••••••••"
                   className="w-full p-3 pl-12 input"
+                  {...register("password", {
+                    required: "Password is required",
+                    minLength: { value: 6, message: "Minimum 6 characters" },
+                  })}
                 />
                 <Lock
                   className={`absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-mutedText`}
                 />
 
-                {/* Eye Icon Button for Visibility Toggle */}
                 <button
                   type="button"
                   onClick={togglePasswordVisibility}
-                  className={`absolute right-3 top-1/2 transform -translate-y-1/2 text-mutedText hover:text-primary transition duration-150 p-1 rounded-full focus:outline-none`}
+                  className={`absolute right-3 top-1/2 transform -translate-y-1/2 text-mutedText hover:text-primary transition duration-150 p-1 rounded-full focus:outline-none cursor-pointer`}
                   title={showPassword ? "Hide password" : "Show password"}
                 >
                   {showPassword ? (
@@ -182,26 +252,33 @@ const Register = () => {
                   )}
                 </button>
               </div>
+              {errors.password && (
+                <p className="mt-1 text-xs text-red-500">
+                  {errors.password.message}
+                </p>
+              )}
             </div>
 
-            {/* Primary Register Button */}
             <button
               type="submit"
-              className={`w-full flex items-center justify-center py-3 px-4 border border-transparent rounded-xl shadow-lg text-base font-semibold text-white bg-primary hover:bg-pritext-primary focus:outline-none transition-all cursor-pointer duration-150 transform hover:scale-[1.01]`}
+              disabled={isSubmitting || isLoading}
+              className={`w-full flex items-center justify-center py-3 px-4 border border-transparent rounded-xl shadow-lg text-base font-semibold text-white bg-primary hover:bg-pritext-primary focus:outline-none transition-all cursor-pointer duration-150 transform hover:bg-hoverPrimary ${
+                isSubmitting || isLoading
+                  ? "opacity-70 pointer-events-none"
+                  : ""
+              }`}
             >
               <LogIn className="w-5 h-5 mr-2" />
-              Register
+              {isSubmitting || isLoading ? "Registering..." : "Register"}
             </button>
           </form>
 
-          {/* --- Divider and Google Auth --- */}
           <div className="flex items-center my-6">
             <div className={`grow border-t border-border`}></div>
             <span className={`shrink mx-4 text-mutedText text-xs`}>OR</span>
             <div className={`grow border-t border-border`}></div>
           </div>
 
-          {/* Sign Up with Google Button */}
           <button
             type="button"
             className={`w-full flex items-center justify-center py-3 px-4 border border-border rounded-xl text-text cursor-pointer bg-cardBg hover:bg-hoverCardBg focus:outline-none transition-all duration-150`}
@@ -210,15 +287,14 @@ const Register = () => {
             <span className="font-semibold">Sign Up with Google</span>
           </button>
 
-          {/* Login Link */}
           <p className={`mt-4 text-center text-sm text-mutedText`}>
             Already have an account?
-            <a
-              href="#"
+            <Link
+              to="/login"
               className={`ml-1 font-medium text-primary hover:text-primary transition duration-150`}
             >
               Sign In
-            </a>
+            </Link>
           </p>
         </div>
       </div>

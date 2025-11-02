@@ -1,22 +1,69 @@
 import axios from "axios";
-import cookies from "js-cookie";
-
 
 export const getUser = async () => {
-  const token = cookies.get("token");
-
-  if (!token) return null;
-
   try {
     const { data } = await axios.get("http://localhost:3000/api/auth/profile", {
       withCredentials: true,
     });
-
-    return data;
+    return data.user;
   } catch (error) {
     console.error("Failed to fetch user profile:", error);
     return null;
   }
 };
 
+// ---------------------- register function ----------------------
 
+export const registerUser = async (payload) => {
+  try {
+    let body = payload;
+    let config = {
+      withCredentials: true,
+    };
+
+    if (!(payload instanceof FormData)) {
+      const hasFile = payload?.picture instanceof File;
+      if (hasFile) {
+        const form = new FormData();
+        if (payload.firstName !== undefined)
+          form.append("fullname.firstName", payload.firstName);
+        if (payload.lastName !== undefined)
+          form.append("fullname.lastName", payload.lastName);
+        if (payload.email !== undefined) form.append("email", payload.email);
+        if (payload.password !== undefined)
+          form.append("password", payload.password);
+        form.append("picture", payload.picture);
+        body = form;
+      } else {
+        config.headers = { "Content-Type": "application/json" };
+        body = payload;
+      }
+    }
+
+    const url = "http://localhost:3000/api/auth/register";
+    const { data } = await axios.post(url, body, config);
+
+    return data.user;
+  } catch (error) {
+    const msg = error.response?.data?.message || error.message || "Registration failed";
+    throw new Error(msg);
+  }
+};
+
+// ---------------------- login function ----------------------
+export const loginUser = async (payload) => {
+  try {
+    let config = {
+      withCredentials: true,
+      headers: { "Content-Type": "application/json" },
+    };
+
+    const url = "http://localhost:3000/api/auth/login";
+    const { data } = await axios.post(url, payload, config);
+
+    return data.user;
+  } catch (error) {
+    const msg = error.response?.data?.message || error.message || "Login failed";
+    throw new Error(msg);
+  }
+};
