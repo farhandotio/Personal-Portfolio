@@ -36,7 +36,7 @@ const QUICK_ORDER_TEMPLATES = [
 ];
 
 const TemplateItem = ({ title, description, icon: Icon }) => (
-  <div className="p-4 flex flex-col items-center text-center bg-cardBg rounded-lg border border-border hover:border-primary transition duration-300 cursor-pointer shadow-sm">
+  <div className="p-4 flex flex-col items-center text-center rounded-lg border border-border bg-hoverCardBg transition duration-300 shadow-sm">
     <Icon className="w-6 h-6 text-primary mb-2" />
     <p className="font-semibold text-text text-sm">{title}</p>
     <p className="text-xs text-mutedText mt-0.5">{description}</p>

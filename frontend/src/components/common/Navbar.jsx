@@ -9,7 +9,7 @@ const navLinks = [
   { name: "PROJECTS", href: "/projects" },
   { name: "PROCESS", href: "/process" },
   { name: "ABOUT", href: "/about" },
-  { name: "CONTACT", href: "/contact" },
+  { name: "START A PROJECT", href: "/contact" },
 ];
 
 const Navbar = () => {
@@ -25,6 +25,7 @@ const Navbar = () => {
   // handle nested user if needed (from authSlice)
   const currentUser = user?.user ?? user ?? null;
   const isLoggedIn = !!(currentUser && Object.keys(currentUser).length > 0);
+  const isAdmin = currentUser?.role === "admin";
 
   return (
     <header className="fixed top-0 w-full bg-bg text-text py-5 z-50">
@@ -58,7 +59,7 @@ const Navbar = () => {
 
           {/* Profile / Join Us Button */}
           <NavLink
-            to={isLoggedIn ? "/profile" : "/register"}
+            to={isLoggedIn ? (isAdmin ? "/admin" : "/profile") : "/register"}
             className="flex items-center px-6 py-3 bg-primary hover:bg-hoverPrimary text-white font-semibold rounded-full text-sm transition duration-300 shadow-xl"
             aria-label={isLoggedIn ? "Go to profile" : "Join us / Register"}
           >
@@ -116,7 +117,7 @@ const Navbar = () => {
 
         {/* Profile / Join Us Button */}
         <NavLink
-          to={isLoggedIn ? "/profile" : "/register"}
+          to={isLoggedIn ? (isAdmin ? "/admin" : "/profile") : "/register"}
           onClick={() => setMenuOpen(false)}
           className="flex items-center px-8 py-3 bg-primary hover:bg-hoverPrimary text-white font-semibold rounded-full text-sm transition duration-300 shadow-xl"
           aria-label={isLoggedIn ? "Go to profile" : "Join us / Register"}

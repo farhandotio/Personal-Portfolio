@@ -9,6 +9,7 @@ import Process from "../pages/Process";
 import Contact from "../pages/Contact";
 import Login from "../pages/auth/Login";
 import Register from "../pages/auth/Register";
+import Profile from "../pages/dashboard/client/Profile";
 
 const MainRoutes = () => {
   return (
@@ -24,6 +25,9 @@ const MainRoutes = () => {
       {/* Auth */}
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
+
+      {/* Client */}
+      <Route path="/profile" element={<Profile />} />
     </Routes>
   );
 };
