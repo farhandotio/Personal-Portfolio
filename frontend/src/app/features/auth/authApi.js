@@ -7,7 +7,6 @@ export const getUser = async () => {
     });
     return data.user;
   } catch (error) {
-    console.error("Failed to fetch user profile:", error);
     return null;
   }
 };
@@ -35,7 +34,6 @@ export const registerUser = async (payload) => {
         form.append("picture", payload.picture);
         body = form;
       } else {
-        config.headers = { "Content-Type": "application/json" };
         body = payload;
       }
     }
@@ -45,7 +43,8 @@ export const registerUser = async (payload) => {
 
     return data.user;
   } catch (error) {
-    const msg = error.response?.data?.message || error.message || "Registration failed";
+    const msg =
+      error.response?.data?.message || error.message || "Registration failed";
     throw new Error(msg);
   }
 };
@@ -55,7 +54,6 @@ export const loginUser = async (payload) => {
   try {
     let config = {
       withCredentials: true,
-      headers: { "Content-Type": "application/json" },
     };
 
     const url = "http://localhost:3000/api/auth/login";
@@ -63,7 +61,8 @@ export const loginUser = async (payload) => {
 
     return data.user;
   } catch (error) {
-    const msg = error.response?.data?.message || error.message || "Login failed";
+    const msg =
+      error.response?.data?.message || error.message || "Login failed";
     throw new Error(msg);
   }
 };

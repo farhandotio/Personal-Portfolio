@@ -153,7 +153,7 @@ const ChatBox = () => {
                   }`}
                 >
                   <div
-                    className={`px-3 py-2 rounded-lg text-sm max-w-[75%] ${
+                    className={`px-3 py-2 mb-3 rounded-lg text-sm max-w-[75%] ${
                       msg.senderRole === "user"
                         ? "text-text bg-cardBg"
                         : "text-text bg-primary/10"

@@ -39,7 +39,7 @@ router.get(
 );
 
 // 🔒 Protected Routes
-router.get("/profile", VerifyToken, isUser, authController.getProfile);
+router.get("/profile", VerifyToken, authController.getProfile);
 
 router.get("/all-users", VerifyToken, isAdmin, authController.getAllUsers);
 

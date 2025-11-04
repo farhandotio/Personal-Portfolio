@@ -17,10 +17,8 @@ const App = () => {
         </div>
         <Footer />
 
-        {/* Chat Button */}
         <ChatButton />
 
-        {/* Chat Box (reads open-state from Redux) */}
         <ChatBox />
       </div>
     </BrowserRouter>

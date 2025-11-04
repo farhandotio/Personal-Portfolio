@@ -211,7 +211,7 @@ export async function googleOAuthCallback(req, res) {
 
 export async function getProfile(req, res) {
   try {
-    const user = req.user; // attached by VerifyToken
+    const user = req.user;
     if (!user) return res.status(404).json({ message: "User not found" });
 
     res.status(200).json({
@@ -224,7 +224,6 @@ export async function getProfile(req, res) {
       },
     });
   } catch (err) {
-    console.error("Get profile error:", err);
     res.status(500).json({ message: "Server error" });
   }
 }

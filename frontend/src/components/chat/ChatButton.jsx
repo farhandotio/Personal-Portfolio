@@ -1,17 +1,23 @@
 // components/chat/ChatButton.jsx
 import React, { useRef } from "react";
 import { motion } from "framer-motion";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { openChat } from "../../app/features/chat/chatSlice";
 import { IoIosChatbubbles } from "react-icons/io";
 
 const ChatButton = () => {
+  const { user } = useSelector((state) => state.auth);
   const ref = useRef(null);
   const dispatch = useDispatch();
 
   const handleClick = () => {
     dispatch(openChat());
   };
+
+  // ✅ Prevent error if user is null
+  if (!user || user.role === "admin") {
+    return null;
+  }
 
   return (
     <div
