@@ -4,9 +4,6 @@ import uploadFile from "../services/storage.service.js";
 // ==========================
 export const createOrder = async (req, res) => {
   try {
-    const user = req.user;
-    if (!user) return res.status(401).json({ message: "Unauthorized" });
-
     const {
       fullname,
       emailAddress,
@@ -95,9 +92,6 @@ export const createOrder = async (req, res) => {
 // ==========================
 export const getUserOrders = async (req, res) => {
   try {
-    const user = req.user;
-    if (!user) return res.status(401).json({ message: "Unauthorized" });
-
     const orders = await orderModel
       .find({ user: user._id })
       .sort({ createdAt: -1 });
@@ -114,9 +108,6 @@ export const getUserOrders = async (req, res) => {
 // ==========================
 export const deleteUserOrder = async (req, res) => {
   try {
-    const user = req.user;
-    if (!user) return res.status(401).json({ message: "Unauthorized" });
-
     const { id } = req.params;
     const order = await orderModel.findById(id);
     if (!order) return res.status(404).json({ message: "Order not found" });
@@ -141,10 +132,6 @@ export const deleteUserOrder = async (req, res) => {
 // ==========================
 export const getAllOrders = async (req, res) => {
   try {
-    const user = req.user;
-    if (!user || user.role !== "admin")
-      return res.status(403).json({ message: "Forbidden" });
-
     const orders = await orderModel
       .find()
       .populate("user", "fullname emailAddress picture role")
@@ -162,10 +149,6 @@ export const getAllOrders = async (req, res) => {
 // ==========================
 export const updateOrderStatus = async (req, res) => {
   try {
-    const user = req.user;
-    if (!user || user.role !== "admin")
-      return res.status(403).json({ message: "Forbidden" });
-
     const { id } = req.params;
     const { status } = req.body;
 
@@ -197,10 +180,6 @@ export const updateOrderStatus = async (req, res) => {
 // ==========================
 export const deleteOrderByAdmin = async (req, res) => {
   try {
-    const user = req.user;
-    if (!user || user.role !== "admin")
-      return res.status(403).json({ message: "Forbidden" });
-
     const { id } = req.params;
     const order = await orderModel.findById(id);
     if (!order) return res.status(404).json({ message: "Order not found" });
