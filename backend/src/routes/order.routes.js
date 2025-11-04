@@ -15,7 +15,25 @@ const upload = multer({ storage: multer.memoryStorage() });
 const router = express.Router();
 
 // user
-router.post("/create", VerifyToken, upload.array("attachments"), createOrder);
+const uploadFields = upload.fields([
+  { name: "attachments", maxCount: 10 },
+  { name: "attachments[]", maxCount: 10 },
+  { name: "files", maxCount: 10 },
+]);
+
+// use wrapper or directly:
+router.post(
+  "/create",
+  VerifyToken,
+  (req, res, next) => {
+    uploadFields(req, res, (err) => {
+      if (err) return res.status(400).json({ error: err.message });
+      next();
+    });
+  },
+  createOrder
+);
+
 router.get("/my-orders", VerifyToken, getUserOrders);
 router.delete("/delete/:id", VerifyToken, deleteUserOrder);
 

@@ -12,7 +12,11 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm({
     defaultValues: {
       email: "",
       password: "",
@@ -32,7 +36,7 @@ const Login = () => {
       if (res) {
         // set user in Redux store
         dispatch(setUser(res));
-        navigate("/"); 
+        navigate("/");
       }
     } catch (error) {
       console.error("Login failed:", error);
@@ -58,7 +62,9 @@ const Login = () => {
               <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-mutedText" />
             </div>
             {errors.email && (
-              <p className="mt-1 text-xs text-red-500">{errors.email.message}</p>
+              <p className="mt-1 text-xs text-red-500">
+                {errors.email.message}
+              </p>
             )}
           </div>
 
@@ -77,11 +83,17 @@ const Login = () => {
                 onClick={togglePasswordVisibility}
                 className="absolute right-3 top-1/2 transform -translate-y-1/2 text-mutedText hover:text-text transition duration-150 p-1 rounded-full focus:outline-none"
               >
-                {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                {showPassword ? (
+                  <EyeOff className="w-5 h-5" />
+                ) : (
+                  <Eye className="w-5 h-5" />
+                )}
               </button>
             </div>
             {errors.password && (
-              <p className="mt-1 text-xs text-red-500">{errors.password.message}</p>
+              <p className="mt-1 text-xs text-red-500">
+                {errors.password.message}
+              </p>
             )}
           </div>
 
@@ -104,6 +116,10 @@ const Login = () => {
         </div>
 
         <button
+          onClick={() => {
+            window.location.href =
+              "https://farhanagency.vercel.app/api/auth/google";
+          }}
           type="button"
           className="w-full flex items-center justify-center py-3 px-4 border border-border rounded-xl text-text cursor-pointer bg-cardBg hover:bg-hoverCardBg focus:outline-none transition-all duration-150"
         >

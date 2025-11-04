@@ -200,10 +200,10 @@ export async function googleOAuthCallback(req, res) {
     sendTokenCookie(res, token);
 
     // redirect to frontend
-    res.redirect("http://localhost:5173/");
+    res.redirect("https://farhanagency.vercel.app/");
   } catch (err) {
     console.error("Google OAuth callback error:", err);
-    res.redirect("http://localhost:5173/login?error=oauth");
+    res.redirect("https://farhanagency.vercel.app/login?error=oauth");
   }
 }
 

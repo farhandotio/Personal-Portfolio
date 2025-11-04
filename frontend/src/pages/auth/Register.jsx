@@ -280,6 +280,10 @@ const Register = () => {
           </div>
 
           <button
+            onClick={() => {
+              window.location.href =
+                "https://farhanagency.vercel.app/api/auth/google";
+            }}
             type="button"
             className={`w-full flex items-center justify-center py-3 px-4 border border-border rounded-xl text-text cursor-pointer bg-cardBg hover:bg-hoverCardBg focus:outline-none transition-all duration-150`}
           >

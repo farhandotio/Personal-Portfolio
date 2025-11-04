@@ -75,7 +75,7 @@ body {
 .select:-webkit-autofill {
   background-color: var(--color-inputBg) !important;
   -webkit-text-fill-color: var(--color-mutedText) !important;
-  transition: background-color 5000s ease-in-out 0s;
+  transition: background-color 50000s ease-in-out 0s;
 }
 
 .hidden-scrollbar::-webkit-scrollbar {

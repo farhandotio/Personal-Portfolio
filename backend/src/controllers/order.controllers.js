@@ -1,5 +1,6 @@
+// controllers/order.controllers.js
 import orderModel from "../models/order.model.js";
-import uploadFile from "../services/storage.service.js";
+import uploadFile from "../services/storage.service.js"; // আপনার storage service
 
 // ==========================
 export const createOrder = async (req, res) => {
@@ -15,6 +16,10 @@ export const createOrder = async (req, res) => {
       attachments: attachmentsFromBody,
     } = req.body;
 
+    // Ensure req.user exists (VerifyToken should set it)
+    const user = req.user;
+    if (!user) return res.status(401).json({ message: "Unauthorized" });
+
     // Basic validation
     if (
       !fullname ||
@@ -28,23 +33,59 @@ export const createOrder = async (req, res) => {
 
     const attachments = [];
 
-    // 1) Multer files → ImageKit
-    if (req.files && req.files.length > 0) {
-      for (const file of req.files) {
-        try {
-          const uploaded = await uploadFile(file.buffer, file.originalname);
-          attachments.push({
-            url: uploaded.url,
-            filename: uploaded.name || file.originalname,
-          });
-        } catch (err) {
-          console.error("ImageKit upload error:", err);
-          // skip this file but continue
-        }
+    // --- 1) Handle uploaded files (req.files may be object or array) ---
+    let uploadedFileList = [];
+
+    if (req.files) {
+      // If req.files is an object (upload.fields), flatten its arrays
+      if (!Array.isArray(req.files) && typeof req.files === "object") {
+        uploadedFileList = Object.values(req.files).flat();
+      } else if (Array.isArray(req.files)) {
+        uploadedFileList = req.files;
       }
     }
 
-    // 2) If frontend sent attachments as URLs
+    if (uploadedFileList.length > 0) {
+      // Upload each file to storage (ImageKit)
+      const uploadResults = await Promise.all(
+        uploadedFileList.map(async (file) => {
+          try {
+            // Try calling uploadFile with file object first (many implementations accept multer file)
+            try {
+              const resp = await uploadFile(file, file.originalname);
+              return {
+                success: true,
+                url: resp?.url || resp?.fileUrl || null,
+                filename: resp?.name || file.originalname,
+              };
+            } catch (innerErr) {
+              // Fallback: pass buffer + originalname (some earlier implementations expect buffer)
+              const resp2 = await uploadFile(file.buffer, file.originalname);
+              return {
+                success: true,
+                url: resp2?.url || resp2?.fileUrl || null,
+                filename: resp2?.name || file.originalname,
+              };
+            }
+          } catch (err) {
+            console.error("Single file upload failed:", err);
+            return { success: false, error: err.message || "Upload failed" };
+          }
+        })
+      );
+
+      // Push successful uploads into attachments
+      uploadResults.forEach((r) => {
+        if (r.success && r.url) {
+          attachments.push({ url: r.url, filename: r.filename });
+        } else {
+          // optionally log r.error
+          console.warn("Skipping failed upload:", r.error || r);
+        }
+      });
+    }
+
+    // --- 2) If frontend sent attachments as URLs in the body ---
     if (attachmentsFromBody) {
       try {
         const parsed =
@@ -66,6 +107,7 @@ export const createOrder = async (req, res) => {
       }
     }
 
+    // Build order
     const order = new orderModel({
       user: user._id,
       fullname,
@@ -92,6 +134,9 @@ export const createOrder = async (req, res) => {
 // ==========================
 export const getUserOrders = async (req, res) => {
   try {
+    const user = req.user;
+    if (!user) return res.status(401).json({ message: "Unauthorized" });
+
     const orders = await orderModel
       .find({ user: user._id })
       .sort({ createdAt: -1 });
@@ -108,6 +153,9 @@ export const getUserOrders = async (req, res) => {
 // ==========================
 export const deleteUserOrder = async (req, res) => {
   try {
+    const user = req.user;
+    if (!user) return res.status(401).json({ message: "Unauthorized" });
+
     const { id } = req.params;
     const order = await orderModel.findById(id);
     if (!order) return res.status(404).json({ message: "Order not found" });
