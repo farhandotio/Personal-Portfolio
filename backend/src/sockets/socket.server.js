@@ -9,7 +9,6 @@ function initialSocketServer(httpServer) {
   const allowedOrigins = [
     "http://localhost:5173",
     "https://farhanagency.vercel.app",
-    "https://farhan-agency.vercel.app",
   ];
 
   const io = new Server(httpServer, {
