@@ -7,7 +7,6 @@ import uploadFile from "../services/storage.service.js";
 
 // -------------------- AUTH HELPERS -------------------- //
 
-// helpers at top of file (or keep existing)
 const generateToken = (user) =>
   jwt.sign({ id: user._id, role: user.role }, config.JWT_SECRET, {
     expiresIn: "7d",
@@ -15,16 +14,12 @@ const generateToken = (user) =>
 
 const sendTokenCookie = (res, token) => {
   const isProd = process.env.NODE_ENV === "production";
-
-  const cookieOptions = {
+  res.cookie("token", token, {
     httpOnly: true,
     secure: isProd,
-    sameSite: isProd ? "none" : "lax",
+    sameSite: "lax",
     maxAge: 1000 * 60 * 60 * 24 * 7,
-    path: "/",
-  };
-
-  res.cookie("token", token, cookieOptions);
+  });
 };
 
 // -------------------- CONTROLLERS -------------------- //
@@ -176,6 +171,7 @@ export async function login(req, res) {
       },
     });
   } catch (err) {
+    console.error("Login error:", err);
     res.status(500).json({ message: "Server error" });
   }
 }
@@ -203,11 +199,11 @@ export async function googleOAuthCallback(req, res) {
     const token = generateToken(user);
     sendTokenCookie(res, token);
 
-    // Make sure frontend origin exactly matches your deployed site
-    res.redirect("https://farhan-agency.vercel.app/");
+    // redirect to frontend
+    res.redirect("https://farhanagency.vercel.app/");
   } catch (err) {
-    // keep consistent redirect on error
-    res.redirect("https://farhan-agency.vercel.app/login?error=oauth");
+    console.error("Google OAuth callback error:", err);
+    res.redirect("https://farhanagency.vercel.app/login?error=oauth");
   }
 }
 
@@ -237,24 +233,17 @@ export async function getAllUsers(req, res) {
     const users = await userModel.find().select("-password");
     res.status(200).json({ users });
   } catch (err) {
+    console.error("Get all users error:", err);
     res.status(500).json({ message: "Server error" });
   }
 }
 
 export async function logout(req, res) {
   try {
-    const isProd = process.env.NODE_ENV === "production";
-
-    // must pass same options (path, domain, sameSite, secure) when clearing
-    res.clearCookie("token", {
-      httpOnly: true,
-      secure: isProd,
-      sameSite: isProd ? "none" : "lax",
-      path: "/",
-    });
-
+    res.clearCookie("token");
     res.status(200).json({ message: "Logged out successfully" });
   } catch (err) {
+    console.error("Logout error:", err);
     res.status(500).json({ message: "Server error" });
   }
 }
