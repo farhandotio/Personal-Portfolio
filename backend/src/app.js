@@ -23,10 +23,14 @@ app.use(cookieParser());
 
 app.use(
   cors({
-    origin: "https://farhanagency.vercel.app",
+    origin: [
+      "http://localhost:5173",
+      "https://farhanagency.vercel.app",
+    ],
     credentials: true,
   })
 );
+
 
 // Routes
 app.use("/api/auth", authRoutes);
