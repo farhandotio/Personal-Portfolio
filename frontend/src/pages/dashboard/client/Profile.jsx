@@ -3,10 +3,6 @@ import { useSelector } from "react-redux";
 
 const Profile = () => {
   const { user } = useSelector((state) => state.auth);
-  const { order } = useSelector((state) => state.auth);
-
-  console.log(order)
-
 
   // Fallback if user data is missing
   const client = {
