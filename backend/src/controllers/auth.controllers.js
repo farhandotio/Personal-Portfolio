@@ -7,7 +7,6 @@ import uploadFile from "../services/storage.service.js";
 import fs from "fs/promises";
 import path from "path";
 
-const isProd = config.NODE_ENV === "production";
 
 // -------------------- AUTH HELPERS -------------------- //
 
@@ -19,7 +18,6 @@ const generateToken = (user) =>
 const sendTokenCookie = (res, token) => {
   res.cookie("token", token, {
     httpOnly: true,
-    secure: isProd,
     sameSite: "lax",
     maxAge: 1000 * 60 * 60 * 24 * 7,
     path: "/",
@@ -330,7 +328,6 @@ export async function logout(req, res) {
   try {
     res.clearCookie("token", {
       httpOnly: true,
-      secure: isProd,
       sameSite: "lax",
       path: "/",
     });
