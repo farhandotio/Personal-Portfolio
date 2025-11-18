@@ -1,70 +1,77 @@
 import React from "react";
-import { IoArrowDown } from "react-icons/io5";
+import { IoArrowForward } from "react-icons/io5";
 
 const ProjectCard = ({ project }) => {
-  const headingId = `project-heading-${project.title}`;
+  const headingId = `project-heading-${project.title.replace(/\s+/g, "-")}`;
 
   return (
     <section
       aria-labelledby={headingId}
-      className="mb-30"
+      className="mb-32 pb-20 last:border-none last:pb-0"
     >
-      <div className="w-full">
-        <div className="flex justify-between">
-          <h2
-            id={headingId}
-            className="text-2xl md:text-3xl font-bold mb-8 text-text"
-          >
-            {project.title}
-          </h2>
+      {/* Header section */}
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-12">
+        <h2
+          id={headingId}
+          className="text-3xl md:text-4xl font-extrabold tracking-tight text-text"
+        >
+          {project.title}
+        </h2>
 
-          <a
-            href={project.liveUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`Open live demo of ${project.title} in a new tab`}
-            className="flex justify-center items-center h-fit w-fit md:transition-all duration-200 bg-cardBg md:hover:bg-primary max-md:bg-primary rounded-full p-2 ml-1 md:p-4"
-          >
-            <IoArrowDown className="text-xl md:text-2xl -rotate-135" />
-          </a>
-        </div>
-
-        <p className="text-lg md:text-xl max-w-4xl mb-12 text-mutedText">
-          {project.description}
-        </p>
+        {/* Live Button */}
+        <a
+          href={project.liveUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`Open ${project.title} live site`}
+          className="group mt-5 md:mt-0 flex items-center gap-2 bg-primary text-white px-5 py-3 rounded-full font-semibold text-sm transition-all duration-300 hover:bg-hoverPrimary shadow-md"
+        >
+          View Live
+          <IoArrowForward className="text-lg transition-transform group-hover:translate-x-1" />
+        </a>
       </div>
 
-      <div className="flex flex-col-reverse md:flex-row justify-between border-t border-border">
-        {/* Left Column: Key Insights */}
-        <div className="w-full md:w-2/3 pt-8 pr-4">
-          <h3 className="text-lg font-bold mb-6 text-text">
-            Key insights into design solution:
-          </h3>
-
-          <div className="space-y-6">
-            {project.keyInsights?.map((item, idx) => (
-              <div key={idx} className="flex items-start">
-                <span className="shrink-0 w-8 h-8 mr-4 rounded-full bg-circleBg text-bg font-bold flex items-center justify-center text-sm">
-                  #{idx + 1}
-                </span>
-
-                <p className="text-base md:text-lg max-w-3xl text-mutedText">
-                  {item.insight}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Right Column: Visual */}
-        <div className="w-full md:w-1/3 pt-8 relative min-h-40 md:ml-10 md:min-h-0">
+      {/* Main Layout: Image Left + Content Right */}
+      <div className="flex flex-col md:flex-row gap-12 md:gap-16 items-start">
+        {/* LEFT — Image */}
+        <div className="w-full md:w-[35%] rounded-xl overflow-hidden bg-cardBg">
           <img
             src={project.image}
-            alt={`${project.title} preview`}
+            alt={`${project.title} showcase`}
             loading="lazy"
-            className="h-full w-full md:max-h-70 object-right object-contain rounded"
+            className="w-full h-auto object-cover"
           />
         </div>
+
+        {/* RIGHT — Description + Insights */}
+        <div className="w-full md:w-[65%]">
+          {/* Description */}
+          <p className="text-lg md:text-xl leading-relaxed text-mutedText max-w-3xl mb-14">
+            {project.description}
+          </p>
+        </div>
+      </div>
+
+      {/* Key Insights */}
+      <h3 className="text-2xl font-bold text-text my-8">
+        Key insights into design solution:
+      </h3>
+
+      <div className="space-y-8">
+        {project.keyInsights?.map((item, idx) => (
+          <div
+            key={idx}
+            className="flex gap-5 p-5 bg-cardBg rounded-xl border border-border hover:border-primary/40 transition-all"
+          >
+            <span className="shrink-0 w-10 h-10 flex items-center justify-center font-bold rounded-full bg-primary text-white">
+              {idx + 1}
+            </span>
+
+            <p className="text-base md:text-lg text-mutedText leading-relaxed max-w-2xl">
+              {item.insight}
+            </p>
+          </div>
+        ))}
       </div>
     </section>
   );

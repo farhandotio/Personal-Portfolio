@@ -6,10 +6,7 @@ const FOUNDER_IMAGE_URL =
 
 const MeetOurFounder = () => {
   return (
-    <section
-      className="py-30 bg-bg"
-      aria-labelledby="founder-heading"
-    >
+    <section className="py-30 bg-bg" aria-labelledby="founder-heading">
       <div className="flex flex-col lg:flex-row items-end gap-12">
         <div className="lg:w-3/4 w-full space-y-6">
           <h1
@@ -19,7 +16,9 @@ const MeetOurFounder = () => {
             Meet Our Founder
           </h1>
           {/* Founder Name */}
-          <h2 className="text-2xl font-semibold text-primary">MD Farhan Sadik</h2>
+          <h2 className="text-2xl font-semibold text-primary">
+            MD Farhan Sadik
+          </h2>
 
           {/* Bio Paragraph 1 */}
           <p className="text-xl leading-relaxed text-mutedText">
@@ -81,7 +80,7 @@ const MeetOurFounder = () => {
               src={
                 "https://storage.googleapis.com/uxpilot-auth.appspot.com/8c72e0b481-6e5102fb0a8d68c863aa.png"
               }
-              alt="Farhan Ahmed, Founder of Farhan Agency"
+              alt="Farhan Ahmed, Founder of Farhan Sadik"
               className="w-full h-full object-cover"
               onError={(e) => {
                 e.target.onerror = null;

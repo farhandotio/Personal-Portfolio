@@ -1,54 +1,32 @@
 import React, { useEffect, useState } from "react";
-import { SlPencil } from "react-icons/sl";
 import { Link, NavLink, useLocation } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchUser } from "../../app/features/auth/authSlice";
 
 const navLinks = [
   { name: "SERVICES", href: "/services" },
   { name: "PROJECTS", href: "/projects" },
   { name: "PROCESS", href: "/process" },
   { name: "ABOUT", href: "/about" },
-  { name: "START A PROJECT", href: "/contact" },
 ];
 
 const Navbar = () => {
-  const dispatch = useDispatch();
-  const { user, isLoading } = useSelector((state) => state.auth);
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
-    dispatch(fetchUser());
-  }, [dispatch]);
-
-  // Smooth scroll when route changes (covers normal navigation)
-  useEffect(() => {
-    // If you prefer instant jump on route change, remove behavior: "smooth"
+    // scroll to top on route change and close mobile menu
     window.scrollTo({ top: 0, behavior: "smooth" });
-    // also close mobile menu on route change (if it was open)
     setMenuOpen(false);
   }, [location.pathname]);
 
-  // one-line helper you can use inline: onClick={() => scrollToTop()}
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
-
-  // handle nested user if needed (from authSlice)
-  const currentUser = user?.user ?? user ?? null;
-  const isLoggedIn = !!(currentUser && Object.keys(currentUser).length > 0);
-  const isAdmin = currentUser?.role === "admin";
 
   return (
     <header className="fixed top-0 w-full bg-bg text-text py-5 z-50">
       <div className="max-w-[1900px] mx-auto flex justify-between items-center px-5 sm:px-7 lg:px-10">
-        {/* Logo/Brand Name */}
-        <Link
-          onClick={scrollToTop} // <-- one-line usage
-          to="/"
-          aria-label="Farhan Agency home"
-        >
+        {/* Logo/Brand */}
+        <Link onClick={scrollToTop} to="/" aria-label="Farhan Sadik home">
           <h1 className="text-xl lg:text-3xl whitespace-nowrap uppercase font-bold tracking-widest">
-            Farhan <span className="text-secondary">Agency</span>
+            Farhan <span className="text-secondary">Dev</span>
             <span className="text-primary">.</span>
           </h1>
         </Link>
@@ -72,15 +50,14 @@ const Navbar = () => {
             ))}
           </ul>
 
-          {/* Profile / Join Us Button */}
+          {/* Static CTA */}
           <NavLink
+            to="/contact"
             onClick={scrollToTop}
-            to={isLoggedIn ? (isAdmin ? "/admin" : "/profile") : "/register"}
             className="flex items-center px-6 py-3 bg-primary hover:bg-hoverPrimary text-white font-semibold rounded-full text-sm transition duration-300 shadow-xl"
-            aria-label={isLoggedIn ? "Go to profile" : "Join us / Register"}
+            aria-label="Start a project"
           >
-            {isLoading ? "Loading..." : isLoggedIn ? "PROFILE" : "JOIN US"}
-            <SlPencil className="ml-2 text-base" />
+            START A PROJECT
           </NavLink>
         </nav>
 
@@ -122,7 +99,7 @@ const Navbar = () => {
               <NavLink
                 to={link.href}
                 onClick={() => {
-                  scrollToTop(); // immediate scroll if user clicks same route
+                  scrollToTop();
                   setMenuOpen(false);
                 }}
                 className={({ isActive }) =>
@@ -137,18 +114,17 @@ const Navbar = () => {
           ))}
         </ul>
 
-        {/* Profile / Join Us Button */}
+        {/* Static CTA */}
         <NavLink
-          to={isLoggedIn ? (isAdmin ? "/admin" : "/profile") : "/register"}
+          to="/contact"
           onClick={() => {
             scrollToTop();
             setMenuOpen(false);
           }}
           className="flex items-center px-8 py-3 bg-primary hover:bg-hoverPrimary text-white font-semibold rounded-full text-sm transition duration-300 shadow-xl"
-          aria-label={isLoggedIn ? "Go to profile" : "Join us / Register"}
+          aria-label="Start a project"
         >
-          {isLoading ? "Loading..." : isLoggedIn ? "PROFILE" : "JOIN US"}
-          <SlPencil className="ml-2 text-base" />
+          START A PROJECT
         </NavLink>
       </div>
     </header>

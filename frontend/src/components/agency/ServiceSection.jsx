@@ -108,7 +108,7 @@ const ServiceSection = () => {
 
       <meta
         name="description"
-        content="Farhan Agency offers expert Frontend, Backend, and Fullstack Development Services — building scalable, high-performance digital products for businesses worldwide."
+        content="Farhan Sadik offers expert Frontend, Backend, and Fullstack Development Services — building scalable, high-performance digital products for businesses worldwide."
       />
     </section>
   );

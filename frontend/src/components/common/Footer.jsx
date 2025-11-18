@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 const data = {
   brand: {
-    name: "Farhan Agency",
+    name: "Farhan Sadik",
     tagline: "Modern UI, fast experiences",
   },
   navColumns: [
@@ -46,19 +46,19 @@ const data = {
       id: "instagram",
       network: "instagram",
       href: "https://www.instagram.com/farhansadik02/",
-      ariaLabel: "Follow Farhan Agency on instagram",
+      ariaLabel: "Follow Farhan Sadik on instagram",
     },
     {
       id: "linkedin",
       network: "LinkedIn",
       href: "https://www.linkedin.com/in/mdsadikdev/",
-      ariaLabel: "Follow Farhan Agency on LinkedIn",
+      ariaLabel: "Follow Farhan Sadik on LinkedIn",
     },
     {
       id: "github",
       network: "GitHub",
       href: "https://github.com/farhandotio",
-      ariaLabel: "View Farhan Agency on GitHub",
+      ariaLabel: "View Farhan Sadik on GitHub",
     },
   ],
   legal: [
@@ -98,7 +98,7 @@ const Footer = () => {
       />
 
       <div className="px-5 md:px-7 lg:px-10">
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-10  py-16 lg:py-24 border-t border-border">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-10  pt-16 lg:py-24 border-t border-border">
           <div className="space-y-4 md:col-span-2">
             <Link
               to="/"
@@ -114,7 +114,7 @@ const Footer = () => {
             </Link>
 
             <p className="text-sm text-mutedText">
-              We craft fast, accessible websites and beautiful UI systems for
+              Icraft fast, accessible websites and beautiful UI systems for
               startups and brands.
             </p>
 
@@ -167,12 +167,12 @@ const Footer = () => {
         </div>
 
         {/* Divider */}
-        <div className="border-t border-[rgba(255,255,255,0.04)] mt-12 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="border-t border-[rgba(255,255,255,0.04)] mt-12 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="text-sm text-gray-400">
             © {new Date().getFullYear()} {data.brand.name}. All rights reserved.
           </div>
 
-          <div className="flex items-center gap-6">
+          <div className="hidden md:flex items-center gap-6">
             <div className="flex gap-4">
               {data.legal.map((l) => (
                 <Link

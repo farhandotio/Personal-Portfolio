@@ -4,7 +4,7 @@ const HeroSection = () => {
   return (
     <section
       className="bg-bg overflow-hidden min-h-[650px] pt-20 flex items-center"
-      aria-label="Farhan Agency Solutions"
+      aria-label="Farhan Sadik Solutions"
       itemScope
       itemType="https://schema.org/WebPage"
       role="region"
@@ -18,7 +18,7 @@ const HeroSection = () => {
             className="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight text-text"
             itemProp="headline"
           >
-            <span>Farhan Agency</span> <br />
+            <span>Farhan Sadik</span> <br />
             <span className="block pt-2 text-primary"> — Fullstack, </span>
             <span className="max-lg:block text-secondary"> Frontend & </span>
             <span className="max-lg:block"> Backend Solutions </span>
@@ -29,8 +29,8 @@ const HeroSection = () => {
             className="mt-6 text-2xl leading-relaxed max-w-4xl text-mutedText"
             itemProp="description"
           >
-            We craft digital experiences that drive results. From concept to
-            deployment, we build scalable web applications that grow with your
+            Icraft digital experiences that drive results. From concept to
+            deployment,Ibuild scalable web applications that grow with your
             business.
           </p>
         </div>
@@ -39,11 +39,11 @@ const HeroSection = () => {
       {/* Non-visual SEO additions (keeps visible content unchanged) */}
       <meta
         name="description"
-        content="Farhan Agency provides Fullstack, Frontend, and Backend Solutions. We build scalable web applications from concept to deployment that drive results for your business."
+        content="Farhan Sadik provides Fullstack, Frontend, and Backend Solutions.Ibuild scalable web applications from concept to deployment that drive results for your business."
       />
       <meta
         name="keywords"
-        content="Farhan Agency, fullstack, frontend development, backend development, web applications, scalable web apps"
+        content="Farhan Sadik, fullstack, frontend development, backend development, web applications, scalable web apps"
       />
 
       {/* JSON-LD structured data for better indexing and rich results */}
@@ -51,10 +51,10 @@ const HeroSection = () => {
         {JSON.stringify({
           "@context": "https://schema.org",
           "@type": "Organization",
-          name: "Farhan Agency",
+          name: "Farhan Sadik",
           url: "https://your-agency-website.com",
           description:
-            "Farhan Agency provides Fullstack, Frontend, and Backend Solutions. We build scalable web applications from concept to deployment that drive results for your business.",
+            "Farhan Sadik provides Fullstack, Frontend, and Backend Solutions.Ibuild scalable web applications from concept to deployment that drive results for your business.",
           sameAs: [
             "https://github.com/master-farhan",
             "https://www.linkedin.com/in/md-farhan-sadik",
@@ -66,9 +66,9 @@ const HeroSection = () => {
         {JSON.stringify({
           "@context": "https://schema.org",
           "@type": "WebPage",
-          name: "Farhan Agency — Fullstack, Frontend & Backend Solutions",
+          name: "Farhan Sadik — Fullstack, Frontend & Backend Solutions",
           description:
-            "Farhan Agency provides Fullstack, Frontend, and Backend Solutions. We build scalable web applications from concept to deployment that drive results for your business.",
+            "Farhan Sadik provides Fullstack, Frontend, and Backend Solutions.Ibuild scalable web applications from concept to deployment that drive results for your business.",
           url: "https://your-agency-website.com",
         })}
       </script>

@@ -1,23 +1,34 @@
 import React, { useEffect, useState } from "react";
 import ProjectCard from "../components/projects/ProjectCard";
 import axios from "axios";
+import Loading from "../components/common/Loading";
 
 const Projects = () => {
   const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(true); // <-- added loading state
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     async function fetchProject() {
-      const data = await axios.get(
-        "https://farhan-agency.onrender.com/api/projects"
-      );
+      try {
+        setLoading(true);
 
-      setProjects(data.data.projects);
+        const res = await axios.get(
+          "https://farhan-agency.onrender.com/api/projects"
+        );
+
+        setProjects(res.data.projects || []);
+      } catch (err) {
+        setError("Failed to load projects. Please try again.");
+      } finally {
+        setLoading(false);
+      }
     }
 
     fetchProject();
   }, []);
 
-  // ✅ JSON-LD for SEO (Structured Data)
+  // JSON-LD for SEO
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "ItemList",
@@ -40,11 +51,8 @@ const Projects = () => {
   return (
     <section id="projects" className="bg-bg text-text p-5 md:p-7 lg:p-10 mt-20">
       <header className="mb-16 md:mb-24">
-        <h2
-          id="testimonials-heading"
-          className="text-4xl md:text-5xl font-extrabold w-full  mb-8"
-        >
-          Our all Projects
+        <h2 className="text-4xl md:text-5xl font-extrabold mb-8">
+          Our All Projects
         </h2>
         <p className="text-mutedText max-w-4xl text-lg">
           A showcase of modern, high-performing web applications built with
@@ -53,11 +61,27 @@ const Projects = () => {
         </p>
       </header>
 
-      {projects.map((project) => (
-        <ProjectCard key={project._id} project={project} />
-      ))}
+      {/* 🔄 Loading State */}
+      {loading && (
+        <div className="min-h-[300px] flex items-center justify-center">
+          <Loading text="Projects are loading..." />
+        </div>
+      )}
 
-      {/* ✅ SEO Structured Data */}
+      {/* ❌ Error Message */}
+      {!loading && error && (
+        <p className="text-red-500 text-center text-lg">{error}</p>
+      )}
+
+      {/* ✅ Projects List */}
+      {!loading && !error && (
+        <>
+          {projects.map((project) => (
+            <ProjectCard key={project._id} project={project} />
+          ))}
+        </>
+      )}
+
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

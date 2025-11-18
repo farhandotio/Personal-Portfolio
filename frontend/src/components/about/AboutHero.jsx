@@ -8,7 +8,7 @@ const AboutHero = () => {
           id="testimonials-heading"
           className="text-4xl md:text-5xl font-extrabold w-full  mb-8"
         >
-          About Farhan Agency
+          About Farhan Sadik
         </h2>
         <p className="text-mutedText max-w-4xl text-lg">
           We're a passionate team of digital innovators, dedicated to

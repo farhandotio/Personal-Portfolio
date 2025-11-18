@@ -11,7 +11,7 @@ const testimonials = [
     image:
       "https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8cGVyc29ufGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=500",
     message:
-      "Farhan Agency transformed our outdated website into a modern, high-performing platform. The attention to detail and smooth animations were exceptional!",
+      "Farhan Sadik transformed our outdated website into a modern, high-performing platform. The attention to detail and smooth animations were exceptional!",
     rating: 5,
   },
   {
@@ -41,7 +41,7 @@ const testimonials = [
     image:
       "https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8cGVyc29ufGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=500",
     message:
-      "Farhan Agency transformed our outdated website into a modern, high-performing platform. The attention to detail and smooth animations were exceptional!",
+      "Farhan Sadik transformed our outdated website into a modern, high-performing platform. The attention to detail and smooth animations were exceptional!",
     rating: 5,
   },
   {
@@ -84,7 +84,7 @@ const Testimonials = () => {
             <Link
               to={"/reviews"}
               className="flex whitespace-nowrap h-fit max-md:hidden w-fit mx-auto gap-2 hover:bg-cardBg hover:text-primary text-text font-semibold px-6 py-3 rounded-full transition-all"
-              aria-label="Contact Farhan Agency"
+              aria-label="Contact Farhan Sadik"
             >
               <span> All Reviews </span>{" "}
               <IoArrowDown className="text-xl md:text-2xl -rotate-135" />
@@ -154,7 +154,7 @@ const Testimonials = () => {
           <Link
             to={"/reviews"}
             className="flex w-fit mx-auto gap-2 bg-primary text-text font-semibold px-6 py-3 rounded-full shadow-md hover:scale-[1.02] transition-transform"
-            aria-label="Contact Farhan Agency"
+            aria-label="Contact Farhan Sadik"
           >
             <span> All Reviews </span>{" "}
             <IoArrowDown className="text-xl md:text-2xl -rotate-135" />

@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
+import Loading from "../components/common/Loading";
 
 // Component for the Service Details Page
 const ServiceDetailsPage = () => {
@@ -31,7 +32,9 @@ const ServiceDetailsPage = () => {
 
   if (loading) {
     return (
-      <div className="text-center py-20 text-lg text-mutedText">Loading...</div>
+      <div className="min-h-screen flex items-center justify-center">
+        <Loading text={"Service is loading..."} />
+      </div>
     );
   }
 

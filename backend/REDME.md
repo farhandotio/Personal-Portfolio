@@ -1,6 +1,6 @@
-🌐 Farhan Agency
+🌐 Farhan Sadik
 
-Farhan Agency is a modern Full-Stack Digital Agency Platform built for managing your freelance web development work like a professional SaaS.
+Farhan Sadik is a modern Full-Stack Digital Agency Platform built for managing your freelance web development work like a professional SaaS.
 
 Clients can explore services, can see our projects, place project orders, communicate via real-time chat, track progress, and manage their profiles — while you (Farhan) control everything through an admin dashboard.
 
@@ -54,70 +54,70 @@ Nodemailer – Email verification & OTP
 Manual Payment Integration – Admin generates link → client pays → order updated
 
 ☁️ Cloud & Deployment
-Platform	Usage
-Vercel	Frontend
-Render	Backend
-MongoDB Atlas	Database
-Manual Payment	Payoneer
+Platform Usage
+Vercel Frontend
+Render Backend
+MongoDB Atlas Database
+Manual Payment Payoneer
 📂 Project Structure
 Farhan-Agency/
 │
 ├── frontend/
-│   ├── public/
-│   │   └── assets/
-│   ├── src/
-│   │   ├── app/
-│   │   │   ├── store.js
-│   │   │   ├── api.js
-│   │   │   ├── socket.js
-│   │   │   ├── hooks/
-│   │   │   ├── slices/
-│   │   ├── components/
-│   │   │   ├── common/
-│   │   │   ├── home/
-│   │   │   ├── services/
-│   │   │   ├── projects/
-│   │   │   ├── chat/
-│   │   │   ├── auth/
-│   │   │   └── dashboard/
-│   │   ├── pages/
-│   │   ├── App.jsx
-│   │   ├── main.jsx
-│   │   └── index.css
+│ ├── public/
+│ │ └── assets/
+│ ├── src/
+│ │ ├── app/
+│ │ │ ├── store.js
+│ │ │ ├── api.js
+│ │ │ ├── socket.js
+│ │ │ ├── hooks/
+│ │ │ ├── slices/
+│ │ ├── components/
+│ │ │ ├── common/
+│ │ │ ├── home/
+│ │ │ ├── services/
+│ │ │ ├── projects/
+│ │ │ ├── chat/
+│ │ │ ├── auth/
+│ │ │ └── dashboard/
+│ │ ├── pages/
+│ │ ├── App.jsx
+│ │ ├── main.jsx
+│ │ └── index.css
 │
 ├── backend/
-│   ├── src/
-│   │   ├── config/
-│   │   │   ├── config.js
-│   │   ├── db/
-│   │   │   ├── db.js
-│   │   ├── middleware/
-│   │   │   ├── auth.middleware.js
-│   │   │   ├── validate.middleware.js
-│   │   ├── models/
-│   │   │   ├── user
-│   │   │   ├── project
-│   │   │   ├── service
-│   │   │   ├── order
-│   │   ├── controllers/
-│   │   │   ├── auth.controller.js
-│   │   │   ├── admin.controller.js
-│   │   │   ├── project.controller.js
-│   │   │   ├── service.controller.js
-│   │   │   ├── order.controller.js
-│   │   ├── routes/
-│   │   │   ├── auth.route.js
-│   │   │   ├── admin.route.js
-│   │   │   ├── project.route.js
-│   │   │   ├── service.route.js
-│   │   │   ├── order.route.js
-│   │   ├── utils/
-│   │   │   ├── email.js
-│   │   ├── services/
-│   │   │   ├── gemini.service.js
-│   │   │   ├── socketio.service.js
-│   │   ├── app.js
-│   │   └── server.js
+│ ├── src/
+│ │ ├── config/
+│ │ │ ├── config.js
+│ │ ├── db/
+│ │ │ ├── db.js
+│ │ ├── middleware/
+│ │ │ ├── auth.middleware.js
+│ │ │ ├── validate.middleware.js
+│ │ ├── models/
+│ │ │ ├── user
+│ │ │ ├── project
+│ │ │ ├── service
+│ │ │ ├── order
+│ │ ├── controllers/
+│ │ │ ├── auth.controller.js
+│ │ │ ├── admin.controller.js
+│ │ │ ├── project.controller.js
+│ │ │ ├── service.controller.js
+│ │ │ ├── order.controller.js
+│ │ ├── routes/
+│ │ │ ├── auth.route.js
+│ │ │ ├── admin.route.js
+│ │ │ ├── project.route.js
+│ │ │ ├── service.route.js
+│ │ │ ├── order.route.js
+│ │ ├── utils/
+│ │ │ ├── email.js
+│ │ ├── services/
+│ │ │ ├── gemini.service.js
+│ │ │ ├── socketio.service.js
+│ │ ├── app.js
+│ │ └── server.js
 │
 ├── .env
 ├── .gitignore
@@ -151,10 +151,10 @@ Socket.io enables instant messaging between client ↔ admin
 Each conversation stored in Message collection:
 
 {
-  "senderId": "...",
-  "receiverId": "...",
-  "message": "Hello!",
-  "createdAt": "2025-10-28T12:00:00Z"
+"senderId": "...",
+"receiverId": "...",
+"message": "Hello!",
+"createdAt": "2025-10-28T12:00:00Z"
 }
 
 💰 Payment Flow (Manual / Client Request)
@@ -183,50 +183,52 @@ Important: Only admin can generate payment links. No other payment gateway optio
 
 🧠 API Endpoints
 Auth (/api/auth)
-Method	Endpoint	Description
+Method Endpoint Description
+
 <!-- POST	/register	Register user + OTP verify
 POST	/verify-email	Verify OTP -->
-POST	/login	Login user
-GET	/profile	Get user info
+
+POST /login Login user
+GET /profile Get user info
 
 Services (/api/services)
-Method	Endpoint	Description
-POST	/create	Create new order
-PUT	/update/:id	Update services
-DELETE	/cancel/:id	Cancel order
+Method Endpoint Description
+POST /create Create new order
+PUT /update/:id Update services
+DELETE /cancel/:id Cancel order
 
 Orders (/api/orders)
-Method	Endpoint	Description
-POST	/create	Create new order
-GET	/user/:id	Get user orders
-PUT	/update/:id	Update order status
-DELETE	/cancel/:id	Cancel order
+Method Endpoint Description
+POST /create Create new order
+GET /user/:id Get user orders
+PUT /update/:id Update order status
+DELETE /cancel/:id Cancel order
 
 Projects (/api/projects)
-Method	Endpoint	Description
-GET	/	Get all projects
-GET	/category/:type	Get projects by category
-POST	/add	Add project (admin)
-PUT	/edit/:id	Edit project
-DELETE	/delete/:id	Delete project
+Method Endpoint Description
+GET / Get all projects
+GET /category/:type Get projects by category
+POST /add Add project (admin)
+PUT /edit/:id Edit project
+DELETE /delete/:id Delete project
 
 Messages (/api/messages)
-Method	Endpoint	Description
-GET	/chat/:userId	Get user messages
-POST	/send	Send message
-WS	socket.io	Real-time updates
+Method Endpoint Description
+GET /chat/:userId Get user messages
+POST /send Send message
+WS socket.io Real-time updates
 
 Admin (/api/admin)
-Method	Endpoint	Description
-GET	/dashboard	Stats overview
-GET	/projects	Manage projects
-GET	/clients	View all clients
-GET	/payments	View all payments
+Method Endpoint Description
+GET /dashboard Stats overview
+GET /projects Manage projects
+GET /clients View all clients
+GET /payments View all payments
 
 Payment (/api/payments)
-Method	Endpoint	Description
-POST	/manual-link	Admin posts payment link to order
-GET	/order/:id	Get payment info for an order
+Method Endpoint Description
+POST /manual-link Admin posts payment link to order
+GET /order/:id Get payment info for an order
 
 ⚙️ Environment Variables (.env)
 PORT=5000
@@ -249,11 +251,11 @@ npm install
 npm run server
 
 🚢 Deployment
-Platform	Usage
-Vercel	Frontend
-Render	Backend
-MongoDB Atlas	Database
-Stripe / Payoneer	Payments (Manual link)
+Platform Usage
+Vercel Frontend
+Render Backend
+MongoDB Atlas Database
+Stripe / Payoneer Payments (Manual link)
 🧠 Future Enhancements
 
 ✅ AI Chat Assistant (Gemini / OpenAI)

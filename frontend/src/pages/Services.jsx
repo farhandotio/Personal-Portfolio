@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import ServiceCard from "../components/services/ServiceCard";
+import Loading from "../components/common/Loading";
 
 const Services = () => {
   const [services, setServices] = useState([]);
@@ -23,10 +24,6 @@ const Services = () => {
     fetchServices();
   }, []);
 
-  if (loading) {
-    return null;
-  }
-
   return (
     <div className="min-h-screen bg-bg py-30 px-5 sm:px-7 lg:px-10">
       <header className="mb-16 md:mb-24">
@@ -39,11 +36,21 @@ const Services = () => {
         </p>
       </header>
 
-      <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-2">
-        {services.map((service) => (
-          <ServiceCard key={service._id} service={service} />
-        ))}
-      </div>
+      {loading ? (
+        <>
+          <div className="min-h-[300px] flex items-center justify-center">
+            <Loading text={`Service is loading...`} />
+          </div>
+        </>
+      ) : (
+        <>
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-2">
+            {services.map((service) => (
+              <ServiceCard key={service._id} service={service} />
+            ))}
+          </div>
+        </>
+      )}
     </div>
   );
 };

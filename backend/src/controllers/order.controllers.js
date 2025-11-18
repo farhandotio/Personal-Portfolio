@@ -16,11 +16,6 @@ export const createOrder = async (req, res) => {
       attachments: attachmentsFromBody,
     } = req.body;
 
-    // Ensure req.user exists (VerifyToken should set it)
-    const user = req.user;
-    if (!user) return res.status(401).json({ message: "Unauthorized" });
-
-    // Basic validation
     if (
       !fullname ||
       !emailAddress ||
@@ -33,11 +28,9 @@ export const createOrder = async (req, res) => {
 
     const attachments = [];
 
-    // --- 1) Handle uploaded files (req.files may be object or array) ---
     let uploadedFileList = [];
 
     if (req.files) {
-      // If req.files is an object (upload.fields), flatten its arrays
       if (!Array.isArray(req.files) && typeof req.files === "object") {
         uploadedFileList = Object.values(req.files).flat();
       } else if (Array.isArray(req.files)) {
@@ -46,11 +39,9 @@ export const createOrder = async (req, res) => {
     }
 
     if (uploadedFileList.length > 0) {
-      // Upload each file to storage (ImageKit)
       const uploadResults = await Promise.all(
         uploadedFileList.map(async (file) => {
           try {
-            // Try calling uploadFile with file object first (many implementations accept multer file)
             try {
               const resp = await uploadFile(file, file.originalname);
               return {
@@ -59,7 +50,6 @@ export const createOrder = async (req, res) => {
                 filename: resp?.name || file.originalname,
               };
             } catch (innerErr) {
-              // Fallback: pass buffer + originalname (some earlier implementations expect buffer)
               const resp2 = await uploadFile(file.buffer, file.originalname);
               return {
                 success: true,
@@ -85,7 +75,6 @@ export const createOrder = async (req, res) => {
       });
     }
 
-    // --- 2) If frontend sent attachments as URLs in the body ---
     if (attachmentsFromBody) {
       try {
         const parsed =
@@ -109,7 +98,6 @@ export const createOrder = async (req, res) => {
 
     // Build order
     const order = new orderModel({
-      user: user._id,
       fullname,
       emailAddress,
       phoneNumber,

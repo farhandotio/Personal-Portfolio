@@ -53,7 +53,7 @@ const OurTechnologyStack = () => {
             Our Technology Stack
           </h2>
           <p className="text-xl mx-auto text-mutedText max-w-4xl">
-            We leverage modern, performance-driven tools to build scalable and
+            Ileverage modern, performance-driven tools to build scalable and
             robust applications — from frontend UI to backend APIs and cloud
             infrastructure.
           </p>

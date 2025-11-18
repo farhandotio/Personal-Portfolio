@@ -1,6 +1,6 @@
-🌐 Farhan Agency
+🌐 Farhan Sadik
 
-Farhan Agency is a modern Full-Stack Digital Agency Platform built for managing your freelance web development work like a professional SaaS.
+Farhan Sadik is a modern Full-Stack Digital Agency Platform built for managing your freelance web development work like a professional SaaS.
 
 Clients can explore services, can see our projects, place project orders, communicate via real-time chat, track progress, and manage their profiles — while you (Farhan) control everything through an admin dashboard.
 
@@ -65,75 +65,77 @@ Farhan-Agency/
 ├── frontend/
 │ ├── public/
 │ │ └── assets/
-│ ├── src/ 
-│ │ ├── app/ 
-│ │ │ ├── store.js 
-│ │ │ ├── api.js 
-│ │ │ ├── socket.js 
-│ │ │ ├── hooks/ 
-│ │ │ │ ├── useAuth.js 
-│ │ │ │ ├── useOrders.js 
-│ │ │ │ ├── useChat.js 
-│ │ │ ├── slices/ 
-│ │ │ │ ├── authSlice.js 
-│ │ │ │ ├── orderSlice.js 
+│ ├── src/
+│ │ ├── app/
+│ │ │ ├── store.js
+│ │ │ ├── api.js
+│ │ │ ├── socket.js
+│ │ │ ├── hooks/
+│ │ │ │ ├── useAuth.js
+│ │ │ │ ├── useOrders.js
+│ │ │ │ ├── useChat.js
+│ │ │ ├── slices/
+│ │ │ │ ├── authSlice.js
+│ │ │ │ ├── orderSlice.js
 │ │ │ │ ├── projectSlice.js
-│ │ │ │ ├── chatSlice.js 
-│ │ │ │ ├── uiSlice.js 
-│ │ │ │ └── adminSlice.js 
-│ │ ├── components/ 
-│ │ │ ├── common/ 
-│ │ │ │ ├── Navbar.jsx 
-│ │ │ │ ├── Footer.jsx 
-│ │ │ │ ├── Loader.jsx 
-│ │ │ │ ├── Toast.jsx 
-│ │ │ │ └── ProtectedRoute.jsx 
-│ │ │ ├── home/ 
-│ │ │ │ ├── HeroSection.jsx 
-│ │ │ │ ├── ServiceSection.jsx 
-│ │ │ │ ├── ProjectShowcase.jsx 
-│ │ │ │ └── Testimonials.jsx 
-│ │ │ ├── services/ 
-│ │ │ │ ├── ServiceCard.jsx 
-│ │ │ │ └── ServiceFilter.jsx 
-│ │ │ ├── projects/ 
-│ │ │ │ ├── ProjectCard.jsx 
-│ │ │ │ ├── ProjectModal.jsx 
-│ │ │ │ └── AddProjectForm.jsx 
-│ │ │ ├── chat/ 
-│ │ │ │ ├── ChatBox.jsx 
-│ │ │ │ ├── ChatSidebar.jsx 
-│ │ │ │ └── ChatMessage.jsx 
-│ │ │ ├── auth/ 
-│ │ │ │ ├── LoginPopup.jsx 
-│ │ │ │ ├── RegisterPopup.jsx 
+│ │ │ │ ├── chatSlice.js
+│ │ │ │ ├── uiSlice.js
+│ │ │ │ └── adminSlice.js
+│ │ ├── components/
+│ │ │ ├── common/
+│ │ │ │ ├── Navbar.jsx
+│ │ │ │ ├── Footer.jsx
+│ │ │ │ ├── Loader.jsx
+│ │ │ │ ├── Toast.jsx
+│ │ │ │ └── ProtectedRoute.jsx
+│ │ │ ├── home/
+│ │ │ │ ├── HeroSection.jsx
+│ │ │ │ ├── ServiceSection.jsx
+│ │ │ │ ├── ProjectShowcase.jsx
+│ │ │ │ └── Testimonials.jsx
+│ │ │ ├── services/
+│ │ │ │ ├── ServiceCard.jsx
+│ │ │ │ └── ServiceFilter.jsx
+│ │ │ ├── projects/
+│ │ │ │ ├── ProjectCard.jsx
+│ │ │ │ ├── ProjectModal.jsx
+│ │ │ │ └── AddProjectForm.jsx
+│ │ │ ├── chat/
+│ │ │ │ ├── ChatBox.jsx
+│ │ │ │ ├── ChatSidebar.jsx
+│ │ │ │ └── ChatMessage.jsx
+│ │ │ ├── auth/
+│ │ │ │ ├── LoginPopup.jsx
+│ │ │ │ ├── RegisterPopup.jsx
+
 <!-- │ │ │ │ ├── OTPVerification.jsx  -->
-│ │ ├── pages/ 
-│ │ │ ├── dashboard/ 
-│ │ │ │ ├── client/ 
-│ │ │ │ │ ├── DashboardHome.jsx 
-│ │ │ │ │ ├── Orders.jsx 
-│ │ │ │ │ ├── OrderDetails.jsx 
-│ │ │ │ │ └── AccountSettings.jsx 
-│ │ │ │ ├── admin/ 
-│ │ │ │ │ ├── DashboardHome.jsx 
-│ │ │ │ │ ├── Clients.jsx 
-│ │ │ │ │ ├── ClientDetails.jsx 
-│ │ │ │ │ ├── Orders.jsx 
-│ │ │ │ │ ├── OrdersDetails.jsx 
-│ │ │ │ │ ├── Projects.jsx 
-│ │ │ │ │ ├── ProjectDetails.jsx 
-│ │ │ │ │ └── CreateProject.jsx 
-│ │ │ ├── Home.jsx 
-│ │ │ ├── About.jsx 
-│ │ │ ├── Services.jsx 
-│ │ │ ├── Projects.jsx 
-│ │ │ ├── Order.jsx 
-│ │ │ ├── Contact.jsx 
-│ │ │ └── NotFound.jsx 
-│ │ ├── App.jsx 
-│ │ ├── main.jsx 
-│ │ └── index.css 
+
+│ │ ├── pages/
+│ │ │ ├── dashboard/
+│ │ │ │ ├── client/
+│ │ │ │ │ ├── DashboardHome.jsx
+│ │ │ │ │ ├── Orders.jsx
+│ │ │ │ │ ├── OrderDetails.jsx
+│ │ │ │ │ └── AccountSettings.jsx
+│ │ │ │ ├── admin/
+│ │ │ │ │ ├── DashboardHome.jsx
+│ │ │ │ │ ├── Clients.jsx
+│ │ │ │ │ ├── ClientDetails.jsx
+│ │ │ │ │ ├── Orders.jsx
+│ │ │ │ │ ├── OrdersDetails.jsx
+│ │ │ │ │ ├── Projects.jsx
+│ │ │ │ │ ├── ProjectDetails.jsx
+│ │ │ │ │ └── CreateProject.jsx
+│ │ │ ├── Home.jsx
+│ │ │ ├── About.jsx
+│ │ │ ├── Services.jsx
+│ │ │ ├── Projects.jsx
+│ │ │ ├── Order.jsx
+│ │ │ ├── Contact.jsx
+│ │ │ └── NotFound.jsx
+│ │ ├── App.jsx
+│ │ ├── main.jsx
+│ │ └── index.css
 │
 ├── backend/
 │ ├── src/
