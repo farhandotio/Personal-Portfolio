@@ -12,7 +12,6 @@ import {
 const upload = multer({ storage: multer.memoryStorage() });
 const router = express.Router();
 
-// 🟢 Public Routes
 router.post(
   "/register",
   upload.single("picture"),
@@ -26,7 +25,6 @@ router.post(
   authController.login
 );
 
-// 🔒 Protected Routes
 router.get("/profile", VerifyToken, authController.getProfile);
 
 router.get("/all-users", VerifyToken, isAdmin, authController.getAllUsers);

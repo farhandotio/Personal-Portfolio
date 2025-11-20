@@ -2,7 +2,6 @@ import express from "express";
 import multer from "multer";
 import * as projectController from "../controllers/project.controllers.js";
 import { VerifyToken, isAdmin } from "../middlewares/auth.middlewares.js";
-// import * as validationRules from "../middlewares/validation.middlewares.js";
 
 const router = express.Router();
 const upload = multer({ storage: multer.memoryStorage() });

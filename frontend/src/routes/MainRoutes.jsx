@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import Agency from "../pages/Agency";
+import Portfolio from "../pages/Portfolio";
 import About from "../pages/About";
 import Services from "../pages/Services";
 import ServiceDetailsPage from "../pages/ServiceDetailsPage";
@@ -11,12 +11,13 @@ import Contact from "../pages/Contact";
 const MainRoutes = () => {
   return (
     <Routes>
-      <Route path="/" element={<Agency />} />
+      <Route path="/" element={<Portfolio />} />
       <Route path="/about" element={<About />} />
       <Route path="/services" element={<Services />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/services/:slug" element={<ServiceDetailsPage />} />
       <Route path="/projects" element={<Projects />} />
+      <Route path="/projects/:id" element={<Projects />} />
       <Route path="/process" element={<Process />} />
     </Routes>
   );

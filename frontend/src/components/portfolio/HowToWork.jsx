@@ -1,55 +1,55 @@
 import React, { useState } from "react";
 
-// The data structure remains the same
+// Steps for your development process
 const steps = [
   {
     id: 1,
     shortTitle: "SRS",
     longTitle: "Requirements & Planning",
     description:
-      "Collect project goals, scope and technical requirements; produce a complete Software Requirements Specification (SRS) with architecture overview, feature specs and DB schema.",
+      "I gather project goals, define scope, and outline technical requirements. Then I create a clear Software Requirements Specification (SRS) including architecture overview, feature specs, and database design.",
   },
   {
     id: 2,
     shortTitle: "Wireframe",
     longTitle: "Low-Fidelity Wireframes",
     description:
-      "Create structural blueprints (Figma/Sketch) showing layout, navigation and information architecture to validate structure and user journeys.",
+      "I design structural wireframes (Figma/Sketch) to show layout, navigation, and user flow. This validates the structure and ensures a smooth user experience.",
   },
   {
     id: 3,
     shortTitle: "Prototype",
     longTitle: "Interactive Prototype",
     description:
-      "Build a high-fidelity, clickable prototype with interactions, animations and user-testing scenarios for usability validation and design feedback.",
+      "I build high-fidelity, clickable prototypes with interactions and animations, allowing for usability testing and design feedback before development.",
   },
   {
     id: 4,
     shortTitle: "MVP Plan",
     longTitle: "MVP Development Plan",
     description:
-      "Define core features, prioritize scope and set a development timeline — includes resource allocation and a launch strategy for the Minimum Viable Product.",
+      "I define core features, prioritize tasks, and create a development timeline to launch a Minimum Viable Product efficiently and effectively.",
   },
   {
     id: 5,
     shortTitle: "User Flow",
     longTitle: "User Flow Mapping",
     description:
-      "Document detailed user journeys, decision points, edge cases and error handling to optimize conversion paths and overall UX flow.",
+      "I map out detailed user journeys, decision points, and edge cases to optimize the overall UX flow and ensure intuitive navigation.",
   },
   {
     id: 6,
     shortTitle: "API Doc",
     longTitle: "API Documentation",
     description:
-      "Provide comprehensive documentation for API endpoints, data structures, authentication and integration examples for developers and integrators.",
+      "I provide complete API documentation, covering endpoints, data structures, authentication, and examples for developers and integrations.",
   },
   {
     id: 7,
     shortTitle: "Delivery",
-    longTitle: "Payment & Delivery",
+    longTitle: "Code Delivery & Support",
     description:
-      "Define payment milestones (e.g., 50% upfront, 50% on delivery), deliver source code, deployment guidelines, docs and include a post-launch support period.",
+      "I deliver the source code, deployment instructions, and documentation. I also provide post-launch support to ensure smooth operation and future scalability.",
   },
 ];
 
@@ -59,25 +59,27 @@ const HowToWork = () => {
   const toggleStep = (id) => {
     setOpenStep(openStep === id ? null : id);
   };
+
   return (
     <section className="py-20 md:py-32 bg-bg" aria-labelledby="process-heading">
       <div className="mx-auto px-5 sm:px-7 lg:px-10">
         {/* Main Heading and Description */}
-        <header className="mb-16 md:mb-24">
+        <header className="mb-16 md:mb-24 text-center lg:text-left">
           <h2
             id="process-heading"
             className="text-4xl md:text-5xl font-extrabold text-text mb-8 leading-tight tracking-tight"
-            title="Complete software development process step-by-step"
+            title="My step-by-step development process"
           >
-            Complete development process
+            How I Work
           </h2>
-          <p className="text-xl text-mutedText max-w-4xl">
-            Our comprehensive, transparent development lifecycle ensures
-            successful project delivery from initial concept to final launch.
+          <p className="text-xl text-mutedText max-w-4xl mx-auto lg:mx-0">
+            I follow a transparent and structured development process, from
+            planning to delivery, to ensure every project I work on meets
+            quality standards and delivers results.
           </p>
         </header>
 
-        {/* --- Accordion Process List --- */}
+        {/* Accordion Process List */}
         <div className="divide-y divide-border">
           {steps.map((step) => {
             const isOpen = openStep === step.id;

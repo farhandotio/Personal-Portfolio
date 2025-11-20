@@ -34,7 +34,7 @@ const RESPONSE_TIMES = [
 ];
 
 const CONTACT_INFO = [
-  { detail: "farhanagency02@gmail.com", icon: Mail, type: "email" },
+  { detail: "farhansadik0760@gmail.com", icon: Mail, type: "email" },
   { detail: "(+880) 1703-202276", icon: Phone, type: "phone" },
   { detail: "Dhaka, Bangladesh", icon: MapPin, type: "location" },
 ];

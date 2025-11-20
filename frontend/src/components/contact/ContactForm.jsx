@@ -1,6 +1,8 @@
 import React, { useState, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createOrder } from "../../app/features/order/orderSlice";
+
+import { SiFigma, SiReact, SiMongodb } from "react-icons/si";
 import {
   Globe,
   Palette,
@@ -12,9 +14,21 @@ import {
 } from "lucide-react";
 
 const QUICK_ORDER_TEMPLATES = [
-  { title: "Website Design", description: "Complete website solution", icon: Globe },
-  { title: "Logo Design", description: "Brand identity package", icon: Palette },
-  { title: "Mobile App", description: "iOS & Android development", icon: Tablet },
+  {
+    title: "Web Design",
+    description: "Creative and responsive UI/UX designs",
+    icon: SiFigma,
+  },
+  {
+    title: "Web Development",
+    description: "Fully functional and responsive websites",
+    icon: SiReact,
+  },
+  {
+    title: "Backend & APIs",
+    description: "Server-side logic and database integration",
+    icon: SiMongodb,
+  },
 ];
 
 const TemplateItem = ({ title, description, icon: Icon }) => (
@@ -32,7 +46,8 @@ const FileUpload = ({ setFiles }) => {
   const handleDragEnter = useCallback((e) => {
     e.preventDefault();
     e.stopPropagation();
-    if (e.dataTransfer.items && e.dataTransfer.items.length > 0) setIsDragging(true);
+    if (e.dataTransfer.items && e.dataTransfer.items.length > 0)
+      setIsDragging(true);
   }, []);
 
   const handleDragLeave = useCallback((e) => {
@@ -41,14 +56,17 @@ const FileUpload = ({ setFiles }) => {
     setIsDragging(false);
   }, []);
 
-  const handleDrop = useCallback((e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setIsDragging(false);
-    const files = Array.from(e.dataTransfer.files);
-    setFileCount(files.length);
-    setFiles(files);
-  }, [setFiles]);
+  const handleDrop = useCallback(
+    (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      setIsDragging(false);
+      const files = Array.from(e.dataTransfer.files);
+      setFileCount(files.length);
+      setFiles(files);
+    },
+    [setFiles]
+  );
 
   const handleFileChange = (e) => {
     const files = Array.from(e.target.files);
@@ -132,7 +150,10 @@ const ContactForm = () => {
 
       const resultAction = await dispatch(createOrder(payload));
       if (createOrder.fulfilled.match(resultAction)) {
-        setSubmitMessage({ type: "success", text: "Order submitted successfully!" });
+        setSubmitMessage({
+          type: "success",
+          text: "Order submitted successfully!",
+        });
         setFormData({
           fullname: "",
           emailAddress: "",
@@ -145,7 +166,10 @@ const ContactForm = () => {
         });
         setFiles([]);
       } else {
-        setSubmitMessage({ type: "error", text: resultAction.payload || "Failed to submit order." });
+        setSubmitMessage({
+          type: "error",
+          text: resultAction.payload || "Failed to submit order.",
+        });
       }
     } catch (err) {
       console.error(err);
@@ -185,7 +209,9 @@ const ContactForm = () => {
           </div>
           {/* Email */}
           <div className="space-y-1">
-            <label className="text-sm font-medium text-text">Email Address *</label>
+            <label className="text-sm font-medium text-text">
+              Email Address *
+            </label>
             <input
               type="email"
               name="emailAddress"
@@ -199,7 +225,9 @@ const ContactForm = () => {
           </div>
           {/* Phone */}
           <div className="space-y-1">
-            <label className="text-sm font-medium text-text">Phone Number</label>
+            <label className="text-sm font-medium text-text">
+              Phone Number
+            </label>
             <input
               type="tel"
               name="phoneNumber"
@@ -212,7 +240,9 @@ const ContactForm = () => {
           </div>
           {/* Project Type */}
           <div className="space-y-1 relative">
-            <label className="text-sm font-medium text-text">Project Type *</label>
+            <label className="text-sm font-medium text-text">
+              Project Type *
+            </label>
             <select
               name="projectType"
               value={formData.projectType}
@@ -232,7 +262,9 @@ const ContactForm = () => {
           </div>
           {/* Budget */}
           <div className="space-y-1 relative">
-            <label className="text-sm font-medium text-text">Budget Range *</label>
+            <label className="text-sm font-medium text-text">
+              Budget Range *
+            </label>
             <select
               name="budgetRange"
               value={formData.budgetRange}
@@ -252,7 +284,9 @@ const ContactForm = () => {
           </div>
           {/* Deadline */}
           <div className="space-y-1 relative">
-            <label className="text-sm font-medium text-text">Project Deadline</label>
+            <label className="text-sm font-medium text-text">
+              Project Deadline
+            </label>
             <input
               type="date"
               name="projectDeadline"
@@ -265,7 +299,9 @@ const ContactForm = () => {
           </div>
           {/* Project Brief */}
           <div className="space-y-1 md:col-span-2">
-            <label className="text-sm font-medium text-text">Project Brief *</label>
+            <label className="text-sm font-medium text-text">
+              Project Brief *
+            </label>
             <textarea
               name="projectBrief"
               value={formData.projectBrief}
@@ -279,7 +315,9 @@ const ContactForm = () => {
           </div>
           {/* File Upload */}
           <div className="space-y-1 md:col-span-2">
-            <label className="text-sm font-medium text-text">Upload Files</label>
+            <label className="text-sm font-medium text-text">
+              Upload Files
+            </label>
             <FileUpload setFiles={setFiles} />
           </div>
         </div>
@@ -297,7 +335,8 @@ const ContactForm = () => {
               disabled={isSubmitting}
             />
             <span className="text-sm text-text">
-              I agree to the terms and conditions, including 50% upfront payment *
+              I agree to the terms and conditions, including 50% upfront payment
+              *
             </span>
           </label>
         </div>

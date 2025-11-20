@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import Loading from "../common/Loading";
 
 const ServiceSection = () => {
   const [services, setServices] = useState([]);
@@ -27,7 +28,7 @@ const ServiceSection = () => {
   if (loading) {
     return (
       <div className="min-h-[400px] flex justify-center items-center">
-        <p className="text-text text-lg">Loading services...</p>
+        <Loading text={"Loading services..."} />
       </div>
     );
   }
@@ -41,19 +42,20 @@ const ServiceSection = () => {
     >
       <div className="mx-auto px-5 sm:px-7 lg:px-10">
         {/* Header Section */}
-        <header className="mb-16 md:mb-24">
+        <header className="mb-16 md:mb-24 text-center lg:text-left">
           <h2
             id="services-heading"
             className="text-4xl md:text-5xl font-extrabold text-text tracking-tight mb-8"
           >
-            Our Services
+            What I Do
           </h2>
           <p
-            className="text-xl max-w-4xl text-mutedText"
+            className="text-xl max-w-4xl text-mutedText mx-auto lg:mx-0"
             itemProp="description"
           >
-            Comprehensive fullstack development solutions tailored to elevate
-            your business in the digital landscape.
+            I build modern web applications with clean, scalable code. From
+            responsive frontend interfaces to robust backend systems, I help
+            bring digital ideas to life.
           </p>
         </header>
 
@@ -108,7 +110,7 @@ const ServiceSection = () => {
 
       <meta
         name="description"
-        content="Farhan Sadik offers expert Frontend, Backend, and Fullstack Development Services — building scalable, high-performance digital products for businesses worldwide."
+        content="MD Farhan Sadik offers Frontend, Backend, and Fullstack Development — building modern, scalable web applications and digital products for clients and personal projects."
       />
     </section>
   );

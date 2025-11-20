@@ -11,7 +11,7 @@ const testimonials = [
     image:
       "https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8cGVyc29ufGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=500",
     message:
-      "Farhan Sadik transformed our outdated website into a modern, high-performing platform. The attention to detail and smooth animations were exceptional!",
+      "Farhan transformed our outdated website into a modern, high-performing platform. The attention to detail and smooth animations were exceptional!",
     rating: 5,
   },
   {
@@ -21,41 +21,11 @@ const testimonials = [
     image:
       "https://images.unsplash.com/photo-1499952127939-9bbf5af6c51c?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fHBlcnNvbnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&q=60&w=500",
     message:
-      "They understood our brand perfectly. The dark-themed design with interactive 3D bottle made PureDrop stand out. Highly recommended!",
+      "Farhan understood our brand perfectly. The dark-themed design with interactive 3D bottle made PureDrop stand out. Highly recommended!",
     rating: 5,
   },
   {
     id: 3,
-    name: "Mohammed Rafi",
-    role: "CEO, DripNest",
-    image:
-      "https://images.unsplash.com/photo-1552058544-f2b08422138a?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHBlcnNvbnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&q=60&w=500",
-    message:
-      "Working with Farhan was smooth and professional. Every section felt intentional and visually striking.",
-    rating: 4.8,
-  },
-  {
-    id: 4,
-    name: "John Doe",
-    role: "Founder, TechVerse",
-    image:
-      "https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8cGVyc29ufGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=500",
-    message:
-      "Farhan Sadik transformed our outdated website into a modern, high-performing platform. The attention to detail and smooth animations were exceptional!",
-    rating: 5,
-  },
-  {
-    id: 5,
-    name: "Sarah Ahmed",
-    role: "Marketing Head, PureDrop",
-    image:
-      "https://images.unsplash.com/photo-1499952127939-9bbf5af6c51c?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fHBlcnNvbnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&q=60&w=500",
-    message:
-      "They understood our brand perfectly. The dark-themed design with interactive 3D bottle made PureDrop stand out. Highly recommended!",
-    rating: 5,
-  },
-  {
-    id: 6,
     name: "Mohammed Rafi",
     role: "CEO, DripNest",
     image:
@@ -72,27 +42,27 @@ const Testimonials = () => {
       aria-labelledby="testimonials-heading"
       className="pt-15 pb-20 lg:pb-30 p-5 md:p-7 lg:p-10 bg-bg text-text"
     >
-      <div className="">
-        <header className="mb-16 md:mb-24">
+      <div>
+        <header className="mb-16 md:mb-24 text-center lg:text-left">
           <div className="flex justify-between w-full gap-2">
             <h2
               id="testimonials-heading"
               className="text-4xl md:text-5xl font-extrabold w-full mb-8"
             >
-              What clients say about Us
+              What clients say about me
             </h2>
-            <Link
+            {/* <Link
               to={"/reviews"}
               className="flex whitespace-nowrap h-fit max-md:hidden w-fit mx-auto gap-2 hover:bg-cardBg hover:text-primary text-text font-semibold px-6 py-3 rounded-full transition-all"
-              aria-label="Contact Farhan Sadik"
+              aria-label="See all reviews"
             >
-              <span> All Reviews </span>{" "}
+              <span> All Reviews </span>
               <IoArrowDown className="text-xl md:text-2xl -rotate-135" />
-            </Link>
+            </Link> */}
           </div>
           <p className="mt-2 text-mutedText max-w-4xl text-lg">
-            Real feedback from brands and founders who trusted us to craft their
-            product websites and experiences.
+            Genuine feedback from clients and founders who trusted me to craft
+            their product websites and digital experiences.
           </p>
         </header>
 
@@ -130,7 +100,7 @@ const Testimonials = () => {
                     <ReviewStar value={t.rating} label={t.name} />
                   </div>
 
-                  <p className="mt-4  text-mutedText max-w-50 md:max-w-sm text-sm leading-relaxed">
+                  <p className="mt-4 text-mutedText max-w-50 md:max-w-sm text-sm leading-relaxed">
                     {t.message}
                   </p>
                 </div>
@@ -150,16 +120,16 @@ const Testimonials = () => {
         </div>
 
         {/* CTA or small note under testimonials */}
-        <div className="mt-10 text-center md:hidden">
+        {/* <div className="mt-10 text-center md:hidden">
           <Link
             to={"/reviews"}
             className="flex w-fit mx-auto gap-2 bg-primary text-text font-semibold px-6 py-3 rounded-full shadow-md hover:scale-[1.02] transition-transform"
-            aria-label="Contact Farhan Sadik"
+            aria-label="See all reviews"
           >
-            <span> All Reviews </span>{" "}
+            <span> All Reviews </span>
             <IoArrowDown className="text-xl md:text-2xl -rotate-135" />
           </Link>
-        </div>
+        </div> */}
       </div>
     </section>
   );
