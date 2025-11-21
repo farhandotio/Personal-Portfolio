@@ -24,7 +24,6 @@ const Navbar = () => {
 
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
-  // Decide Link based on user role
   const profileLink = user
     ? user.role === "admin"
       ? "/admin"

@@ -3,6 +3,8 @@ import React, { useEffect, useRef } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import Lenis from "@studio-freight/lenis";
+import { useDispatch } from "react-redux";
+import { fetchProfile } from "./app/features/auth/authSlice"; // <-- import thunk
 
 import MainRoutes from "./routes/MainRoutes";
 import Navbar from "./components/common/Navbar";
@@ -10,7 +12,7 @@ import Footer from "./components/common/Footer";
 import InitialLoader from "./components/common/InitialLoader";
 import { useLocation } from "react-router-dom";
 
-let lenisInstance = null; // 🔥 global lenis instance
+let lenisInstance = null;
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -19,7 +21,7 @@ const ScrollToTop = () => {
     if (lenisInstance) {
       lenisInstance.scrollTo(0, {
         offset: 0,
-        immediate: false, // 🔥 smooth scroll always ON
+        immediate: false,
       });
     }
   }, [pathname]);
@@ -36,6 +38,9 @@ const AppWrapper = () => {
 };
 
 const App = () => {
+  const dispatch = useDispatch();
+  const hasFetchedProfile = useRef(false); // prevent double fetch in Strict Mode
+
   useEffect(() => {
     lenisInstance = new Lenis({
       duration: 1.2,
@@ -50,6 +55,13 @@ const App = () => {
 
     requestAnimationFrame(raf);
   }, []);
+
+  useEffect(() => {
+    if (!hasFetchedProfile.current) {
+      dispatch(fetchProfile());
+      hasFetchedProfile.current = true;
+    }
+  }, [dispatch]);
 
   return (
     <>
