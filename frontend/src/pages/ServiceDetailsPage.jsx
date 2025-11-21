@@ -18,7 +18,7 @@ const ServiceDetailsPage = () => {
     const fetchService = async () => {
       try {
         const { data } = await axios.get(
-          `https://farhan-agency.onrender.com/api/services/${slug}`
+          `https://farhan-agency-wryw.onrender.com/api/services/${slug}`
         );
         setService(data.data || data);
         setLoading(false);
@@ -40,7 +40,9 @@ const ServiceDetailsPage = () => {
   }
 
   if (error || !service) {
-    return <div className="text-center py-20 text-lg text-red-500">{error}</div>;
+    return (
+      <div className="text-center py-20 text-lg text-red-500">{error}</div>
+    );
   }
 
   // Build SEO values from the loaded service
@@ -53,7 +55,10 @@ const ServiceDetailsPage = () => {
     typeof window !== "undefined"
       ? `${window.location.origin}${location.pathname}`
       : `https://codexfoli0.netlify.app/services/${service.slug || slug}`;
-  const pageImage = service.heroImageUrl || service.image || "https://codexfoli0.netlify.app/og-image.png";
+  const pageImage =
+    service.heroImageUrl ||
+    service.image ||
+    "https://codexfoli0.netlify.app/og-image.png";
 
   // JSON-LD structured data for this specific service
   const jsonLd = {
@@ -68,8 +73,8 @@ const ServiceDetailsPage = () => {
       url: "https://codexfoli0.netlify.app",
       sameAs: [
         "https://github.com/farhandotio",
-        "https://www.linkedin.com/in/mdsadikdev"
-      ]
+        "https://www.linkedin.com/in/mdsadikdev",
+      ],
     },
     serviceType: "Web Development",
     image: pageImage,
@@ -77,8 +82,8 @@ const ServiceDetailsPage = () => {
       "@type": "Offer",
       url: pageUrl,
       priceCurrency: service.priceCurrency || "USD",
-      availability: "https://schema.org/InStock"
-    }
+      availability: "https://schema.org/InStock",
+    },
   };
 
   // --- Reusable Components for Structure ---
@@ -89,7 +94,9 @@ const ServiceDetailsPage = () => {
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-text mb-4">
             {title}
           </h2>
-          <p className="mt-4 text-xl lg:text-2xl text-mutedText">{description}</p>
+          <p className="mt-4 text-xl lg:text-2xl text-mutedText">
+            {description}
+          </p>
           <Link to="/contact" aria-label="Start a project with Farhan">
             <button className="mt-8 px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-secondary cursor-pointer hover:bg-hoverSecondary">
               Start a Project
@@ -152,16 +159,31 @@ const ServiceDetailsPage = () => {
     </div>
   );
 
-  const TimelineCard = ({ projectType, duration, inclusions, isHighlighted }) => (
+  const TimelineCard = ({
+    projectType,
+    duration,
+    inclusions,
+    isHighlighted,
+  }) => (
     <div
       className={`flex flex-col p-5 rounded-lg border-2 ${
-        isHighlighted ? "border-primary bg-cardBg shadow-lg scale-105" : "border-border bg-bg"
+        isHighlighted
+          ? "border-primary bg-cardBg shadow-lg scale-105"
+          : "border-border bg-bg"
       } transition-transform duration-300 ease-in-out text-center`}
     >
       <div className="text-lg font-bold mb-2">
-        <span className={`text-2xl ${isHighlighted ? "text-primary" : "text-text"}`}>{duration}</span>
+        <span
+          className={`text-2xl ${isHighlighted ? "text-primary" : "text-text"}`}
+        >
+          {duration}
+        </span>
       </div>
-      <p className={`text-sm font-semibold ${isHighlighted ? "text-primary" : "text-mutedText"} uppercase tracking-wider mb-4`}>
+      <p
+        className={`text-sm font-semibold ${
+          isHighlighted ? "text-primary" : "text-mutedText"
+        } uppercase tracking-wider mb-4`}
+      >
         {projectType}
       </p>
       <ul className="space-y-1 text-sm text-mutedText">
@@ -208,24 +230,38 @@ const ServiceDetailsPage = () => {
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       </Helmet>
 
-      <HeroSection title={service.title} description={service.heroDescription} imageUrl={pageImage} />
+      <HeroSection
+        title={service.title}
+        description={service.heroDescription}
+        imageUrl={pageImage}
+      />
 
       <div className="px-5 sm:px-7 lg:px-10 py-12">
         {/* Service Overview */}
         <div className="grid lg:grid-cols-3 gap-10">
           <div className="lg:col-span-2">
-            <h2 className="text-2xl font-bold text-text mb-4">Service Overview</h2>
-            <p className="text-lg text-mutedText mb-8">{service.serviceOverview.description}</p>
+            <h2 className="text-2xl font-bold text-text mb-4">
+              Service Overview
+            </h2>
+            <p className="text-lg text-mutedText mb-8">
+              {service.serviceOverview.description}
+            </p>
 
             <div className="grid md:grid-cols-2 gap-5">
               {service.serviceOverview.offerings.map((offering, index) => (
-                <OverviewCard key={index} title={offering.title} description={offering.description} />
+                <OverviewCard
+                  key={index}
+                  title={offering.title}
+                  description={offering.description}
+                />
               ))}
             </div>
           </div>
 
           <aside className="lg:col-span-1 bg-bg p-5 rounded-lg border border-border">
-            <h3 className="text-lg font-bold text-text mb-4">Key Technologies</h3>
+            <h3 className="text-lg font-bold text-text mb-4">
+              Key Technologies
+            </h3>
             <ul className="space-y-3">
               {service.serviceOverview.keyTechnologies.map((tech, index) => (
                 <li key={index} className="flex items-center text-mutedText">
@@ -247,7 +283,12 @@ const ServiceDetailsPage = () => {
         </div>
         <div className="grid md:grid-cols-3 gap-8">
           {service.whatsIncluded.map((section, index) => (
-            <FeatureItem key={index} title={section.sectionTitle} features={section.features} iconName={section.iconName} />
+            <FeatureItem
+              key={index}
+              title={section.sectionTitle}
+              features={section.features}
+              iconName={section.iconName}
+            />
           ))}
         </div>
 
@@ -255,11 +296,18 @@ const ServiceDetailsPage = () => {
 
         {/* Step-by-Step Process */}
         <div className="text-center mb-10">
-          <h2 className="text-3xl font-extrabold text-text">Step-by-Step Process</h2>
+          <h2 className="text-3xl font-extrabold text-text">
+            Step-by-Step Process
+          </h2>
         </div>
         <div>
           {service.processSteps.map((step) => (
-            <StepProcessItem key={step.stepNumber} stepNumber={step.stepNumber} title={step.title} description={step.description} />
+            <StepProcessItem
+              key={step.stepNumber}
+              stepNumber={step.stepNumber}
+              title={step.title}
+              description={step.description}
+            />
           ))}
         </div>
 
@@ -267,12 +315,22 @@ const ServiceDetailsPage = () => {
 
         {/* Timeline Estimate */}
         <div className="text-center mb-10">
-          <h2 className="text-3xl font-extrabold text-text">Timeline Estimate</h2>
-          <p className="mt-2 text-mutedText">Typical duration and inclusions for each project size</p>
+          <h2 className="text-3xl font-extrabold text-text">
+            Timeline Estimate
+          </h2>
+          <p className="mt-2 text-mutedText">
+            Typical duration and inclusions for each project size
+          </p>
         </div>
         <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
           {service.timelineEstimate.map((timeline, index) => (
-            <TimelineCard key={index} projectType={timeline.projectType} duration={timeline.duration} inclusions={timeline.inclusions} isHighlighted={index === 1} />
+            <TimelineCard
+              key={index}
+              projectType={timeline.projectType}
+              duration={timeline.duration}
+              inclusions={timeline.inclusions}
+              isHighlighted={index === 1}
+            />
           ))}
         </div>
       </div>

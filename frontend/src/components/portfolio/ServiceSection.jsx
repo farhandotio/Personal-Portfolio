@@ -11,7 +11,7 @@ const ServiceSection = () => {
     const fetchServices = async () => {
       try {
         const { data } = await axios.get(
-          "https://farhan-agency.onrender.com/api/services"
+          "https://farhan-agency-wryw.onrender.com/api/services"
         );
         // Maximum 5 services
         setServices((data.data || data).slice(0, 5));

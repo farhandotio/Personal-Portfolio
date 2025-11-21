@@ -23,7 +23,7 @@ const Projects = () => {
       try {
         setLoading(true);
         const res = await axios.get(
-          "https://farhan-agency.onrender.com/api/projects"
+          "https://farhan-agency-wryw.onrender.com/api/projects"
         );
         setProjects(res.data.projects || []);
       } catch (err) {
@@ -108,9 +108,7 @@ const Projects = () => {
         description: p.description || p.shortDescription || "",
         url:
           p.liveUrl ||
-          (p.slug
-            ? `https://codexfoli0.netlify.app/projects/${p.slug}`
-            : ""),
+          (p.slug ? `https://codexfoli0.netlify.app/projects/${p.slug}` : ""),
         image: p.image || p.previewImage || "",
       },
     })),
@@ -141,8 +139,14 @@ const Projects = () => {
           content="A showcase of web applications and UI projects built by MD Farhan Sadik using modern frontend and backend technologies."
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://codexfoli0.netlify.app/projects" />
-        <meta property="og:image" content="https://codexfoli0.netlify.app/og-image.png" />
+        <meta
+          property="og:url"
+          content="https://codexfoli0.netlify.app/projects"
+        />
+        <meta
+          property="og:image"
+          content="https://codexfoli0.netlify.app/og-image.png"
+        />
 
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
@@ -151,13 +155,21 @@ const Projects = () => {
           name="twitter:description"
           content="A showcase of web applications and UI projects built by MD Farhan Sadik using modern frontend and backend technologies."
         />
-        <meta name="twitter:image" content="https://codexfoli0.netlify.app/og-image.png" />
+        <meta
+          name="twitter:image"
+          content="https://codexfoli0.netlify.app/og-image.png"
+        />
       </Helmet>
 
       <header className="mb-16 md:mb-24">
-        <h2 className="text-4xl md:text-5xl font-extrabold mb-8">Projects I’ve Built</h2>
+        <h2 className="text-4xl md:text-5xl font-extrabold mb-8">
+          Projects I’ve Built
+        </h2>
         <p className="text-mutedText max-w-4xl text-lg">
-          A curated selection of modern, high-performing web applications and UI projects — built with React, Redux, Node.js, and other modern technologies. Each project focuses on performance, accessibility, and real-world user needs.
+          A curated selection of modern, high-performing web applications and UI
+          projects — built with React, Redux, Node.js, and other modern
+          technologies. Each project focuses on performance, accessibility, and
+          real-world user needs.
         </p>
       </header>
 
@@ -169,7 +181,9 @@ const Projects = () => {
       )}
 
       {/* ❌ Error Message */}
-      {!loading && error && <p className="text-red-500 text-center text-lg">{error}</p>}
+      {!loading && error && (
+        <p className="text-red-500 text-center text-lg">{error}</p>
+      )}
 
       {/* ✅ Projects List */}
       {!loading && !error && (
@@ -186,7 +200,9 @@ const Projects = () => {
                   ref={(el) => (refsMap.current[key] = el)}
                   // add a temporary highlight ring when this is the target
                   className={`transition-shadow duration-300 ${
-                    highlightId === key ? "ring-4 ring-primary/40 rounded-xl" : ""
+                    highlightId === key
+                      ? "ring-4 ring-primary/40 rounded-xl"
+                      : ""
                   } mb-6`}
                 >
                   {/* Wrap ProjectCard so no need to modify child component */}
@@ -195,13 +211,18 @@ const Projects = () => {
               );
             })
           ) : (
-            <p className="text-mutedText">No projects available at the moment.</p>
+            <p className="text-mutedText">
+              No projects available at the moment.
+            </p>
           )}
         </>
       )}
 
       {/* JSON-LD structured data */}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
     </section>
   );
 };

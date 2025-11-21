@@ -14,19 +14,27 @@ const HoverProjectCard = ({
   isLast,
 }) => {
   // use _id or id, otherwise fallback to an encoded title
-  const id = project._id || project.id || encodeURIComponent(project.title || "project");
+  const id =
+    project._id || project.id || encodeURIComponent(project.title || "project");
 
   // common Link props
   const linkProps = {
     to: `/projects/${id}`,
-    className: `group w-full text-left flex justify-between items-center cursor-pointer hover:bg-hoverCardBg focus:outline-none transition-all duration-300 ${isLast ? "" : "border-b border-border"}`,
+    className: `group w-full text-left flex justify-between items-center cursor-pointer hover:bg-hoverCardBg focus:outline-none transition-all duration-300 ${
+      isLast ? "" : "border-b border-border"
+    }`,
     "aria-label": `Open project ${project.title}`,
   };
 
   // mobile / small screens: show simple card (image + title)
   if (!isDesktop) {
     return (
-      <Link {...linkProps} onMouseEnter={(e) => onMouseEnter?.(e, project.image)} onMouseLeave={onMouseLeave} onMouseMove={onMouseMove}>
+      <Link
+        {...linkProps}
+        onMouseEnter={(e) => onMouseEnter?.(e, project.image)}
+        onMouseLeave={onMouseLeave}
+        onMouseMove={onMouseMove}
+      >
         <div className="bg-cardBg rounded-xl overflow-hidden shadow-lg mb-4 transition-transform hover:scale-[1.02] duration-300 border border-border p-0">
           <img
             src={project.image}
@@ -35,7 +43,9 @@ const HoverProjectCard = ({
             loading="lazy"
           />
           <div className="p-5">
-            <h3 className="text-2xl font-bold text-text tracking-wide">{project.title}</h3>
+            <h3 className="text-2xl font-bold text-text tracking-wide">
+              {project.title}
+            </h3>
           </div>
         </div>
       </Link>
@@ -44,7 +54,12 @@ const HoverProjectCard = ({
 
   // desktop: list-style row with arrow icon
   return (
-    <Link {...linkProps} onMouseEnter={(e) => onMouseEnter?.(e, project.image)} onMouseLeave={onMouseLeave} onMouseMove={onMouseMove}>
+    <Link
+      {...linkProps}
+      onMouseEnter={(e) => onMouseEnter?.(e, project.image)}
+      onMouseLeave={onMouseLeave}
+      onMouseMove={onMouseMove}
+    >
       <div className="flex items-center gap-5 w-full max-w-4xl py-6 md:py-8 lg:py-10 group-hover:pl-5 transition-all duration-300">
         <h3 className="text-xl sm:text-3xl lg:text-4xl font-extrabold text-text tracking-tight transition-all duration-300">
           {project.title}
@@ -77,7 +92,7 @@ const ProjectSection = () => {
     async function fetchProject() {
       try {
         const response = await axios.get(
-          "https://farhan-agency.onrender.com/api/projects"
+          "https://farhan-agency-wryw.onrender.com/api/projects"
         );
 
         const allProjects = response.data.projects || [];
@@ -161,7 +176,11 @@ const ProjectSection = () => {
         </p>
       </header>
 
-      <div className={isDesktop ? "grid grid-cols-1 gap-0" : "grid grid-cols-1 gap-4"}>
+      <div
+        className={
+          isDesktop ? "grid grid-cols-1 gap-0" : "grid grid-cols-1 gap-4"
+        }
+      >
         {projects.map((project, index) => (
           <HoverProjectCard
             key={project._id || project.title}
@@ -175,23 +194,26 @@ const ProjectSection = () => {
         ))}
       </div>
 
-      {isDesktop && hoveredImage && mousePosition.x !== 0 && mousePosition.y !== 0 && (
-        <div
-          className="pointer-events-none fixed z-50 transition-opacity duration-200"
-          style={{
-            left: mousePosition.x,
-            top: mousePosition.y,
-            transform: "translate(-50%, calc(-100% - 10px))",
-          }}
-        >
-          <img
-            src={hoveredImage}
-            alt="Project Preview"
-            className="w-64 h-40 object-cover rounded-lg shadow-xl"
-            draggable={false}
-          />
-        </div>
-      )}
+      {isDesktop &&
+        hoveredImage &&
+        mousePosition.x !== 0 &&
+        mousePosition.y !== 0 && (
+          <div
+            className="pointer-events-none fixed z-50 transition-opacity duration-200"
+            style={{
+              left: mousePosition.x,
+              top: mousePosition.y,
+              transform: "translate(-50%, calc(-100% - 10px))",
+            }}
+          >
+            <img
+              src={hoveredImage}
+              alt="Project Preview"
+              className="w-64 h-40 object-cover rounded-lg shadow-xl"
+              draggable={false}
+            />
+          </div>
+        )}
 
       <script
         type="application/ld+json"

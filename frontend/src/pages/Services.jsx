@@ -13,7 +13,7 @@ const Services = () => {
     const fetchServices = async () => {
       try {
         const { data } = await axios.get(
-          "https://farhan-agency.onrender.com/api/services"
+          "https://farhan-agency-wryw.onrender.com/api/services"
         );
         setServices(data.data || data || []);
       } catch (err) {
@@ -37,8 +37,8 @@ const Services = () => {
       url: "https://codexfoli0.netlify.app",
       sameAs: [
         "https://github.com/farhandotio",
-        "https://www.linkedin.com/in/mdsadikdev"
-      ]
+        "https://www.linkedin.com/in/mdsadikdev",
+      ],
     },
     description:
       "Frontend, Backend and Fullstack development services by MD Farhan Sadik — building modern, scalable web applications with performance and accessibility in mind.",
@@ -54,10 +54,10 @@ const Services = () => {
           description: s.description || s.heroDescription || "",
           url: s.slug
             ? `https://codexfoli0.netlify.app/services/${s.slug}`
-            : s.url || "https://codexfoli0.netlify.app/services"
-        }
-      }))
-    }
+            : s.url || "https://codexfoli0.netlify.app/services",
+        },
+      })),
+    },
   };
 
   return (
@@ -79,13 +79,19 @@ const Services = () => {
         <link rel="canonical" href="https://codexfoli0.netlify.app/services" />
 
         {/* Open Graph */}
-        <meta property="og:title" content="Services I Offer — MD Farhan Sadik" />
+        <meta
+          property="og:title"
+          content="Services I Offer — MD Farhan Sadik"
+        />
         <meta
           property="og:description"
           content="Frontend, Backend and Fullstack development services by MD Farhan Sadik. I build modern, scalable web applications optimized for performance and accessibility."
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://codexfoli0.netlify.app/services" />
+        <meta
+          property="og:url"
+          content="https://codexfoli0.netlify.app/services"
+        />
         <meta
           property="og:image"
           content="https://codexfoli0.netlify.app/og-image.png"
@@ -93,7 +99,10 @@ const Services = () => {
 
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Services I Offer — MD Farhan Sadik" />
+        <meta
+          name="twitter:title"
+          content="Services I Offer — MD Farhan Sadik"
+        />
         <meta
           name="twitter:description"
           content="Hire MD Farhan Sadik for frontend, backend or fullstack web development. Modern, maintainable and scalable solutions."
@@ -105,9 +114,7 @@ const Services = () => {
 
         {/* JSON-LD structured data */}
         {!loading && (
-          <script type="application/ld+json">
-            {JSON.stringify(jsonLd)}
-          </script>
+          <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
         )}
       </Helmet>
 
@@ -116,7 +123,9 @@ const Services = () => {
           Services I Offer
         </h1>
         <p className="text-xl max-w-4xl text-mutedText" itemProp="description">
-          I provide frontend, backend, and fullstack development services — building modern, scalable web applications optimized for performance, accessibility, and maintainability.
+          I provide frontend, backend, and fullstack development services —
+          building modern, scalable web applications optimized for performance,
+          accessibility, and maintainability.
         </p>
       </header>
 
@@ -129,10 +138,15 @@ const Services = () => {
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-2">
             {services.length > 0 ? (
               services.map((service) => (
-                <ServiceCard key={service._id || service.slug || service.title} service={service} />
+                <ServiceCard
+                  key={service._id || service.slug || service.title}
+                  service={service}
+                />
               ))
             ) : (
-              <p className="text-mutedText">No services available at the moment.</p>
+              <p className="text-mutedText">
+                No services available at the moment.
+              </p>
             )}
           </div>
         </>
