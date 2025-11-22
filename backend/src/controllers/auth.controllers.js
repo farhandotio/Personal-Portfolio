@@ -23,8 +23,6 @@ const sendTokenCookie = (res, token) => {
   });
 };
 
-
-
 const extractFullname = (body) => {
   const firstName =
     body["fullname.firstName"] ||
@@ -228,8 +226,9 @@ export async function login(req, res) {
 
 export async function getProfile(req, res) {
   try {
-    const user = req.user;
-    if (!user) return res.status(404).json({ message: "User not found" });
+    const userId = req.user.id;
+
+    const user = await userModel.findById(userId);
 
     res.status(200).json({
       user: {

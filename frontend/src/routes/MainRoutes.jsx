@@ -7,7 +7,7 @@ import ServiceDetailsPage from "../pages/ServiceDetailsPage";
 import Projects from "../pages/Projects";
 import Process from "../pages/Process";
 import Contact from "../pages/Contact";
-import Profile from "../pages/Profile";
+import Profile from "../pages/client/Profile";
 import Admin from "../pages/admin/Admin";
 import Login from "../pages/auth/Login";
 import Register from "../pages/auth/Register";
