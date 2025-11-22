@@ -1,11 +1,18 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const UserProfile = ({ user, onEdit, onLogout }) => {
+  const navigate = useNavigate();
   if (!user) return null;
 
   const fullname = `${user.fullname?.firstName || ""} ${
     user.fullname?.lastName || ""
   }`.trim();
+
+  const handleLogout = () => {
+    onLogout();
+    navigate("/");
+  };
 
   return (
     <div className="p-4 border border-border rounded bg-cardBg">
@@ -33,14 +40,14 @@ const UserProfile = ({ user, onEdit, onLogout }) => {
         </button>
 
         <button
-          onClick={onLogout}
-          className="px-3 py-2 rounded bg-red-600 text-white"
+          onClick={handleLogout}
+          className="px-3 py-2 rounded bg-danger text-text"
         >
           Logout
         </button>
       </div>
     </div>
   );
-}
+};
 
-export default UserProfile
+export default UserProfile;
