@@ -55,8 +55,8 @@ const ProcessCard = ({ stepData, isLast }) => {
   } = stepData;
 
   return (
-    <div className="relative flex items-start gap-4 md:gap-5 pb-12">
-      <div className="flex flex-col items-center h-110 md:h-80">
+    <div className="relative flex items-start gap-2 md:gap-5 pb-12">
+      <div className="flex flex-col items-center h-140 md:h-80">
         <div
           className={`size-8 md:size-16 rounded-lg md:rounded-2xl flex items-center justify-center p-1.5 md:p-3 shadow-md ${iconBgColor}`}
         >
@@ -73,13 +73,13 @@ const ProcessCard = ({ stepData, isLast }) => {
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-3">
             <span
-              className={`${iconBgColor} text-white text-xs font-semibold px-2.5 py-1 rounded-full whitespace-nowrap`}
+              className={`${iconBgColor} text-white text-xs font-semibold px-2 md:px-2.5 py-0.5 md:py-1 rounded-full whitespace-nowrap`}
             >
               {step}
             </span>
-            <h3 className="text-xl md:text-2xl font-bold text-text">{title}</h3>
+            <h3 className="text md:text-2xl font-bold text-text">{title}</h3>
           </div>
-          <span className="text-sm font-semibold whitespace-nowrap text-mutedText">
+          <span className="text-xs md:text-sm font-semibold whitespace-nowrap text-mutedText">
             {week}
           </span>
         </div>
@@ -90,7 +90,7 @@ const ProcessCard = ({ stepData, isLast }) => {
           <>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
               <div>
-                <h4 className="flex items-center gap-2 text-lg font-semibold text-mutedText mb-3">
+                <h4 className="flex items-center gap-2 md:text-lg font-semibold text-mutedText mb-3">
                   <FiClipboard className="size-5 text-secondary" /> Purpose &
                   Deliverables
                 </h4>
@@ -105,14 +105,14 @@ const ProcessCard = ({ stepData, isLast }) => {
 
               {collaboration && (
                 <div>
-                  <h4 className="flex items-center gap-2 text-lg font-semibold text-mutedText mb-3">
+                  <h4 className="flex items-center gap-2 md:text-lg font-semibold text-mutedText mb-3">
                     <FiUsers className="size-5 text-primary" /> Collaboration
                     Points
                   </h4>
                   <div
                     className={`p-4 rounded-lg bg-cardBg border border-border`}
                   >
-                    <p className="text-lg font-bold text-mutedText">
+                    <p className="md:text-lg font-bold text-mutedText">
                       {collaboration.main}
                     </p>
                     <p className="text-sm text-mutedText">
@@ -167,6 +167,16 @@ const ProcessCard = ({ stepData, isLast }) => {
                 </ul>
               </div>
             </div>
+
+            {template && (
+              <a
+                href={template.link}
+                className="inline-flex items-center px-4 mb-5 py-2 bg-cardBg text-mutedText rounded-lg 
+                  hover:bg-hoverCardBg transition-colors duration-200 text-sm font-medium"
+              >
+                <FiDownload className="size-5 mr-2" /> {template.text}
+              </a>
+            )}
 
             {qualityAssurance && (
               <div className="flex items-start p-4 rounded-lg bg-warningBg border border-warning text-warning">

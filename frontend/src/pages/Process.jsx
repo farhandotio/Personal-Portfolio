@@ -25,7 +25,7 @@ const processSteps = [
     },
     template: {
       text: "Download SRS Template",
-      link: "#",
+      link: "/downloads/srs-template-full.pdf",
     },
     type: "standard",
   },
@@ -35,7 +35,7 @@ const processSteps = [
     iconName: "squares",
     iconBgColor: "bg-orange-500",
     title: "Low-Fidelity Wireframes",
-    week: "Week 2",
+    week: "Week 1",
     description:
       "Basic structural blueprints showing layout, navigation flow, and content placement without visual design elements.",
     deliverables: [
@@ -50,7 +50,7 @@ const processSteps = [
     },
     template: {
       text: "Download Wireframe Kit",
-      link: "#",
+      link: "/downloads/wireframe-kit-full.pdf",
     },
     type: "standard",
   },
@@ -60,7 +60,7 @@ const processSteps = [
     iconName: "puzzle",
     iconBgColor: "bg-purple-500",
     title: "Interactive Prototype",
-    week: "Week 3-4",
+    week: "Week 2",
     description:
       "High-fidelity, clickable prototype with real interactions, animations, and user experience flows for testing and validation.",
     deliverables: [
@@ -82,7 +82,7 @@ const processSteps = [
     iconName: "rocket",
     iconBgColor: "bg-green-500",
     title: "MVP Development Plan",
-    week: "Week 4",
+    week: "Week 2",
     description:
       "Strategic roadmap defining core features, development phases, and launch timeline for your minimum viable product.",
     deliverables: [
@@ -95,7 +95,10 @@ const processSteps = [
       main: "Strategy Workshop",
       note: "Feature prioritization session",
     },
-    template: null,
+    template: {
+      text: "Download MVP Roadmap",
+      link: "/downloads/mvp-roadmap-full.pdf",
+    },
     type: "standard",
   },
   {
@@ -104,7 +107,7 @@ const processSteps = [
     iconName: "flow-chart",
     iconBgColor: "bg-blue-500",
     title: "User Flow Mapping",
-    week: "Week 5",
+    week: "Week 3",
     description:
       "Detailed user journey documentation showing every interaction, decision point, and pathway through your application.",
     deliverables: [
@@ -117,7 +120,10 @@ const processSteps = [
       main: "Flow Review Session",
       note: "Journey optimization meeting",
     },
-    template: null,
+    template: {
+      text: "Download User Flow Template",
+      link: "/downloads/user-flow-template-full.pdf",
+    },
     type: "standard",
   },
   {
@@ -126,7 +132,7 @@ const processSteps = [
     iconName: "api",
     iconBgColor: "bg-purple-500",
     title: "API Documentation",
-    week: "Week 6",
+    week: "Week 3",
     description:
       "Comprehensive technical documentation for all API endpoints, data structures, and integration guidelines.",
     deliverables: [
@@ -139,7 +145,10 @@ const processSteps = [
       main: "Technical Review",
       note: "API structure validation",
     },
-    template: null,
+    template: {
+      text: "Download API Docs Template",
+      link: "/downloads/api-docs-template-full.pdf",
+    },
     type: "standard",
   },
   {
@@ -148,7 +157,7 @@ const processSteps = [
     iconName: "credit-card",
     iconBgColor: "bg-green-500",
     title: "Payment & Delivery",
-    week: "Week 7-8",
+    week: "Week 4",
     description:
       "Structured payment schedule and comprehensive delivery process ensuring quality and client satisfaction.",
     paymentStructure: [
@@ -163,7 +172,10 @@ const processSteps = [
     ],
     qualityAssurance:
       "Final delivery includes comprehensive testing, code review, and performance optimization.",
-    template: null,
+    template: {
+      text: "Download Payment Docs Template",
+      link: "/downloads/payment-docs-template-full.pdf",
+    },
     type: "delivery",
   },
 ];

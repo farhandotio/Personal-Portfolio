@@ -21,10 +21,7 @@ const Login = () => {
 
   const onSubmit = async (data) => {
     const resultAction = await dispatch(loginUser(data));
-    if (loginUser.fulfilled.match(resultAction)) {
-      if (resultAction.payload.role === "admin") navigate("/admin");
-      else navigate("/profile");
-    }
+    navigate("/")
   };
 
   const InputWithIcon = ({ icon: Icon, type = "text", placeholder, registerProps, error, showToggle }) => (

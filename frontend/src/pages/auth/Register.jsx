@@ -54,10 +54,7 @@ const Register = () => {
     if (data.picture) formData.append("picture", data.picture);
 
     const resultAction = await dispatch(registerUser(formData));
-    if (registerUser.fulfilled.match(resultAction)) {
-      if (resultAction.payload.role === "admin") navigate("/admin");
-      else navigate("/profile");
-    }
+    navigate("/");
   };
 
   // Input component with icon & error below input
@@ -177,7 +174,9 @@ const Register = () => {
             </span>
           </div>
           {errors.password && (
-            <p className="text-red-500 text-sm mt-1">{errors.password.message}</p>
+            <p className="text-red-500 text-sm mt-1">
+              {errors.password.message}
+            </p>
           )}
         </div>
 
