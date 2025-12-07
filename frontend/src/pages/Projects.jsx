@@ -6,6 +6,7 @@ import axios from "axios";
 import { useParams, useLocation } from "react-router-dom";
 import { getLenis } from "../components/common/SmoothScroll";
 import Skeleton from "../components/common/Skeleton";
+import SectionHeader from "../components/common/SectionHeader";
 
 const Projects = () => {
   const [projects, setProjects] = useState([]);
@@ -127,17 +128,14 @@ const Projects = () => {
         <link rel="canonical" href="https://farhansadik.vercel.app/projects" />
       </Helmet>
 
-      <header className="mb-16 md:mb-24">
-        <h2 className="text-4xl md:text-5xl font-extrabold mb-8">
-          Projects I’ve Built
-        </h2>
-        <p className="text-mutedText max-w-4xl text-lg">
-          A curated selection of modern, high-performing web applications and UI
+      <SectionHeader
+        title="Projects I’ve Built"
+        description="A curated selection of modern, high-performing web applications and UI
           projects — built with React, Redux, Node.js, and other modern
           technologies. Each project focuses on performance, accessibility, and
-          real-world user needs.
-        </p>
-      </header>
+          real-world user needs."
+        size="xl"
+      />
 
       {loading && (
         <div className="min-h-[300px] flex flex-col gap-6">

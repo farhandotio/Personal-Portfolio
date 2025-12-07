@@ -1,8 +1,8 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import Header from "../components/contact/Header";
 import ContactForm from "../components/contact/ContactForm";
 import ContactInfoSidebar from "../components/contact/ContactInfoSidebar";
+import SectionHeader from "../components/common/SectionHeader";
 
 const Contact = () => {
   return (
@@ -73,7 +73,11 @@ const Contact = () => {
 
       {/* Page Content */}
       <div className="min-h-screen bg-bg font-sans px-5 sm:px-7 lg:px-10 py-30">
-        <Header />
+        <SectionHeader
+          title="Contact & Order"
+          description="Ready to start your project? Fill out the form below and we'll get back to you within 24 hours."
+          size="xl"
+        />
         <main className="grid grid-cols-1 lg:grid-cols-3 gap-5 md:gap-10">
           <ContactForm />
           <ContactInfoSidebar />

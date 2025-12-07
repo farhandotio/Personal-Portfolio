@@ -1,22 +1,21 @@
 import React from "react";
-import AboutHero from "../components/about/AboutHero";
 import OurMission from "../components/about/OurMission";
 import MeetOurFounder from "../components/about/MeetOurFounder";
 import ExpertTeam from "../components/about/ExpertTeam";
 import OurTechnologyStack from "../components/about/TechStack";
+import SectionHeader from "../components/common/SectionHeader";
 
 const About = () => {
   return (
     <main className="bg-bg text-text p-5 md:p-7 lg:p-10 mt-20">
-      {/* -------- Page Header (SEO + Accessibility) -------- */}
-      <header>
-        <h1 className="sr-only">About Us - Learn More About Our Vision & Team</h1>
-      </header>
-
       {/* -------- Hero Section -------- */}
-      <section aria-labelledby="about-hero">
-        <AboutHero />
-      </section>
+      <SectionHeader
+        title="About Farhan Sadik"
+        description="MD Farhan Sadik is a passionate web developer dedicated to
+            transforming ideas into exceptional digital experiences that drive
+            business growth and user engagement."
+        size="lg"
+      />
 
       {/* -------- Mission Section -------- */}
       <section aria-labelledby="mission-section">
@@ -28,7 +27,7 @@ const About = () => {
         <MeetOurFounder />
       </section>
 
-      {/* -------- Expert Team Section (Hidden for now) -------- */}
+      {/* Expert Team Section (Hidden for now) */}
       {/* <section aria-labelledby="team-section">
         <ExpertTeam />
       </section> */}

@@ -5,6 +5,7 @@ import axios from "axios";
 import ServiceCard from "../components/services/ServiceCard";
 import Loading from "../components/common/Loading";
 import Skeleton from "../components/common/Skeleton";
+import SectionHeader from "../components/common/SectionHeader";
 
 const Services = () => {
   const [services, setServices] = useState([]);
@@ -119,16 +120,13 @@ const Services = () => {
         )}
       </Helmet>
 
-      <header className="mb-16 md:mb-24">
-        <h1 className="text-4xl md:text-5xl font-extrabold text-text tracking-tight mb-8">
-          Services I Offer
-        </h1>
-        <p className="text-xl max-w-4xl text-mutedText" itemProp="description">
-          I provide frontend, backend, and fullstack development services —
+      <SectionHeader
+        title="Services I Offer"
+        description="I provide frontend, backend, and fullstack development services —
           building modern, scalable web applications optimized for performance,
-          accessibility, and maintainability.
-        </p>
-      </header>
+          accessibility, and maintainability."
+        size="xl"
+      />
 
       {loading ? (
         <div className="min-h-[300px] flex flex-col gap-6">

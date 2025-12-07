@@ -1,22 +1,16 @@
-// components/ProcessHero.jsx
-
 import React from "react";
-// React Icons থেকে প্রয়োজনীয় আইকন ইমপোর্ট করা হলো
 import { FiClock, FiUsers, FiCheckCircle } from "react-icons/fi";
+import SectionHeader from "../common/SectionHeader";
 
 const ProcessHero = () => {
   return (
-    // সেকশন কন্টেইনার
     <section className="bg-bg text-text pb-30">
-      <header className="mb-16 md:mb-24">
-        <h2 className="text-4xl md:text-5xl font-extrabold text-text tracking-tight mb-8">
-          Our <span className="text-primary">Work Process</span>
-        </h2>
-        <p className="text-xl max-w-4xl text-mutedText" itemProp="description">
-          A transparent, collaborative journey from concept to delivery. Every
-          step designed for quality, clarity, and client satisfaction.
-        </p>
-      </header>
+      <SectionHeader
+        title="Our Work Process"
+        description="A transparent, collaborative journey from concept to delivery. Every
+          step designed for quality, clarity, and client satisfaction."
+        size="xl"
+      />
 
       <div className="">
         <div className="flex items-center space-x-6 md:space-x-10 flex-wrap">

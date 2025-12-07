@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { CgMenuMotion } from "react-icons/cg";
+import Logo from "./Logo";
 
 const navLinks = [
   { name: "SERVICES", href: "/services" },
@@ -16,7 +18,6 @@ const Navbar = () => {
 
   const user = useSelector((state) => state.auth?.user);
 
-
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
     setMenuOpen(false);
@@ -31,16 +32,10 @@ const Navbar = () => {
     : "/login";
 
   return (
-    <header className="fixed top-0 w-full bg-bg text-text py-5 z-50">
+    <header className="fixed top-0 w-full bg-bg/50 backdrop-blur-2xl text-text py-5 z-50">
       <div className="max-w-[1900px] mx-auto flex justify-between items-center px-5 sm:px-7 lg:px-10">
-
         {/* Logo */}
-        <Link onClick={scrollToTop} to="/" aria-label="Farhan Sadik home">
-          <h1 className="text-xl lg:text-3xl whitespace-nowrap uppercase font-bold tracking-widest">
-            Farhan <span className="text-secondary">Dev</span>
-            <span className="text-primary">.</span>
-          </h1>
-        </Link>
+        <Logo />
 
         {/* Desktop Nav */}
         <nav className="hidden lg:flex items-center space-x-5 lg:space-x-12">
@@ -71,34 +66,35 @@ const Navbar = () => {
           </NavLink>
         </nav>
 
-        {/* Mobile Menu Button */}
-        <button
+        {/* Mobile Menu */}
+        <CgMenuMotion
           onClick={() => {
             scrollToTop();
             setMenuOpen(true);
           }}
-          className="lg:hidden uppercase text-sm font-semibold tracking-wider border-2 border-primary px-5 py-2 rounded-full hover:bg-hoverPrimary hover:text-white transition duration-300"
-        >
-          Menu
-        </button>
+          className="lg:hidden uppercase text-3xl font-semibold tracking-wide rounded-full hover:bg-hoverPrimary hover:text-white transition duration-300"
+        />
       </div>
 
       {/* Mobile Drawer */}
       <div
         role="dialog"
         aria-modal="true"
-        className={`fixed top-0 right-0 h-screen w-full sm:w-[60%] bg-bg text-text flex flex-col items-center justify-center gap-10 text-lg uppercase transform transition-transform duration-500 ${
+        className={`fixed top-0 right-0 h-screen w-full sm:w-[60%] bg-bg/95 backdrop-blur-2xl text-text text-lg uppercase transform transition-transform duration-500 p-5 ${
           menuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        <button
-          onClick={() => setMenuOpen(false)}
-          className="absolute top-6 right-8 text-xl font-bold hover:text-primary transition"
-        >
-          ✕
-        </button>
+        <div className="flex justify-between pb-10">
+          <Logo />
+          <button
+            onClick={() => setMenuOpen(false)}
+            className="text-xl font-bold hover:text-primary transition"
+          >
+            ✕
+          </button>
+        </div>
 
-        <ul className="flex flex-col items-center gap-6 font-medium tracking-wide">
+        <ul className="flex flex-col gap-6 font-medium tracking-wide pb-6">
           {navLinks.map((link) => (
             <li key={link.name}>
               <NavLink
@@ -113,7 +109,7 @@ const Navbar = () => {
                   }`
                 }
               >
-                {link.name}
+                <span className="text-lg">{link.name}</span>
               </NavLink>
             </li>
           ))}
@@ -126,7 +122,7 @@ const Navbar = () => {
             scrollToTop();
             setMenuOpen(false);
           }}
-          className="flex items-center px-8 py-3 bg-primary hover:bg-hoverPrimary text-white font-semibold rounded-full text-sm transition duration-300 shadow-xl"
+          className="flex items-center px-5 justify-center py-3 bg-primary hover:bg-hoverPrimary text-white font-semibold rounded-md text-md text-center transition duration-300 shadow-xl"
         >
           {user ? (user.role === "admin" ? "ADMIN" : "PROFILE") : "LOGIN"}
         </NavLink>

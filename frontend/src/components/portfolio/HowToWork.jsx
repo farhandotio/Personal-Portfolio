@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import SectionHeader from "../common/SectionHeader";
 
 // Steps for your development process
 const steps = [
@@ -64,20 +65,11 @@ const HowToWork = () => {
     <section className="py-20 md:py-32 bg-bg" aria-labelledby="process-heading">
       <div className="mx-auto px-5 sm:px-7 lg:px-10">
         {/* Main Heading and Description */}
-        <header className="mb-16 md:mb-24 text-center lg:text-left">
-          <h2
-            id="process-heading"
-            className="text-4xl md:text-5xl font-extrabold text-text mb-8 leading-tight tracking-tight"
-            title="My step-by-step development process"
-          >
-            How I Work
-          </h2>
-          <p className="text-xl text-mutedText max-w-4xl mx-auto lg:mx-0">
-            I follow a transparent and structured development process, from
-            planning to delivery, to ensure every project I work on meets
-            quality standards and delivers results.
-          </p>
-        </header>
+        <SectionHeader
+          title="How I Work"
+          description="I follow a transparent and structured development process, from planning to delivery, to ensure every project meets quality standards."
+          size="lg"
+        />
 
         {/* Accordion Process List */}
         <div className="divide-y divide-border">

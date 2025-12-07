@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { IoArrowDown } from "react-icons/io5";
 import ReviewStar from "../common/ReviewStar";
+import SectionHeader from "../common/SectionHeader";
 
 const testimonials = [
   {
@@ -43,28 +44,12 @@ const Testimonials = () => {
       className="pt-15 pb-20 lg:pb-30 p-5 md:p-7 lg:p-10 bg-bg text-text"
     >
       <div>
-        <header className="mb-16 md:mb-24 text-center lg:text-left">
-          <div className="flex justify-between w-full gap-2">
-            <h2
-              id="testimonials-heading"
-              className="text-4xl md:text-5xl font-extrabold w-full mb-8"
-            >
-              What clients say about me
-            </h2>
-            {/* <Link
-              to={"/reviews"}
-              className="flex whitespace-nowrap h-fit max-md:hidden w-fit mx-auto gap-2 hover:bg-cardBg hover:text-primary text-text font-semibold px-6 py-3 rounded-full transition-all"
-              aria-label="See all reviews"
-            >
-              <span> All Reviews </span>
-              <IoArrowDown className="text-xl md:text-2xl -rotate-135" />
-            </Link> */}
-          </div>
-          <p className="mt-2 text-mutedText max-w-4xl text-lg">
-            Genuine feedback from clients and founders who trusted me to craft
-            their product websites and digital experiences.
-          </p>
-        </header>
+        <SectionHeader
+          title="What clients say about me"
+          description="Genuine feedback from clients and founders who trusted me to craft
+            their product websites and digital experiences."
+          size="lg"
+        />
 
         {/* Grid: 1 col mobile, 2 md, 3 lg */}
         <div className="flex gap-5 flex-nowrap overflow-x-auto hidden-scrollbar">
@@ -118,18 +103,6 @@ const Testimonials = () => {
             </article>
           ))}
         </div>
-
-        {/* CTA or small note under testimonials */}
-        {/* <div className="mt-10 text-center md:hidden">
-          <Link
-            to={"/reviews"}
-            className="flex w-fit mx-auto gap-2 bg-primary text-text font-semibold px-6 py-3 rounded-full shadow-md hover:scale-[1.02] transition-transform"
-            aria-label="See all reviews"
-          >
-            <span> All Reviews </span>
-            <IoArrowDown className="text-xl md:text-2xl -rotate-135" />
-          </Link>
-        </div> */}
       </div>
     </section>
   );
