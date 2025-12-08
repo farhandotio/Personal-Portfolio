@@ -8,9 +8,9 @@ import {
   FaServicestack,
   FaProjectDiagram,
   FaPlus,
-  FaBars,
   FaTimes,
 } from "react-icons/fa";
+import { CgMenuMotion } from "react-icons/cg";
 import { useDispatch } from "react-redux";
 import { logoutUser } from "../../app/features/auth/authSlice";
 import { useNavigate } from "react-router-dom";
@@ -49,9 +49,9 @@ const Admin = () => {
         <button
           aria-label={isOpen ? "Close menu" : "Open menu"}
           onClick={() => setIsOpen((s) => !s)}
-          className="rounded-md focus:outline-none text-xl"
+          className="rounded-md focus:outline-none text-2xl"
         >
-          {isOpen ? <FaTimes /> : <FaBars />}
+          {isOpen ? <FaTimes /> : <CgMenuMotion />}
         </button>
 
         <div className="text-lg font-semibold">Admin Panel</div>
@@ -59,7 +59,7 @@ const Admin = () => {
         <div style={{ width: 40 }} />
       </div>
 
-      <div className="flex gap-5 pt-5 ">
+      <div className="flex gap-5 pt-5">
         {isOpen && (
           <div
             className="fixed inset-0 z-30 md:hidden"
@@ -71,7 +71,7 @@ const Admin = () => {
         )}
 
         <aside
-          className={`z-40 w-64 bg-bg border-r border-border md:flex flex-col  px-5 sm:px-7 lg:px-10 absolute transform transition-transform duration-200
+          className={`z-40 w-64 bg-bg border-r border-border md:flex flex-col px-5 sm:px-7 lg:px-10 py-15 md:py-0 absolute transform transition-transform duration-200
             ${
               isOpen
                 ? "translate-x-0 fixed top-0 left-0 h-full shadow-lg"
@@ -90,15 +90,6 @@ const Admin = () => {
                 <div className="text-xs text-mutedText">Dashboard</div>
               </div>
             </div>
-
-            {/* close icon visible on mobile inside sidebar */}
-            <button
-              className="md:hidden p-2 rounded focus:outline-none focus:ring-2 focus:ring-primary"
-              onClick={() => setIsOpen(false)}
-              aria-label="Close sidebar"
-            >
-              <FaTimes />
-            </button>
           </div>
 
           <nav className="flex flex-col gap-2 overflow-y-auto">
@@ -142,7 +133,7 @@ const Admin = () => {
         </aside>
 
         {/* Main content */}
-        <main className="flex-1 pb-10  px-5 sm:px-7 lg:px-10">
+        <main className="flex-1 pb-10 w-full px-5 sm:px-7 lg:px-10">
           <Outlet />
         </main>
       </div>

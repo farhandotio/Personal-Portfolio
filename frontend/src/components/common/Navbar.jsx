@@ -32,7 +32,7 @@ const Navbar = () => {
     : "/login";
 
   return (
-    <header className="fixed top-0 w-full bg-bg/50 backdrop-blur-2xl text-text py-5 z-50">
+    <header className="fixed top-0 w-full bg-bg/80 backdrop-blur-2xl text-text py-5 z-50">
       <div className="max-w-[1900px] mx-auto flex justify-between items-center px-5 sm:px-7 lg:px-10">
         {/* Logo */}
         <Logo />
@@ -80,7 +80,7 @@ const Navbar = () => {
       <div
         role="dialog"
         aria-modal="true"
-        className={`fixed top-0 right-0 h-screen w-full sm:w-[60%] bg-bg/95 backdrop-blur-2xl text-text text-lg uppercase transform transition-transform duration-500 p-5 ${
+        className={`fixed top-0 right-0 h-screen w-full sm:w-[60%] bg-bg/99 backdrop-blur-4xl text-text text-lg uppercase transform transition-transform duration-500 p-5 ${
           menuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >

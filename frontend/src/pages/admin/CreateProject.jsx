@@ -50,7 +50,7 @@ const CreateProject = () => {
   };
 
   return (
-    <div className="max-w-2xl mx-auto p-6 bg-cardBg rounded-lg shadow-sm">
+    <div className="md:max-w-2xl w-full mx-auto p-6 bg-cardBg rounded-lg shadow-sm">
       <Toaster position="top-right" reverseOrder={false} />
       <h2 className="text-2xl font-semibold mb-6">Create New Project</h2>
 

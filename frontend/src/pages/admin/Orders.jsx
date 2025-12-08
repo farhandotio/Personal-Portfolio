@@ -6,6 +6,7 @@ import {
   updateOrderStatus,
 } from "../../app/features/order/orderSlice";
 import Skeleton from "../../components/common/Skeleton";
+import { Clipboard } from "lucide-react";
 
 /**
  * Status -> badge classes
@@ -36,17 +37,11 @@ function OrderDetailsModal({ order, onClose, onUpdateStatus }) {
       >
         <div className="border-b pb-5 flex justify-between items-start">
           <div>
-            <h2 className="text-xl font-semibold">Order — {order._id}</h2>
+            <h2 className="text-sm font-semibold">Order — {order._id}</h2>
             <p className="text-sm text-mutedText mt-1">
               {new Date(order.createdAt).toLocaleString()}
             </p>
           </div>
-          <button
-            onClick={onClose}
-            className="text-mutedText hover:text-text cursor-pointer"
-          >
-            Close ✕
-          </button>
         </div>
 
         <div className="pt-5 space-y-4">
@@ -108,16 +103,14 @@ function OrderDetailsModal({ order, onClose, onUpdateStatus }) {
             )}
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-end gap-3">
             <div>
-              <h3 className="text-sm text-mutedText">Status</h3>
-              <div
-                className={`inline-block py-1 rounded-full text-sm ${
-                  statusClasses[order.status]
-                }`}
+              <button
+                onClick={onClose}
+                className="text-mutedText bg-hoverCardBg px-3 py-1 rounded hover:text-text cursor-pointer"
               >
-                {order.status}
-              </div>
+                Close
+              </button>
             </div>
 
             <div className="ml-auto">
@@ -169,7 +162,7 @@ function OrderRow({ order, onOpen }) {
       onClick={() => onOpen(order)}
       className="w-full text-left p-3 rounded-lg hover:shadow-sm transition bg-cardBg border border-border flex items-center gap-4"
     >
-      <div className="w-10 h-10 rounded-full bg-hoverCardBg flex items-center justify-center overflow-hidden">
+      {/* <div className="w-10 h-10 rounded-full bg-hoverCardBg flex items-center justify-center overflow-hidden">
         {order.attachments?.[0]?.url ? (
           <img
             src={order.attachments[0].url}
@@ -181,13 +174,13 @@ function OrderRow({ order, onOpen }) {
             {initials}
           </span>
         )}
-      </div>
+      </div> */}
 
       <div className="flex-1 min-w-0">
         <div className="flex items-center justify-between gap-3">
           <div className="truncate">
             <div className="font-medium truncate">{order.fullname}</div>
-            <div className="text-sm text-mutedText truncate">
+            <div className="text-xs text-mutedText truncate">
               {order.emailAddress}
             </div>
           </div>
@@ -206,30 +199,11 @@ function OrderRow({ order, onOpen }) {
           </div>
         </div>
 
-        <div className="mt-2 flex items-center gap-4 text-sm text-mutedText">
+        <div className="mt-2 flex items-center gap-4 text-sm text-mutedText justify-between">
           <div>{order.projectType}</div>
-          <div className="px-2 py-0.5 border rounded">{order.budgetRange}</div>
+          <div className="px-2 text-xs py-0.5 border rounded">{order.budgetRange}</div>
           <div className="flex items-center gap-1">
-            <svg
-              className="w-4 h-4 text-mutedText"
-              viewBox="0 0 24 24"
-              fill="none"
-            >
-              <path
-                d="M3 7h18"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M21 7v13a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
+            <Clipboard className="w-4 h-4 text-mutedText" />
             <span>{attachmentsCount}</span>
           </div>
         </div>
