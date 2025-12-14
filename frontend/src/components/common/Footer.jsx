@@ -89,7 +89,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="max-w-[1900px] mx-auto text-mutedText bg-bg">
+    <footer className="max-w-[1400px] mx-auto text-mutedText bg-bg">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

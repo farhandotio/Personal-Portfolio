@@ -20,14 +20,14 @@ const SectionHeader = ({ title, description, size = 'lg', className = '' }) => {
       className={`mb-16 md:mb-24 text-center bg-clip-text text-transparent bg-linear-to-r from-text to-primary ${className}`}
     >
       <h2
-        className={`${titleSizes[size]} md:${titleSizes[size]} font-extrabold mb-8 leading-tight tracking-tight bg-clip-text text-transparent bg-linear-to-r from-text to-primary`}
+        className={`${titleSizes[size]} md:${titleSizes[size]} font-extrabold mb-8 leading-tight tracking-tight bg-clip-text text-transparent bg-linear-to-r from-white to-primary ${className}`}
       >
         {title}
       </h2>
 
-      <div className="w-full">
+      <div className={`w-full ${className}`}>
         {description && (
-          <p className={`${descSizes[size]} text-mutedText mx-auto max-w-4xl`}>{description}</p>
+          <p className={`${descSizes[size]} text-mutedText mx-auto max-w-4xl ${className}`}>{description}</p>
         )}
       </div>
     </header>

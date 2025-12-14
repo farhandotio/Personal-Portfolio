@@ -8,35 +8,46 @@ const testimonials = [
   {
     id: 1,
     name: 'Afjal Hossain',
-    role: 'Founder, TechVerse',
+    role: 'Founder, TechVerse Solutions',
     image:
-      'https://images.unsplash.com/photo-1585807515950-bc46d934c28b?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      'https://images.unsplash.com/photo-1585807515950-bc46d934c28b?q=80&w=870&auto=format&fit=crop',
     message:
-      'Farhan transformed our outdated website into a modern, high-performing platform. The attention to detail and smooth animations were exceptional!',
+      'Farhan didn’t just redesign our website, he restructured the entire frontend for performance and scalability. Page load time dropped significantly, and the UI finally feels premium and intentional.',
     rating: 5,
-    glowColor: 'primary', // Highlight specific color for the card
+    glowColor: 'primary',
   },
   {
     id: 2,
     name: 'Sarah Ahmed',
-    role: 'Marketing Head, PureDrop',
+    role: 'Marketing Lead, PureDrop',
     image:
-      'https://images.unsplash.com/photo-1543933573-1e0a7578328f?q=80&w=459&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      'https://images.unsplash.com/photo-1543933573-1e0a7578328f?q=80&w=459&auto=format&fit=crop',
     message:
-      'Farhan understood our brand perfectly. The dark-themed design with interactive 3D bottle made PureDrop stand out. Highly recommended!',
+      'What impressed me most was Farhan’s understanding of brand identity. The dark UI, smooth animations, and interactive elements aligned perfectly with our product vision.',
     rating: 5,
-    glowColor: 'fuchsia', // Highlight specific color for the card
+    glowColor: 'fuchsia',
   },
   {
     id: 3,
-    name: 'Mohammed Rafi',
-    role: 'CEO, DripNest',
+    name: 'Rafiul Islam',
+    role: 'Co-Founder, DripNest',
     image:
-      'https://images.unsplash.com/photo-1596075780750-81249df16d19?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      'https://images.unsplash.com/photo-1596075780750-81249df16d19?q=80&w=387&auto=format&fit=crop',
     message:
-      'Working with Farhan was smooth and professional. Every section felt intentional and visually striking.',
-    rating: 4.8,
-    glowColor: 'primary', // Highlight specific color for the card
+      'Communication was clear, timelines were respected, and every design decision had a reason behind it. The final product felt polished and production-ready.',
+    rating: 4.9,
+    glowColor: 'primary',
+  },
+  {
+    id: 4,
+    name: 'Nafisa Rahman',
+    role: 'Product Manager, Serve Studio',
+    image:
+      'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?q=80&w=387&auto=format&fit=crop',
+    message:
+      'Farhan’s workflow is very structured. From wireframes to final deployment, everything was transparent. It made collaboration extremely smooth.',
+    rating: 5,
+    glowColor: 'fuchsia',
   },
 ];
 
@@ -44,7 +55,7 @@ const Testimonials = () => {
   return (
     <section
       aria-labelledby="testimonials-heading"
-      className="relative pt-15 pb-20 lg:pb-30 p-5 md:p-7 lg:p-10 bg-bg text-white overflow-hidden" // text-text changed to text-white
+      className="relative py-20 lg:py-30 p-5 md:p-7 lg:p-10 text-white overflow-hidden" // text-text changed to text-white
     >
       {/* 🌟 Background Lighting Effect Layer */}
       <div className="absolute inset-0 z-0 opacity-15 pointer-events-none">

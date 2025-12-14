@@ -16,87 +16,149 @@ const navLinks = [
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [scrollActive, setScrollActive] = useState(false);
-  const location = useLocation();
   const [hideNavbar, setHideNavbar] = useState(false);
   const navbarRef = useRef(null);
+  const lastScrollY = useRef(0);
+  const location = useLocation();
 
   const user = useSelector((state) => state.auth?.user);
+  const profileLink = user ? (user.role === 'admin' ? '/admin' : '/profile') : '/login';
 
+  /* =========================
+     Scroll hide / show
+  ========================= */
   useEffect(() => {
-    let lastScrollY = window.scrollY;
-
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
+      const currentY = window.scrollY;
 
-      setScrollActive(currentScrollY > 50);
-
-      // scroll down → hide
-      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+      if (currentY > lastScrollY.current + 15 && currentY > 120) {
         setHideNavbar(true);
-      }
-      // scroll up → show
-      else {
+      } else if (currentY < lastScrollY.current - 15) {
         setHideNavbar(false);
       }
 
-      lastScrollY = currentScrollY;
+      lastScrollY.current = currentY;
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  /* =========================
+     Route change
+  ========================= */
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
     setMenuOpen(false);
+    window.scrollTo({ top: 0 });
   }, [location.pathname]);
 
+  /* =========================
+     GSAP entrance
+  ========================= */
   useEffect(() => {
     gsap.fromTo(
       navbarRef.current,
-      { y: -100, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 0.8,
-        ease: 'power3.out',
-        clearProps: 'transform', // 👈 IMPORTANT
-      }
+      { opacity: 0, y: -40 },
+      { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }
     );
   }, []);
 
-  const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
-
-  const profileLink = user ? (user.role === 'admin' ? '/admin' : '/profile') : '/login';
+  /* =========================
+     Body scroll lock (mobile)
+  ========================= */
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? 'hidden' : '';
+  }, [menuOpen]);
 
   return (
-    <header
-      ref={navbarRef}
-      style={{ opacity: 0 }}
-      className={`fixed top-0 w-full backdrop-blur-2xl text-text py-5 z-50
-  transition-all duration-300 ease-in-out
-  ${hideNavbar ? '-translate-y-full' : 'translate-y-0'}
-  ${scrollActive ? 'bg-bg/90' : 'bg-bg/80'}`}
-    >
-      <div className="max-w-[1900px] mx-auto flex justify-between items-center px-5 sm:px-7 lg:px-10">
-        {/* Logo */}
-        <Logo />
+    <>
+      {/* =========================
+          NAVBAR
+      ========================= */}
+      <header
+        ref={navbarRef}
+        className={`fixed top-0 w-full z-100 transition-all duration-300 ${
+          hideNavbar ? 'opacity-0 -translate-y-6' : 'opacity-100 translate-y-0'
+        }`}
+        style={{ pointerEvents: 'auto' }}
+      >
+        <div className="max-w-[1400px] mx-auto w-full p-5 sm:px-7 lg:px-10">
+          <div className="flex justify-between items-center py-3 px-5 pl-7 border border-border rounded-full bg-bg/60 backdrop-blur-2xl md:w-fit mx-auto">
+            <Logo />
 
-        {/* Desktop Nav */}
-        <nav className="hidden lg:flex items-center space-x-5 lg:space-x-8">
-          <ul className="flex space-x-6 lg:space-x-8 uppercase text-sm md:text-xs lg:text-sm font-medium tracking-wide">
+            {/* Desktop Nav */}
+            <nav className="hidden lg:flex items-center gap-8 ml-28">
+              <ul className="flex gap-8 uppercase text-sm font-medium tracking-wide">
+                {navLinks.map((link) => (
+                  <li key={link.name}>
+                    <NavLink
+                      to={link.href}
+                      className={({ isActive }) =>
+                        isActive
+                          ? 'text-primary font-semibold border-b-2 border-primary pb-1'
+                          : 'text-gray-400 hover:text-primary transition'
+                      }
+                    >
+                      {link.name}
+                    </NavLink>
+                  </li>
+                ))}
+              </ul>
+
+              <PrimaryButton
+                text={user ? (user.role === 'admin' ? 'ADMIN' : 'PROFILE') : 'LOGIN'}
+                url={profileLink}
+                className="rounded-full min-w-32 shadow-lg shadow-primary/40"
+              />
+            </nav>
+
+            {/* Mobile Menu Icon */}
+            <button
+              onClick={() => setMenuOpen(true)}
+              aria-label="Open menu"
+              className="lg:hidden text-3xl text-primary cursor-pointer"
+            >
+              <CgMenuMotion />
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {/* =========================
+          BACKDROP (ONLY WHEN OPEN)
+      ========================= */}
+      {menuOpen && (
+        <div className="fixed inset-0 bg-black/40 z-999" onClick={() => setMenuOpen(false)} />
+      )}
+
+      {/* =========================
+          MOBILE DRAWER
+      ========================= */}
+      <aside
+        className={`fixed top-20 right-0 h-screen w-full sm:w-[60%] z-999
+        p-5 transform transition-transform duration-500 ${
+          menuOpen ? 'translate-x-0' : 'translate-x-full'
+        }`}
+      >
+        <div className="p-5 bg-bg/60 backdrop-blur-2xl rounded-2xl border border-border h-full">
+          <div className="flex justify-between items-center pb-8">
+            <Logo />
+            <button
+              onClick={() => setMenuOpen(false)}
+              aria-label="Close menu"
+              className="text-xl text-primary"
+            >
+              ✕
+            </button>
+          </div>
+
+          <ul className="flex flex-col gap-6 uppercase font-medium pb-6">
             {navLinks.map((link) => (
               <li key={link.name}>
                 <NavLink
                   to={link.href}
-                  className={({ isActive }) =>
-                    `transition duration-300 hover:text-primary ${
-                      isActive
-                        ? 'text-primary font-semibold text-shadow-sm-cyan border-b-2 border-primary/80 pb-1' // Active Link Neon Glow
-                        : 'text-gray-400 hover:text-primary' // Subtle hover change
-                    }`
-                  }
+                  onClick={() => setMenuOpen(false)}
+                  className={({ isActive }) => (isActive ? 'text-primary' : 'text-gray-400')}
                 >
                   {link.name}
                 </NavLink>
@@ -104,78 +166,15 @@ const Navbar = () => {
             ))}
           </ul>
 
-          {/* Login/Profile Button with Cyan Glow */}
           <PrimaryButton
             text={user ? (user.role === 'admin' ? 'ADMIN' : 'PROFILE') : 'LOGIN'}
             url={profileLink}
-            onClick={scrollToTop}
-            className="rounded-full text-sm shadow-lg shadow-primary/50 hover:shadow-primary/70 min-w-35"
+            size="lg"
+            className="shadow-lg shadow-primary/40"
           />
-        </nav>
-
-        {/* Mobile Menu Icon with Cyan Glow */}
-        <CgMenuMotion
-          onClick={() => {
-            scrollToTop();
-            setMenuOpen(true);
-          }}
-          className="lg:hidden uppercase text-4xl text-primary font-semibold tracking-wide rounded-full transition duration-300 cursor-pointer shadow-lg shadow-primary/40 hover:shadow-primary/60 p-1"
-        />
-      </div>
-
-      {/* Mobile Drawer */}
-      <div
-        role="dialog"
-        aria-modal="true"
-        className={`fixed top-0 right-0 h-screen w-full sm:w-[60%] bg-bg text-text text-lg uppercase transform transition-transform duration-500 p-5 border-l-4 border-primary/50 shadow-2xl shadow-primary/60 ${
-          menuOpen ? 'translate-x-0' : 'translate-x-full'
-        }`}
-      >
-        {/* ... (Drawer Content remains largely the same) ... */}
-        <div className="flex justify-between pb-10">
-          <Logo />
-          <button
-            onClick={() => setMenuOpen(false)}
-            className="text-xl font-bold text-primary hover:text-hoverPrimary transition cursor-pointer"
-          >
-            ✕
-          </button>
         </div>
-
-        <ul className="flex flex-col gap-6 font-medium tracking-wide pb-6">
-          {navLinks.map((link) => (
-            <li key={link.name}>
-              <NavLink
-                to={link.href}
-                onClick={() => {
-                  scrollToTop();
-                  setMenuOpen(false);
-                }}
-                className={({ isActive }) =>
-                  `transition duration-300 hover:text-primary ${
-                    isActive ? 'text-primary font-semibold text-shadow-sm-cyan' : 'text-gray-400'
-                  }`
-                }
-              >
-                <span className="text-xl">{link.name}</span>
-              </NavLink>
-            </li>
-          ))}
-        </ul>
-
-        {/* Dynamic Mobile Button with Cyan Glow */}
-        <PrimaryButton
-          text={user ? (user.role === 'admin' ? 'ADMIN' : 'PROFILE') : 'LOGIN'}
-          url={profileLink}
-          onClick={() => {
-            scrollToTop();
-            setMenuOpen(false);
-          }}
-          size="lg"
-          className="rounded-md text-md text-center shadow-lg shadow-primary/50"
-        />
-      </div>
-    </header>
+      </aside>
+    </>
   );
 };
 

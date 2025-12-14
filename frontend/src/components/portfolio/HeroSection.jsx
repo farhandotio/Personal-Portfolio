@@ -1,9 +1,10 @@
 import React, { useEffect, useRef } from 'react';
 import PrimaryButton from '../common/PrimaryButton';
 import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+// ScrollTrigger ar lagbe na, tai import remove kora holo
+// import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-gsap.registerPlugin(ScrollTrigger);
+// gsap.registerPlugin(ScrollTrigger); // Plugin registration removed
 
 const HeroSection = () => {
   const heroRef = useRef(null);
@@ -12,23 +13,27 @@ const HeroSection = () => {
   const buttonRef = useRef(null);
 
   useEffect(() => {
+    // Only context is used to scope the GSAP animations
     const ctx = gsap.context(() => {
+      // Shob <span> elements-gulo neya holo <h1>-er modhye theke
       const h1Spans = Array.from(h1TextRef.current.querySelectorAll('span'));
       const pText = pTextRef.current;
       const button = buttonRef.current;
 
-      /* ---------------- INITIAL STATE ---------------- */
+      /* ---------------- INITIAL STATE (GSAP.SET) ---------------- */
+      // Text, paragraph, ar button-er initial hidden state
       gsap.set(h1Spans, {
         opacity: 0,
-        x: (i) => (i % 2 === 0 ? -80 : 80),
+        x: (i) => (i % 2 === 0 ? -80 : 80), // Left/right offset for staggered entry
       });
 
       gsap.set([pText, button], {
         opacity: 0,
-        y: 30,
+        y: 30, // Bottom offset for slide-up entry
       });
 
-      /* ---------------- APPEAR ANIMATION ---------------- */
+      /* ---------------- APPEAR ANIMATION (GSAP TIMELINE) ---------------- */
+      // Ei timeline-ti Hero section load howar shathe shathe chole
       const appearTl = gsap.timeline({
         defaults: {
           ease: 'power3.out',
@@ -39,48 +44,25 @@ const HeroSection = () => {
       appearTl
         .to(h1Spans, {
           opacity: 1,
-          x: 0,
+          x: 0, // Slide back to original position
           stagger: 0.15,
         })
         .to(
           [pText, button],
           {
             opacity: 1,
-            y: 0,
+            y: 0, // Slide up to original position
             stagger: 0.15,
           },
-          '-=0.6'
+          '-=0.6' // 0.6 seconds before the previous animation ends
         );
 
-      /* ---------------- SCROLL ANIMATION ---------------- */
-      const scrollTl = gsap.timeline({
-        scrollTrigger: {
-          trigger: heroRef.current,
-          start: 'top+=150 top',
-          end: 'bottom top',
-          scrub: 1.2,
-        },
-      });
-
-      scrollTl
-        .to(h1Spans, {
-          x: (i) => (i % 2 === 0 ? -300 : 300),
-          opacity: 0,
-          ease: 'none',
-        })
-        .to(
-          [pText],
-          {
-            opacity: 0,
-            y: -20,
-            ease: 'none',
-          },
-          0
-        );
+      /* ---------------- SCROLL ANIMATION REMOVED ---------------- */
+      // ScrollTrigger logic shompurno remove kora holo.
     }, heroRef);
 
     return () => ctx.revert();
-  }, []);
+  }, []); // Dependency array is empty, so it runs once on mount
 
   return (
     <section
@@ -89,6 +71,7 @@ const HeroSection = () => {
       aria-label="MD Farhan Sadik Portfolio"
       role="region"
     >
+      {/* Background Lighting */}
       <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
         <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-primary rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse-slow"></div>
         <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-secondary rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse-slow delay-1000"></div>
@@ -108,7 +91,7 @@ const HeroSection = () => {
               — <br className="md:hidden" /> Full Stack,
             </span>
             <span className="max-lg:block text-secondary inline-block will-change-transform text-shadow-lg-fuchsia">
-              Frontend <br className="md:hidden" /> & {" "}
+              Frontend <br className="md:hidden" /> &{' '}
             </span>
             <span className="max-lg:block inline-block will-change-transform text-white text-shadow-lg-white">
               {' '}
@@ -120,8 +103,7 @@ const HeroSection = () => {
             ref={pTextRef}
             className="mt-6 text-xl md:text-2xl leading-relaxed text-mutedText will-change-transform"
           >
-            I build modern, scalable web applications. From responsive interfaces to robust backend
-            systems, I turn digital ideas into reality.
+            I build modern, high-performance web products that help brands grow and convert users.
           </p>
 
           <div ref={buttonRef} className="md:mt-8 mt-5 inline-block will-change-transform">

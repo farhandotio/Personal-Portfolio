@@ -48,7 +48,7 @@ const App = () => {
         {/* Smooth ScrollToTop */}
         <ScrollToTop />
 
-        <main id="main-content" className="max-w-[1900px] mx-auto">
+        <main id="main-content" className="max-w-[1400px] mx-auto">
           <CursorEffect />
           <MainRoutes />
         </main>

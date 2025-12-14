@@ -68,11 +68,11 @@ const CursorEffect = () => {
     <>
       <div
         ref={cursorRef}
-        className="fixed top-0 left-0 w-5 h-5 lg:h-[1.5vw] lg:w-[1.5vw] bg-primary pointer-events-none rounded-full mix-blend-difference z-1000"
+        className="fixed top-0 left-0 w-5 h-5 lg:h-[1.5vw] lg:w-[1.5vw] bg-primary pointer-events-none rounded-full mix-blend-difference z-9999"
       />
       <div
         ref={cursorBorderRef}
-        className="fixed top-0 left-0 w-10 h-10 lg:w-[3vw] lg:h-[3vw] pointer-events-none border-2 lg:border-[.2vw] rounded-full mix-blend-difference border-primary opacity-50 z-50"
+        className="fixed top-0 left-0 w-10 h-10 lg:w-[3vw] lg:h-[3vw] pointer-events-none border-2 lg:border-[.2vw] rounded-full mix-blend-difference border-primary opacity-50 z-9999"
       />
     </>
   );

@@ -1,11 +1,13 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import HeroSection from '../components/portfolio/HeroSection';
-import ServiceSection from '../components/portfolio/ServiceSection';
 import HowToWork from '../components/portfolio/HowToWork';
 import ProjectSection from '../components/portfolio/ProjectSection';
 import Testimonials from '../components/portfolio/Testimonials';
-import Code from '../components/portfolio/Code';
+import Problems from '../components/portfolio/Problems';
+import Solutions from '../components/portfolio/Solutions';
+import WhoAmI from '../components/portfolio/WhoAmI';
+import CallToAction from '../components/portfolio/CallToAction';
 
 const Portfolio = () => {
   return (
@@ -26,11 +28,13 @@ const Portfolio = () => {
 
       {/* Portfolio Sections */}
       <HeroSection />
-      <Code />
-      <ServiceSection />
-      {/* <HowToWork /> */}
+      <Problems />
+      <Solutions />
+      <HowToWork />
       <ProjectSection />
+      <WhoAmI />
       <Testimonials />
+      <CallToAction />
     </div>
   );
 };

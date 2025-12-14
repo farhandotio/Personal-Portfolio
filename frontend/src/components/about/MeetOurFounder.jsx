@@ -8,7 +8,7 @@ const MeetOurFounder = () => {
     '@type': 'Person',
     name: 'MD Farhan Sadik',
     image:
-      'https://storage.googleapis.com/uxpilot-auth.appspot.com/8c72e0b481-6e5102fb0a8d68c863aa.png',
+      'https://ik.imagekit.io/farhansadik/Agency/ppp.png?updatedAt=1761999834854',
     jobTitle: 'Founder & CEO',
     worksFor: {
       '@type': 'Organization',
