@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
+import gsap from 'gsap';
 import { NavLink, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { CgMenuMotion } from 'react-icons/cg';
@@ -18,6 +19,7 @@ const Navbar = () => {
   const [scrollActive, setScrollActive] = useState(false);
   const location = useLocation();
   const [hideNavbar, setHideNavbar] = useState(false);
+  const navbarRef = useRef(null);
 
   const user = useSelector((state) => state.auth?.user);
 
@@ -50,20 +52,32 @@ const Navbar = () => {
     setMenuOpen(false);
   }, [location.pathname]);
 
+  useEffect(() => {
+    gsap.fromTo(
+      navbarRef.current,
+      { y: -100, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.8,
+        ease: 'power3.out',
+        clearProps: 'transform', // 👈 IMPORTANT
+      }
+    );
+  }, []);
+
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 
   const profileLink = user ? (user.role === 'admin' ? '/admin' : '/profile') : '/login';
 
   return (
     <header
+      ref={navbarRef}
+      style={{ opacity: 0 }}
       className={`fixed top-0 w-full backdrop-blur-2xl text-text py-5 z-50
-    transition-all duration-300 ease-in-out
-    ${hideNavbar ? '-translate-y-full' : 'translate-y-0'}
-    ${
-      scrollActive
-        ? 'bg-bg/90'
-        : 'bg-bg/80'
-    }`}
+  transition-all duration-300 ease-in-out
+  ${hideNavbar ? '-translate-y-full' : 'translate-y-0'}
+  ${scrollActive ? 'bg-bg/90' : 'bg-bg/80'}`}
     >
       <div className="max-w-[1900px] mx-auto flex justify-between items-center px-5 sm:px-7 lg:px-10">
         {/* Logo */}
@@ -95,7 +109,7 @@ const Navbar = () => {
             text={user ? (user.role === 'admin' ? 'ADMIN' : 'PROFILE') : 'LOGIN'}
             url={profileLink}
             onClick={scrollToTop}
-            className="rounded-full text-sm shadow-lg shadow-primary/50 hover:shadow-primary/70"
+            className="rounded-full text-sm shadow-lg shadow-primary/50 hover:shadow-primary/70 min-w-35"
           />
         </nav>
 

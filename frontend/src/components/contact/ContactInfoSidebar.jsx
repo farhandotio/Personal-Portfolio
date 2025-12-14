@@ -36,7 +36,7 @@ const RESPONSE_TIMES = [
 const CONTACT_INFO = [
   { detail: "farhansadik0760@gmail.com", icon: Mail, type: "email" },
   { detail: "(+880) 1703-202276", icon: Phone, type: "phone" },
-  { detail: "Dhaka, Bangladesh", icon: MapPin, type: "location" },
+  { detail: "Satkhira, Khulna, Bangladesh", icon: MapPin, type: "location" },
 ];
 
 // --- Utility Components ---
@@ -88,7 +88,7 @@ const ContactInfoSidebar = () => (
       {CONTACT_INFO.map((info, index) => {
         const Icon = info.icon;
         return (
-          <div key={index} className="flex items-start space-x-3">
+          <div key={index} className="flex items-center space-x-3">
             <Icon className="w-5 h-5 text-mutedText mt-1 shrink-0" />
             <div>
               {info.type === "email" ? (

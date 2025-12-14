@@ -40,8 +40,8 @@ const CodeShowcase = () => {
             ></div>
 
             <img
+              src="https://ik.imagekit.io/iura/Screenshot%20from%202025-12-13%2023-45-07.png"
               className="w-full aspect-video rounded-xl"
-              src="https://ik.imagekit.io/iura/Screenshot%20from%202025-12-13%2023-47-37.png"
               alt="Frontend Code Screenshot"
             />
             <p className="absolute bottom-0 left-0 bg-cyan-700 text-text text-xs px-2 py-1 rounded-tr-lg">
@@ -59,7 +59,7 @@ const CodeShowcase = () => {
             ></div>
             <img
               className="w-full aspect-video rounded-xl"
-              src="https://ik.imagekit.io/iura/Screenshot%20from%202025-12-13%2023-45-07.png"
+              src="https://ik.imagekit.io/iura/Screenshot%20from%202025-12-13%2023-47-37.png"
               alt="Backend Code Screenshot"
             />
             <p className="absolute bottom-0 left-0 bg-fuchsia-700 text-text text-xs px-2 py-1 rounded-tr-lg">

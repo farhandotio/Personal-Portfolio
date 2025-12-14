@@ -9,7 +9,6 @@ import { fetchProfile } from './app/features/auth/authSlice';
 import MainRoutes from './routes/MainRoutes';
 import Navbar from './components/common/Navbar';
 import Footer from './components/common/Footer';
-import InitialLoader from './components/common/InitialLoader';
 
 import SmoothScroll from './components/common/SmoothScroll';
 import ScrollToTop from './components/common/ScrollToTop';
@@ -44,7 +43,6 @@ const App = () => {
       <SmoothScroll />
 
       <div className="relative bg-bg text-text min-h-screen">
-        {/* <InitialLoader minDuration={500} /> */}
         <Navbar />
 
         {/* Smooth ScrollToTop */}

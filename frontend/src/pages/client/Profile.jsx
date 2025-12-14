@@ -1,11 +1,13 @@
 // File: src/pages/ProfilePage.jsx
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchProfile, logoutUser } from "../../app/features/auth/authSlice";
-import { fetchMyOrders } from "../../app/features/order/orderSlice";
-import UserProfile from "../../components/profile/UserProfile";
-import EditProfileForm from "../../components/profile/EditProfileForm";
-import UserOrders from "../../components/profile/UserOrders";
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchProfile, logoutUser } from '../../app/features/auth/authSlice';
+import { fetchMyOrders } from '../../app/features/order/orderSlice';
+import UserProfile from '../../components/profile/UserProfile';
+import EditProfileForm from '../../components/profile/EditProfileForm';
+import UserOrders from '../../components/profile/UserOrders';
+import Skeleton from '../../components/common/Skeleton';
+import Loading from '../../components/common/Loading';
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -18,7 +20,12 @@ const Profile = () => {
     dispatch(fetchMyOrders());
   }, [dispatch]);
 
-  if (authLoading && !user) return <div className="p-6">Loading profile…</div>;
+  if (authLoading && !user)
+    return (
+      <div className="min-h-screen flex justify-center items-center flex-col gap-6 px-5 sm:px-7 lg:px-10">
+        <Loading />
+      </div>
+    );
 
   return (
     <div className="px-5 sm:px-7 lg:px-10 py-30">
@@ -27,8 +34,8 @@ const Profile = () => {
           My Profile
         </h1>
         <p className="text-lg md:text-xl text-mutedText max-w-3xl">
-          Welcome to your profile. Here you can view your personal information,
-          update your details, and see a history of your orders.
+          Welcome to your profile. Here you can view your personal information, update your details,
+          and see a history of your orders.
         </p>
       </header>
 

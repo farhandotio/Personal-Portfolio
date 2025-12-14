@@ -1,32 +1,26 @@
-import React, { useState, useCallback } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { createOrder } from "../../app/features/order/orderSlice";
+import React, { useState, useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { createOrder } from '../../app/features/order/orderSlice';
 
-import { SiFigma, SiReact, SiMongodb } from "react-icons/si";
-import {
-  Globe,
-  Palette,
-  Tablet,
-  Upload,
-  Calendar,
-  ChevronDown,
-  Send,
-} from "lucide-react";
+import { SiFigma, SiReact, SiMongodb } from 'react-icons/si';
+import { Globe, Palette, Tablet, Loader2, Upload, Calendar, ChevronDown, Send } from 'lucide-react';
+import Loading from '../common/Loading';
+import PrimaryButton from '../common/PrimaryButton';
 
 const QUICK_ORDER_TEMPLATES = [
   {
-    title: "Web Design",
-    description: "Creative and responsive UI/UX designs",
+    title: 'Web Design',
+    description: 'Creative and responsive UI/UX designs',
     icon: SiFigma,
   },
   {
-    title: "Web Development",
-    description: "Fully functional and responsive websites",
+    title: 'Web Development',
+    description: 'Fully functional and responsive websites',
     icon: SiReact,
   },
   {
-    title: "Backend & APIs",
-    description: "Server-side logic and database integration",
+    title: 'Backend & APIs',
+    description: 'Server-side logic and database integration',
     icon: SiMongodb,
   },
 ];
@@ -46,8 +40,7 @@ const FileUpload = ({ setFiles }) => {
   const handleDragEnter = useCallback((e) => {
     e.preventDefault();
     e.stopPropagation();
-    if (e.dataTransfer.items && e.dataTransfer.items.length > 0)
-      setIsDragging(true);
+    if (e.dataTransfer.items && e.dataTransfer.items.length > 0) setIsDragging(true);
   }, []);
 
   const handleDragLeave = useCallback((e) => {
@@ -75,13 +68,13 @@ const FileUpload = ({ setFiles }) => {
   };
 
   const handleFileInputClick = () => {
-    document.getElementById("file-upload").click();
+    document.getElementById('file-upload').click();
   };
 
   return (
     <div
       className={`mt-2 border-2 border-dashed p-8 text-center rounded-xl transition-colors duration-300
-        ${isDragging ? "border-primary" : "border-border bg-hoverCardBg"}`}
+        ${isDragging ? 'border-primary' : 'border-border bg-hoverCardBg'}`}
       onDragEnter={handleDragEnter}
       onDragOver={handleDragEnter}
       onDragLeave={handleDragLeave}
@@ -92,15 +85,9 @@ const FileUpload = ({ setFiles }) => {
       <p className="text-mutedText text-sm">
         {fileCount > 0
           ? `${fileCount} file(s) ready for submission.`
-          : "Drag and drop files here or click to browse"}
+          : 'Drag and drop files here or click to browse'}
       </p>
-      <input
-        id="file-upload"
-        type="file"
-        multiple
-        className="hidden"
-        onChange={handleFileChange}
-      />
+      <input id="file-upload" type="file" multiple className="hidden" onChange={handleFileChange} />
     </div>
   );
 };
@@ -110,33 +97,33 @@ const ContactForm = () => {
   const { status, error } = useSelector((state) => state.order);
 
   const [formData, setFormData] = useState({
-    fullname: "",
-    emailAddress: "",
-    phoneNumber: "",
-    projectType: "Select project type",
-    budgetRange: "Select budget",
-    projectDeadline: "",
-    projectBrief: "",
+    fullname: '',
+    emailAddress: '',
+    phoneNumber: '',
+    projectType: 'Select project type',
+    budgetRange: 'Select budget',
+    projectDeadline: '',
+    projectBrief: '',
     termsAccepted: false,
   });
 
   const [files, setFiles] = useState([]);
-  const [submitMessage, setSubmitMessage] = useState({ type: "", text: "" });
+  const [submitMessage, setSubmitMessage] = useState({ type: '', text: '' });
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData((prev) => ({
       ...prev,
-      [name]: type === "checkbox" ? checked : value,
+      [name]: type === 'checkbox' ? checked : value,
     }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitMessage({ type: "", text: "" });
+    setSubmitMessage({ type: '', text: '' });
 
     if (!formData.termsAccepted) {
-      setSubmitMessage({ type: "error", text: "You must agree to the terms." });
+      setSubmitMessage({ type: 'error', text: 'You must agree to the terms.' });
       return;
     }
 
@@ -146,38 +133,38 @@ const ContactForm = () => {
       Object.entries(formData).forEach(([key, value]) => {
         if (value !== undefined && value !== null) payload.append(key, value);
       });
-      files.forEach((file) => payload.append("files", file));
+      files.forEach((file) => payload.append('files', file));
 
       const resultAction = await dispatch(createOrder(payload));
       if (createOrder.fulfilled.match(resultAction)) {
         setSubmitMessage({
-          type: "success",
-          text: "Order submitted successfully!",
+          type: 'success',
+          text: 'Order submitted successfully!',
         });
         setFormData({
-          fullname: "",
-          emailAddress: "",
-          phoneNumber: "",
-          projectType: "Select project type",
-          budgetRange: "Select budget",
-          projectDeadline: "",
-          projectBrief: "",
+          fullname: '',
+          emailAddress: '',
+          phoneNumber: '',
+          projectType: 'Select project type',
+          budgetRange: 'Select budget',
+          projectDeadline: '',
+          projectBrief: '',
           termsAccepted: false,
         });
         setFiles([]);
       } else {
         setSubmitMessage({
-          type: "error",
-          text: resultAction.payload || "Failed to submit order.",
+          type: 'error',
+          text: resultAction.payload || 'Failed to submit order.',
         });
       }
     } catch (err) {
       console.error(err);
-      setSubmitMessage({ type: "error", text: "Something went wrong." });
+      setSubmitMessage({ type: 'error', text: 'Something went wrong.' });
     }
   };
 
-  const isSubmitting = status === "loading";
+  const isSubmitting = status === 'loading';
 
   return (
     <section className="lg:col-span-2 bg-cardBg p-5 md:p-10 rounded-xl shadow-lg border border-border">
@@ -209,9 +196,7 @@ const ContactForm = () => {
           </div>
           {/* Email */}
           <div className="space-y-1">
-            <label className="text-sm font-medium text-text">
-              Email Address *
-            </label>
+            <label className="text-sm font-medium text-text">Email Address *</label>
             <input
               type="email"
               name="emailAddress"
@@ -225,9 +210,7 @@ const ContactForm = () => {
           </div>
           {/* Phone */}
           <div className="space-y-1">
-            <label className="text-sm font-medium text-text">
-              Phone Number
-            </label>
+            <label className="text-sm font-medium text-text">Phone Number</label>
             <input
               type="tel"
               name="phoneNumber"
@@ -240,9 +223,7 @@ const ContactForm = () => {
           </div>
           {/* Project Type */}
           <div className="space-y-1 relative">
-            <label className="text-sm font-medium text-text">
-              Project Type *
-            </label>
+            <label className="text-sm font-medium text-text">Project Type *</label>
             <select
               name="projectType"
               value={formData.projectType}
@@ -262,9 +243,7 @@ const ContactForm = () => {
           </div>
           {/* Budget */}
           <div className="space-y-1 relative">
-            <label className="text-sm font-medium text-text">
-              Budget Range *
-            </label>
+            <label className="text-sm font-medium text-text">Budget Range *</label>
             <select
               name="budgetRange"
               value={formData.budgetRange}
@@ -284,9 +263,7 @@ const ContactForm = () => {
           </div>
           {/* Deadline */}
           <div className="space-y-1 relative">
-            <label className="text-sm font-medium text-text">
-              Project Deadline
-            </label>
+            <label className="text-sm font-medium text-text">Project Deadline</label>
             <input
               type="date"
               name="projectDeadline"
@@ -299,9 +276,7 @@ const ContactForm = () => {
           </div>
           {/* Project Brief */}
           <div className="space-y-1 md:col-span-2">
-            <label className="text-sm font-medium text-text">
-              Project Brief *
-            </label>
+            <label className="text-sm font-medium text-text">Project Brief *</label>
             <textarea
               name="projectBrief"
               value={formData.projectBrief}
@@ -315,9 +290,7 @@ const ContactForm = () => {
           </div>
           {/* File Upload */}
           <div className="space-y-1 md:col-span-2">
-            <label className="text-sm font-medium text-text">
-              Upload Files
-            </label>
+            <label className="text-sm font-medium text-text">Upload Files</label>
             <FileUpload setFiles={setFiles} />
           </div>
         </div>
@@ -335,8 +308,7 @@ const ContactForm = () => {
               disabled={isSubmitting}
             />
             <span className="text-sm text-text">
-              I agree to the terms and conditions, including 50% upfront payment
-              *
+              I agree to the terms and conditions, including 50% upfront payment *
             </span>
           </label>
         </div>
@@ -345,47 +317,21 @@ const ContactForm = () => {
         {submitMessage.text && (
           <div
             className={`p-3 rounded-lg text-sm font-medium ${
-              submitMessage.type === "success"
-                ? "bg-hoverCardBg text-green-700 border border-green-300"
-                : "bg-cardBg text-danger border border-red-300"
+              submitMessage.type === 'success'
+                ? 'bg-hoverCardBg text-green-700 border border-green-300'
+                : 'bg-cardBg text-danger border border-red-300'
             }`}
           >
             {submitMessage.text}
           </div>
         )}
 
-        {/* Submit Button */}
-        <button
+        <PrimaryButton
           type="submit"
-          className="w-full flex items-center justify-center py-3 px-4 border border-transparent rounded-lg shadow-md text-base font-semibold text-white bg-primary hover:bg-hoverPrimary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-all duration-300 disabled:bg-hoverCardBg cursor-pointer"
-          disabled={isSubmitting}
-        >
-          {isSubmitting ? (
-            <svg
-              className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-            >
-              <circle
-                className="opacity-25"
-                cx="12"
-                cy="12"
-                r="10"
-                stroke="currentColor"
-                strokeWidth="4"
-              ></circle>
-              <path
-                className="opacity-75"
-                fill="currentColor"
-                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-              ></path>
-            </svg>
-          ) : (
-            <Send className="w-5 h-5 mr-2" />
-          )}
-          {isSubmitting ? "Sending Request..." : "Submit Project Request"}
-        </button>
+          text={isSubmitting ? '...' : 'Submit Project Request'}
+          size="lg"
+          className={`w-full rounded-lg ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
+        />
       </form>
     </section>
   );

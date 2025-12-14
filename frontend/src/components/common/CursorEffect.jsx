@@ -68,7 +68,7 @@ const CursorEffect = () => {
     <>
       <div
         ref={cursorRef}
-        className="fixed top-0 left-0 w-5 h-5 lg:h-[1.5vw] lg:w-[1.5vw] bg-primary pointer-events-none rounded-full mix-blend-difference z-50"
+        className="fixed top-0 left-0 w-5 h-5 lg:h-[1.5vw] lg:w-[1.5vw] bg-primary pointer-events-none rounded-full mix-blend-difference z-1000"
       />
       <div
         ref={cursorBorderRef}
