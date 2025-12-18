@@ -34,19 +34,19 @@ const WhoAmI = () => {
         {/* Text Section */}
         <div className="flex-1 space-y-6">
           <SectionHeader
-            title="Who I Am"
-            description="I’m MD Farhan Sadik, a Fullstack Developer passionate about building modern, scalable, and beautiful web applications."
+            title="Who I Am and What I Do as a Full-Stack Web Developer"
+            description="I’m MD Farhan Sadik, a full-stack web developer focused on building scalable, high-performance, and user-centric web applications using modern JavaScript technologies."
             size="xl"
             className="md:text-left md:ml-0"
           />
 
-          <p className="text-mutedText leading-relaxed text-lg">
+          <p className="text-mutedText leading-relaxed text-xl">
             I started my journey as a frontend developer and expanded into fullstack, mastering
             technologies for both client-side and server-side development. My focus is on building
             applications that are performant, maintainable, and visually appealing.
           </p>
 
-          <p className="text-mutedText leading-relaxed text-lg">
+          <p className="text-mutedText leading-relaxed text-xl">
             I enjoy solving complex problems, crafting smooth user experiences, and continuously
             learning new tools and frameworks to stay ahead in the fast-moving world of web
             development.
@@ -56,7 +56,7 @@ const WhoAmI = () => {
           <div className="mt-6 space-y-4">
             {skillCategories.map((cat, idx) => (
               <div key={idx}>
-                <h4 className="text-lg text-text font-semibold mb-2 inline">{cat.category}: </h4>
+                <h4 className="text-xl text-text font-semibold mb-2 inline">{cat.category}: </h4>
                 <div className="flex-wrap gap-3 inline-flex">
                   {cat.skills.map((skill, i) => (
                     <span

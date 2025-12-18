@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&display=swap');
 
 @import 'tailwindcss';
 
@@ -10,8 +10,8 @@
 }
 
 @theme {
-  --color-secondary: #a800b7;
-  --color-primary: #007595;
+  --color-secondary: #4e4e4e;
+  --color-primary: #ff2c2c;
   --color-bg: #0f0f0f;
   --color-cardBg: #111;
   --color-circleBg: #cc9f66;
@@ -20,7 +20,7 @@
   --color-border: #1f1f1f;
   --color-outline: #007595;
 
-  --color-mutedText: #ddd;
+  --color-mutedText: #bbb;
   --color-inputBg: #1f1f1f;
 
   --color-danger: #ef4444;
@@ -28,12 +28,12 @@
   --color-warning: #eab308;
   --color-warningBg: #ffae0009;
 
-  --color-hoverPrimary: #1494b7;
-  --color-hoverSecondary: #c621d5;
+  --color-hoverPrimary: #fa3f3f;
+  --color-hoverSecondary: #646363;
   --color-hoverCardBg: #1f1f1f;
 
-  --font-montserrat: 'Montserrat';
-  --font-raleway: 'Raleway', sans-serif;
+  --font-inter: 'Inter', sans-serif;
+  --font-roboto: 'Roboto Serif', serif;
   --font-panda: 'FoodPanda', sans-serif;
 }
 
@@ -41,6 +41,7 @@
   --color-bg: #ffffff;
   --color-cardBg: #f1fff1;
   --color-text: #010101;
+  --color-text: #4e4e4e;
 
   --color-border: #d1d5db;
 
@@ -62,8 +63,8 @@
 body {
   background-color: var(--color-bg);
   color: var(--color-text);
-  font-family: var(--font-montserrat);
-  cursor: none;
+  font-family: var(--font-inter);
+  /* cursor: none; */
 }
 h1,
 h2,
@@ -71,7 +72,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-raleway);
+  font-family: var(--font-roboto);
 }
 .input,
 .textarea,

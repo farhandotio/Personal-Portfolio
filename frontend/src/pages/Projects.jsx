@@ -8,13 +8,6 @@ import { getLenis } from '../components/common/SmoothScroll';
 import Skeleton from '../components/common/Skeleton';
 import SectionHeader from '../components/common/SectionHeader';
 
-/* -------------------------------------------------------------------------- */
-/* << KEY INSIGHT / TECH STACK BUTTON COMPONENT (For ProjectCard.jsx) >>     */
-/* -------------------------------------------------------------------------- */
-/**
- * NOTE: This component should be used INSIDE your actual ProjectCard.jsx file.
- * We are including it here as a guide for the required styling/logic.
- */
 const TechStackBadges = ({ stack }) => {
   if (!stack || stack.length === 0) return null;
 
@@ -30,7 +23,7 @@ const TechStackBadges = ({ stack }) => {
     ) {
       case 'react':
       case 'redux':
-        return 'text-cyan-400 border-cyan-400/50 shadow-cyan-500/30 bg-cyan-900/20';
+        return 'text-cyan-400 border-cyan-400/50 shadow-primary/30 bg-cyan-900/20';
       case 'node':
       case 'express':
         return 'text-lime-400 border-lime-400/50 shadow-lime-500/30 bg-lime-900/20';
@@ -46,12 +39,12 @@ const TechStackBadges = ({ stack }) => {
   };
 
   return (
-    <div className="flex flex-wrap gap-3 pt-4 border-t border-gray-700/50 mt-5">
+    <div className="flex flex-wrap gap-3 pt-4 border-t border-border mt-5">
       {stack.map((tech, index) => (
         <span
           key={tech}
           className={`
-                        text-xs font-semibold px-3 py-1 rounded-full border 
+                        text-xs font-semibold px-3 py-1 rounded-full border border-border
                         transition duration-300 transform hover:scale-105 
                         ${getColorClass(tech, index)}
                         shadow-md hover:shadow-lg
@@ -156,10 +149,10 @@ const Projects = () => {
   return (
     <section
       id="projects"
-      className="bg-bg text-white p-5 md:p-7 lg:p-10 mt-20 relative overflow-hidden"
+      className="bg-bg text-text p-5 md:p-7 lg:p-10 mt-20 relative overflow-hidden"
     >
       {/* 🌟 Background Lighting Layer (Subtle Cyan Glow) */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-cyan-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 pointer-events-none"></div>
+      <div className="absolute top-0 left-0 w-96 h-96 bg-primary rounded-full mix-blend-multiply filter blur-3xl opacity-10 pointer-events-none"></div>
 
       <div className="max-w-[1900px] mx-auto relative z-10">
         <Helmet>
@@ -172,11 +165,7 @@ const Projects = () => {
         </Helmet>
 
         <SectionHeader
-          title={
-            <span className="bg-clip-text text-transparent bg-linear-to-r from-white to-cyan-400">
-              Projects I’ve Built
-            </span>
-          }
+          title={'Projects I’ve Built'}
           description="A curated selection of modern, high-performing web applications and UI
             projects — built with React, Redux, Node.js, and other modern
             technologies. Each project focuses on performance, accessibility, and
@@ -210,8 +199,8 @@ const Projects = () => {
                         border border-gray-700/50 shadow-2xl shadow-gray-900/70
                         ${
                           highlightId === key
-                            ? 'border-cyan-400/80 shadow-cyan-500/50 transform scale-[1.01]'
-                            : 'hover:border-cyan-400/50 hover:shadow-cyan-500/20'
+                            ? 'border-cyan-400/80 shadow-primary/50 transform scale-[1.01]'
+                            : 'hover:border-cyan-400/50 hover:shadow-primary/20'
                         }
                     `}
                   >

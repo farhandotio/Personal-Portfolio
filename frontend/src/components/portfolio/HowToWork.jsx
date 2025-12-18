@@ -81,7 +81,7 @@ const HowToWork = () => {
     <section className="py-24 lg:py-32 bg-bg">
       <div className="mx-auto px-5 sm:px-7 lg:px-10">
         <SectionHeader
-          title="How I Work"
+          title="How I Turn Ideas Into Working Products"
           description="A clear, structured process that minimizes risk and maximizes clarity."
           size="xl"
           className="text-center"

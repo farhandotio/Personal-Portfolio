@@ -28,7 +28,7 @@ const ProjectCard = ({ project }) => {
             {/* --- LIGHTING UPDATE 1: Header Gradient --- */}
             <h2
               id={headingId}
-              className="text-3xl md:text-4xl font-extrabold tracking-tight bg-clip-text text-transparent bg-linear-to-r from-text to-cyan-400"
+              className="text-3xl md:text-4xl font-extrabold tracking-tight bg-clip-text text-transparent bg-linear-to-r from-text to-primary"
             >
               {project.title}
             </h2>
@@ -51,7 +51,7 @@ const ProjectCard = ({ project }) => {
             {project.keyInsights?.map((item, idx) => (
               <div
                 key={idx}
-                className="inline-flex items-center p-3 rounded-lg border border-fuchsia-700/50 transition-all duration-300 hover:border-secondary/80 hover:shadow-md hover:shadow-fuchsia-500/20 bg-cardBg/30 backdrop-blur-2xl"
+                className="inline-flex items-center p-3 rounded-lg border border-secondary/50 transition-all duration-300 hover:border-secondary/80 hover:shadow-md hover:shadow-fuchsia-500/20 bg-cardBg/30 backdrop-blur-2xl"
               >
                 <p className="text-sm font-medium text-gray-300 leading-none max-w-xs">
                   {item.insight}

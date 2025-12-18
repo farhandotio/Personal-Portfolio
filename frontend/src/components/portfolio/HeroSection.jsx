@@ -1,10 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import PrimaryButton from '../common/PrimaryButton';
 import { gsap } from 'gsap';
-// ScrollTrigger ar lagbe na, tai import remove kora holo
-// import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-// gsap.registerPlugin(ScrollTrigger); // Plugin registration removed
 
 const HeroSection = () => {
   const heroRef = useRef(null);
@@ -13,27 +9,22 @@ const HeroSection = () => {
   const buttonRef = useRef(null);
 
   useEffect(() => {
-    // Only context is used to scope the GSAP animations
     const ctx = gsap.context(() => {
-      // Shob <span> elements-gulo neya holo <h1>-er modhye theke
       const h1Spans = Array.from(h1TextRef.current.querySelectorAll('span'));
       const pText = pTextRef.current;
       const button = buttonRef.current;
 
       /* ---------------- INITIAL STATE (GSAP.SET) ---------------- */
-      // Text, paragraph, ar button-er initial hidden state
       gsap.set(h1Spans, {
         opacity: 0,
-        x: (i) => (i % 2 === 0 ? -80 : 80), // Left/right offset for staggered entry
+        x: (i) => (i % 2 === 0 ? -80 : 80),
       });
 
       gsap.set([pText, button], {
         opacity: 0,
-        y: 30, // Bottom offset for slide-up entry
+        y: 30,
       });
 
-      /* ---------------- APPEAR ANIMATION (GSAP TIMELINE) ---------------- */
-      // Ei timeline-ti Hero section load howar shathe shathe chole
       const appearTl = gsap.timeline({
         defaults: {
           ease: 'power3.out',
@@ -44,25 +35,24 @@ const HeroSection = () => {
       appearTl
         .to(h1Spans, {
           opacity: 1,
-          x: 0, // Slide back to original position
+          x: 0,
           stagger: 0.15,
         })
         .to(
           [pText, button],
           {
             opacity: 1,
-            y: 0, // Slide up to original position
+            y: 0,
             stagger: 0.15,
           },
-          '-=0.6' // 0.6 seconds before the previous animation ends
+          '-=0.6'
         );
 
       /* ---------------- SCROLL ANIMATION REMOVED ---------------- */
-      // ScrollTrigger logic shompurno remove kora holo.
     }, heroRef);
 
     return () => ctx.revert();
-  }, []); // Dependency array is empty, so it runs once on mount
+  }, []);
 
   return (
     <section
@@ -78,32 +68,32 @@ const HeroSection = () => {
       </div>
 
       <div className="relative z-10 p-5 sm:p-7 lg:p-10 flex flex-col items-center w-full">
-        <div className="mb-12 lg:mb-0 justify-center text-center  mx-auto">
-          <h1
-            ref={h1TextRef}
-            className="text-6xl md:text-6xl lg:text-7xl font-extrabold leading-tight"
-          >
-            <span className="inline-block will-change-transform text-white text-shadow-lg-white">
-              MD Farhan <br className="md:hidden" /> Sadik
+        <div className="mb-12 lg:mb-0 justify-center text-center mx-auto py-5">
+          <h1 ref={h1TextRef} className="text-4xl md:text-6xl font-extrabold leading-tight">
+            <span className="relative inline-block will-change-transform text-white text-shadow-lg-white">
+              <span className="absolute -top-3 -left-11 md:-left-13 -rotate-30 bg-cardBg rounded-full text-base px-5 font-panda">
+                hi, i'm
+              </span>
+              MD Farhan Sadik
             </span>
             <br />
             <span className="block pt-2 text-primary will-change-transform text-shadow-lg-cyan">
-              — <br className="md:hidden" /> Full Stack,
+              — Full Stack,
             </span>
             <span className="max-lg:block text-secondary inline-block will-change-transform text-shadow-lg-fuchsia">
-              Frontend <br className="md:hidden" /> &{' '}
+              Web Developer focused on
             </span>
             <span className="max-lg:block inline-block will-change-transform text-white text-shadow-lg-white">
-              {' '}
-              Backend Developer
+              Scalable & High-Performance Web Apps
             </span>
           </h1>
 
           <p
             ref={pTextRef}
-            className="mt-6 text-xl md:text-2xl leading-relaxed text-mutedText will-change-transform"
+            className="mt-6 text-lg md:text-2xl leading-relaxed text-mutedText will-change-transform"
           >
-            I build fast, modern & scalable web apps for startups & businesses.
+            I help startups, founders, and growing businesses turn ideas into fast, scalable, and
+            user-focused web applications using modern JavaScript and the MERN stack.
           </p>
 
           <div
@@ -113,15 +103,15 @@ const HeroSection = () => {
             <PrimaryButton
               text="View My Work"
               href="#projects"
-              size="xl"
-              className="rounded-full shadow-lg shadow-primary/50"
+              size="lg"
+              className="rounded-full"
             />
             <PrimaryButton
               text="Download Resume"
               href="/resume/Resume.pdf"
-              size="xl"
+              size="lg"
               bgColor={'bg-secondary'}
-              className="rounded-full shadow-lg shadow-primary/50"
+              className="rounded-full"
             />
           </div>
         </div>

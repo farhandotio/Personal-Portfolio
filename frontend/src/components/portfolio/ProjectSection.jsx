@@ -97,7 +97,7 @@ const ProjectSection = () => {
 
       <div className="relative mx-auto px-5 sm:px-7 lg:px-10">
         <SectionHeader
-          title="Selected Work"
+          title="Some of My Selected Projects & Case Studies"
           description="A focused selection of projects where thoughtful design, clean architecture, 
           and performance were treated as non-negotiable."
           size="xl"
