@@ -1,6 +1,6 @@
-import axios from "axios";
+import axios from 'axios';
 
-const API_BASE = "https://farhan-agency-wryw.onrender.com/api/auth";
+const API_BASE = 'https://excited-lori-farhansadik-d2cb758b.koyeb.app/api/auth';
 
 const instance = axios.create({
   baseURL: API_BASE,
@@ -10,16 +10,16 @@ const instance = axios.create({
 // -------------------- AUTH APIs -------------------- //
 
 export const register = (formData) =>
-  instance.post("/register", formData, {
-    headers: { "Content-Type": "multipart/form-data" },
+  instance.post('/register', formData, {
+    headers: { 'Content-Type': 'multipart/form-data' },
   });
 
-export const login = (credentials) => instance.post("/login", credentials);
+export const login = (credentials) => instance.post('/login', credentials);
 
-export const getProfile = () => instance.get("/profile");
+export const getProfile = () => instance.get('/profile');
 
-export const getAllUsers = () => instance.get("/all-users");
+export const getAllUsers = () => instance.get('/all-users');
 
-export const logout = () => instance.post("/logout");
+export const logout = () => instance.post('/logout');
 
-export const updateProfile = (formData) => instance.put("/profile", formData);
+export const updateProfile = (formData) => instance.put('/profile', formData);

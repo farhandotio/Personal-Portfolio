@@ -1,6 +1,6 @@
-import axios from "axios";
+import axios from 'axios';
 
-const API_URL = "https://farhan-agency-wryw.onrender.com/api/projects";
+const API_URL = 'https://excited-lori-farhansadik-d2cb758b.koyeb.app/api/projects';
 
 // GET /projects?search=&page=&limit=&sort=
 export const fetchProjectsApi = async (params = {}) => {
@@ -22,7 +22,7 @@ export const fetchProjectByIdApi = async (id) => {
 // POST /projects
 export const createProjectApi = async (formData) => {
   const response = await axios.post(API_URL, formData, {
-    headers: { "Content-Type": "multipart/form-data" },
+    headers: { 'Content-Type': 'multipart/form-data' },
     withCredentials: true,
   });
   return response.data;
@@ -31,7 +31,7 @@ export const createProjectApi = async (formData) => {
 // PATCH /projects/:id
 export const updateProjectApi = async ({ id, formData }) => {
   const response = await axios.patch(`${API_URL}/${id}`, formData, {
-    headers: { "Content-Type": "multipart/form-data" },
+    headers: { 'Content-Type': 'multipart/form-data' },
     withCredentials: true,
   });
   return response.data;

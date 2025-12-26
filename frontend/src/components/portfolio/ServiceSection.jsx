@@ -12,7 +12,9 @@ const ServiceSection = () => {
   useEffect(() => {
     const fetchServices = async () => {
       try {
-        const { data } = await axios.get('https://farhan-agency-wryw.onrender.com/api/services');
+        const { data } = await axios.get(
+          'https://excited-lori-farhansadik-d2cb758b.koyeb.app/api/services'
+        );
         // Maximum 5 services
         setServices((data.data || data).slice(0, 5));
       } catch (err) {
@@ -64,7 +66,7 @@ const ServiceSection = () => {
           description="I build modern web applications with clean, scalable code. From
             responsive frontend interfaces to robust backend systems, I help
             bring digital ideas to life."
-          size="xl" 
+          size="xl"
           className="text-center mb-16"
         />
 

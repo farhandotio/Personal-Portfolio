@@ -1,11 +1,11 @@
 // Services.jsx
-import React, { useEffect, useState } from "react";
-import { Helmet } from "react-helmet";
-import axios from "axios";
-import ServiceCard from "../components/services/ServiceCard";
-import Loading from "../components/common/Loading";
-import Skeleton from "../components/common/Skeleton";
-import SectionHeader from "../components/common/SectionHeader";
+import React, { useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet';
+import axios from 'axios';
+import ServiceCard from '../components/services/ServiceCard';
+import Loading from '../components/common/Loading';
+import Skeleton from '../components/common/Skeleton';
+import SectionHeader from '../components/common/SectionHeader';
 
 const Services = () => {
   const [services, setServices] = useState([]);
@@ -15,11 +15,11 @@ const Services = () => {
     const fetchServices = async () => {
       try {
         const { data } = await axios.get(
-          "https://farhan-agency-wryw.onrender.com/api/services"
+          'https://excited-lori-farhansadik-d2cb758b.koyeb.app/api/services'
         );
         setServices(data.data || data || []);
       } catch (err) {
-        console.error("Error fetching services:", err);
+        console.error('Error fetching services:', err);
       } finally {
         setLoading(false);
       }
@@ -30,33 +30,30 @@ const Services = () => {
 
   // Build JSON-LD only after services are loaded
   const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    name: "Services by MD Farhan Sadik",
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: 'Services by MD Farhan Sadik',
     provider: {
-      "@type": "Person",
-      name: "MD Farhan Sadik",
-      url: "https://farhansadik.vercel.app",
-      sameAs: [
-        "https://github.com/farhandotio",
-        "https://www.linkedin.com/in/mdsadikdev",
-      ],
+      '@type': 'Person',
+      name: 'MD Farhan Sadik',
+      url: 'https://farhansadik.vercel.app',
+      sameAs: ['https://github.com/farhandotio', 'https://www.linkedin.com/in/mdsadikdev'],
     },
     description:
-      "Frontend, Backend and Fullstack development services by MD Farhan Sadik — building modern, scalable web applications with performance and accessibility in mind.",
-    serviceType: "Fullstack Web Development",
+      'Frontend, Backend and Fullstack development services by MD Farhan Sadik — building modern, scalable web applications with performance and accessibility in mind.',
+    serviceType: 'Fullstack Web Development',
     hasOfferCatalog: {
-      "@type": "OfferCatalog",
-      name: "Development Services Catalog",
+      '@type': 'OfferCatalog',
+      name: 'Development Services Catalog',
       itemListElement: services.map((s, i) => ({
-        "@type": "Offer",
+        '@type': 'Offer',
         itemOffered: {
-          "@type": "Service",
+          '@type': 'Service',
           name: s.title || s.name || `Service ${i + 1}`,
-          description: s.description || s.heroDescription || "",
+          description: s.description || s.heroDescription || '',
           url: s.slug
             ? `https://farhansadik.vercel.app/services/${s.slug}`
-            : s.url || "https://farhansadik.vercel.app/services",
+            : s.url || 'https://farhansadik.vercel.app/services',
         },
       })),
     },
@@ -81,43 +78,26 @@ const Services = () => {
         <link rel="canonical" href="https://farhansadik.vercel.app/services" />
 
         {/* Open Graph */}
-        <meta
-          property="og:title"
-          content="Services I Offer — MD Farhan Sadik"
-        />
+        <meta property="og:title" content="Services I Offer — MD Farhan Sadik" />
         <meta
           property="og:description"
           content="Frontend, Backend and Fullstack development services by MD Farhan Sadik. I build modern, scalable web applications optimized for performance and accessibility."
         />
         <meta property="og:type" content="website" />
-        <meta
-          property="og:url"
-          content="https://farhansadik.vercel.app/services"
-        />
-        <meta
-          property="og:image"
-          content="https://farhansadik.vercel.app/og-image.png"
-        />
+        <meta property="og:url" content="https://farhansadik.vercel.app/services" />
+        <meta property="og:image" content="https://farhansadik.vercel.app/og-image.png" />
 
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta
-          name="twitter:title"
-          content="Services I Offer — MD Farhan Sadik"
-        />
+        <meta name="twitter:title" content="Services I Offer — MD Farhan Sadik" />
         <meta
           name="twitter:description"
           content="Hire MD Farhan Sadik for frontend, backend or fullstack web development. Modern, maintainable and scalable solutions."
         />
-        <meta
-          name="twitter:image"
-          content="https://farhansadik.vercel.app/og-image.png"
-        />
+        <meta name="twitter:image" content="https://farhansadik.vercel.app/og-image.png" />
 
         {/* JSON-LD structured data */}
-        {!loading && (
-          <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
-        )}
+        {!loading && <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>}
       </Helmet>
 
       <SectionHeader
@@ -143,15 +123,10 @@ const Services = () => {
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-2">
             {services.length > 0 ? (
               services.map((service) => (
-                <ServiceCard
-                  key={service._id || service.slug || service.title}
-                  service={service}
-                />
+                <ServiceCard key={service._id || service.slug || service.title} service={service} />
               ))
             ) : (
-              <p className="text-mutedText">
-                No services available at the moment.
-              </p>
+              <p className="text-mutedText">No services available at the moment.</p>
             )}
           </div>
         </>

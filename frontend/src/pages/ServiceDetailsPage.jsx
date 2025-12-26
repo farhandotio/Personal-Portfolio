@@ -1,9 +1,9 @@
 // ServiceDetailsPage.jsx
-import React, { useEffect, useState } from "react";
-import { Link, useParams, useLocation } from "react-router-dom";
-import { Helmet } from "react-helmet";
-import axios from "axios";
-import Skeleton from "../components/common/Skeleton";
+import React, { useEffect, useState } from 'react';
+import { Link, useParams, useLocation } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
+import axios from 'axios';
+import Skeleton from '../components/common/Skeleton';
 
 // Component for the Service Details Page
 const ServiceDetailsPage = () => {
@@ -18,13 +18,13 @@ const ServiceDetailsPage = () => {
     const fetchService = async () => {
       try {
         const { data } = await axios.get(
-          `https://farhan-agency-wryw.onrender.com/api/services/${slug}`
+          `https://excited-lori-farhansadik-d2cb758b.koyeb.app/api/services/${slug}`
         );
         setService(data.data || data);
         setLoading(false);
       } catch (err) {
         console.error(err);
-        setError("Service not found!");
+        setError('Service not found!');
         setLoading(false);
       }
     };
@@ -46,9 +46,7 @@ const ServiceDetailsPage = () => {
   }
 
   if (error || !service) {
-    return (
-      <div className="text-center py-20 text-lg text-red-500">{error}</div>
-    );
+    return <div className="text-center py-20 text-lg text-red-500">{error}</div>;
   }
 
   // Build SEO values from the loaded service
@@ -58,37 +56,32 @@ const ServiceDetailsPage = () => {
     service.serviceOverview?.description ||
     `Learn more about ${service.title} offered by MD Farhan Sadik.`;
   const pageUrl =
-    typeof window !== "undefined"
+    typeof window !== 'undefined'
       ? `${window.location.origin}${location.pathname}`
       : `https://farhansadik.vercel.app/services/${service.slug || slug}`;
   const pageImage =
-    service.heroImageUrl ||
-    service.image ||
-    "https://farhansadik.vercel.app/og-image.png";
+    service.heroImageUrl || service.image || 'https://farhansadik.vercel.app/og-image.png';
 
   // JSON-LD structured data for this specific service
   const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Service",
+    '@context': 'https://schema.org',
+    '@type': 'Service',
     name: service.title,
     url: pageUrl,
     description: pageDescription,
     provider: {
-      "@type": "Person",
-      name: "MD Farhan Sadik",
-      url: "https://farhansadik.vercel.app",
-      sameAs: [
-        "https://github.com/farhandotio",
-        "https://www.linkedin.com/in/mdsadikdev",
-      ],
+      '@type': 'Person',
+      name: 'MD Farhan Sadik',
+      url: 'https://farhansadik.vercel.app',
+      sameAs: ['https://github.com/farhandotio', 'https://www.linkedin.com/in/mdsadikdev'],
     },
-    serviceType: "Web Development",
+    serviceType: 'Web Development',
     image: pageImage,
     offers: {
-      "@type": "Offer",
+      '@type': 'Offer',
       url: pageUrl,
-      priceCurrency: service.priceCurrency || "USD",
-      availability: "https://schema.org/InStock",
+      priceCurrency: service.priceCurrency || 'USD',
+      availability: 'https://schema.org/InStock',
     },
   };
 
@@ -100,9 +93,7 @@ const ServiceDetailsPage = () => {
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-text mb-4">
             {title}
           </h2>
-          <p className="mt-4 text-xl lg:text-2xl text-mutedText">
-            {description}
-          </p>
+          <p className="mt-4 text-xl lg:text-2xl text-mutedText">{description}</p>
           <Link to="/contact" aria-label="Start a project with Farhan">
             <button className="mt-8 px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-secondary cursor-pointer hover:bg-hoverSecondary">
               Start a Project
@@ -165,29 +156,20 @@ const ServiceDetailsPage = () => {
     </div>
   );
 
-  const TimelineCard = ({
-    projectType,
-    duration,
-    inclusions,
-    isHighlighted,
-  }) => (
+  const TimelineCard = ({ projectType, duration, inclusions, isHighlighted }) => (
     <div
       className={`flex flex-col p-5 rounded-lg border-2 ${
-        isHighlighted
-          ? "border-primary bg-cardBg shadow-lg scale-105"
-          : "border-border bg-bg"
+        isHighlighted ? 'border-primary bg-cardBg shadow-lg scale-105' : 'border-border bg-bg'
       } transition-transform duration-300 ease-in-out text-center`}
     >
       <div className="text-lg font-bold mb-2">
-        <span
-          className={`text-2xl ${isHighlighted ? "text-primary" : "text-text"}`}
-        >
+        <span className={`text-2xl ${isHighlighted ? 'text-primary' : 'text-text'}`}>
           {duration}
         </span>
       </div>
       <p
         className={`text-sm font-semibold ${
-          isHighlighted ? "text-primary" : "text-mutedText"
+          isHighlighted ? 'text-primary' : 'text-mutedText'
         } uppercase tracking-wider mb-4`}
       >
         {projectType}
@@ -197,7 +179,7 @@ const ServiceDetailsPage = () => {
           <li key={index} className="flex items-center justify-center">
             <span className="text-primary mr-1 text-xs" aria-hidden>
               ●
-            </span>{" "}
+            </span>{' '}
             {item}
           </li>
         ))}
@@ -246,12 +228,8 @@ const ServiceDetailsPage = () => {
         {/* Service Overview */}
         <div className="grid lg:grid-cols-3 gap-10">
           <div className="lg:col-span-2">
-            <h2 className="text-2xl font-bold text-text mb-4">
-              Service Overview
-            </h2>
-            <p className="text-lg text-mutedText mb-8">
-              {service.serviceOverview.description}
-            </p>
+            <h2 className="text-2xl font-bold text-text mb-4">Service Overview</h2>
+            <p className="text-lg text-mutedText mb-8">{service.serviceOverview.description}</p>
 
             <div className="grid md:grid-cols-2 gap-5">
               {service.serviceOverview.offerings.map((offering, index) => (
@@ -265,9 +243,7 @@ const ServiceDetailsPage = () => {
           </div>
 
           <aside className="lg:col-span-1 bg-bg p-5 rounded-lg border border-border">
-            <h3 className="text-lg font-bold text-text mb-4">
-              Key Technologies
-            </h3>
+            <h3 className="text-lg font-bold text-text mb-4">Key Technologies</h3>
             <ul className="space-y-3">
               {service.serviceOverview.keyTechnologies.map((tech, index) => (
                 <li key={index} className="flex items-center text-mutedText">
@@ -302,9 +278,7 @@ const ServiceDetailsPage = () => {
 
         {/* Step-by-Step Process */}
         <div className="text-center mb-10">
-          <h2 className="text-3xl font-extrabold text-text">
-            Step-by-Step Process
-          </h2>
+          <h2 className="text-3xl font-extrabold text-text">Step-by-Step Process</h2>
         </div>
         <div>
           {service.processSteps.map((step) => (
@@ -321,9 +295,7 @@ const ServiceDetailsPage = () => {
 
         {/* Timeline Estimate */}
         <div className="text-center mb-10">
-          <h2 className="text-3xl font-extrabold text-text">
-            Timeline Estimate
-          </h2>
+          <h2 className="text-3xl font-extrabold text-text">Timeline Estimate</h2>
           <p className="mt-2 text-mutedText">
             Typical duration and inclusions for each project size
           </p>

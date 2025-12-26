@@ -1,6 +1,6 @@
-import axios from "axios";
+import axios from 'axios';
 
-const API_BASE = "https://farhan-agency-wryw.onrender.com/api/orders";
+const API_BASE = 'https://excited-lori-farhansadik-d2cb758b.koyeb.app/api/orders';
 
 const instance = axios.create({
   baseURL: API_BASE,
@@ -11,25 +11,23 @@ const instance = axios.create({
 
 // Create Order (User Only — supports files)
 export const createOrder = (orderData) =>
-  instance.post("/create", orderData, {
+  instance.post('/create', orderData, {
     headers: {
-      "Content-Type": "multipart/form-data",
+      'Content-Type': 'multipart/form-data',
     },
   });
 
 // Get All Orders (Admin Only)
-export const getAllOrders = () => instance.get("/all");
+export const getAllOrders = () => instance.get('/all');
 
 // Get Logged-in User’s Orders
-export const getMyOrders = () => instance.get("/my-orders");
+export const getMyOrders = () => instance.get('/my-orders');
 
 // Delete User’s Own Order
 export const deleteMyOrder = (id) => instance.delete(`/delete/${id}`);
 
 // Update Order Status (Admin Only)
-export const updateOrderStatus = (id, statusData) =>
-  instance.patch(`/update/${id}`, statusData);
+export const updateOrderStatus = (id, statusData) => instance.patch(`/update/${id}`, statusData);
 
 // Delete Order by Admin (hard delete)
-export const deleteOrderByAdmin = (id) =>
-  instance.delete(`/admin/delete/${id}`);
+export const deleteOrderByAdmin = (id) => instance.delete(`/admin/delete/${id}`);
