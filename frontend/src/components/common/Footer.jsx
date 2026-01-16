@@ -95,7 +95,7 @@ const Footer = () => {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <div className="px-5 md:px-7 lg:px-10">
+      <div className="px-5 md:px-7 lg:px-10 mx-auto container">
         <div
           // --- LIGHTING UPDATE 1: Top Border Glow ---
           className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-10  pt-16 lg:py-24 border-t border-border"

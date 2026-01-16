@@ -31,8 +31,8 @@ const solutions = [
 
 const Solutions = () => {
   return (
-    <section className="relative py-24 lg:py-36">
-      <div className="mx-auto px-5 sm:px-7 lg:px-10">
+    <section className="relative py-10">
+      <div className="mx-auto container px-5 sm:px-7 lg:px-10">
         {/* Header */}
         <SectionHeader
           title={
@@ -72,9 +72,7 @@ const Solutions = () => {
                 {/* Connector line */}
                 <div className="hidden lg:block absolute -left-16 top-4 w-16 h-px bg-border" />
 
-                <p className="text-lg lg:text-2xl text-mutedText leading-relaxed">
-                  {item.action}
-                </p>
+                <p className="text-lg lg:text-2xl text-mutedText leading-relaxed">{item.action}</p>
 
                 <p className="text-mutedText leading-relaxed">
                   <span className="font-medium text-text">Impact:</span> {item.impact}

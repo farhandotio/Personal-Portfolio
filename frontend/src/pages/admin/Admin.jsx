@@ -1,6 +1,6 @@
 // File: Admin.jsx
-import React, { useState, useEffect } from "react";
-import { NavLink, Outlet, useLocation } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { NavLink, Outlet, useLocation } from 'react-router-dom';
 import {
   FaTachometerAlt,
   FaUsers,
@@ -9,20 +9,20 @@ import {
   FaProjectDiagram,
   FaPlus,
   FaTimes,
-} from "react-icons/fa";
-import { CgMenuMotion } from "react-icons/cg";
-import { useDispatch } from "react-redux";
-import { logoutUser } from "../../app/features/auth/authSlice";
-import { useNavigate } from "react-router-dom";
+} from 'react-icons/fa';
+import { CgMenuMotion } from 'react-icons/cg';
+import { useDispatch } from 'react-redux';
+import { logoutUser } from '../../app/features/auth/authSlice';
+import { useNavigate } from 'react-router-dom';
 
 const sidebarLinks = [
-  { name: "Dashboard", path: "/admin/dashboard", icon: FaTachometerAlt },
-  { name: "Users", path: "/admin/users", icon: FaUsers },
-  { name: "Orders", path: "/admin/orders", icon: FaBoxOpen },
-  { name: "Services", path: "/admin/services", icon: FaServicestack },
-  { name: "Create Service", path: "/admin/services/create", icon: FaPlus },
-  { name: "Projects", path: "/admin/projects", icon: FaProjectDiagram },
-  { name: "Create Project", path: "/admin/projects/create", icon: FaPlus },
+  { name: 'Dashboard', path: '/admin/dashboard', icon: FaTachometerAlt },
+  { name: 'Users', path: '/admin/users', icon: FaUsers },
+  { name: 'Orders', path: '/admin/orders', icon: FaBoxOpen },
+  { name: 'Services', path: '/admin/services', icon: FaServicestack },
+  { name: 'Create Service', path: '/admin/services/create', icon: FaPlus },
+  { name: 'Projects', path: '/admin/projects', icon: FaProjectDiagram },
+  { name: 'Create Project', path: '/admin/projects/create', icon: FaPlus },
 ];
 
 const Admin = () => {
@@ -34,7 +34,7 @@ const Admin = () => {
 
   const handleLogout = async () => {
     await dispatch(logoutUser());
-    navigate("/");
+    navigate('/');
   };
 
   // Close sidebar on route change (mobile)
@@ -45,9 +45,9 @@ const Admin = () => {
   return (
     <div className="min-h-screen pt-19">
       {/* Mobile header with menu icon */}
-      <div className="flex items-center gap-2 md:hidden px-5 sm:px-7 lg:px-10">
+      <div className="flex items-center gap-2 md:hidden container px-5 sm:px-7 lg:px-10">
         <button
-          aria-label={isOpen ? "Close menu" : "Open menu"}
+          aria-label={isOpen ? 'Close menu' : 'Open menu'}
           onClick={() => setIsOpen((s) => !s)}
           className="rounded-md focus:outline-none text-2xl"
         >
@@ -71,11 +71,11 @@ const Admin = () => {
         )}
 
         <aside
-          className={`z-40 w-64 bg-bg border-r border-border md:flex flex-col px-5 sm:px-7 lg:px-10 py-20 md:py-0 absolute transform transition-transform duration-200
+          className={`z-40 w-64 bg-bg border-r border-border md:flex flex-col container px-5 sm:px-7 lg:px-10 py-20 md:py-0 absolute transform transition-transform duration-200
             ${
               isOpen
-                ? "translate-x-0 fixed top-0 left-0 h-full shadow-lg"
-                : " -translate-x-full md:translate-x-0 md:static md:h-auto"
+                ? 'translate-x-0 fixed top-0 left-0 h-full shadow-lg'
+                : ' -translate-x-full md:translate-x-0 md:static md:h-auto'
             }`}
           role="navigation"
           aria-label="Admin sidebar"
@@ -97,9 +97,8 @@ const Admin = () => {
               const Icon = link.icon;
 
               const isDashboard =
-                link.name === "Dashboard" &&
-                (location.pathname === "/admin" ||
-                  location.pathname === "/admin/dashboard");
+                link.name === 'Dashboard' &&
+                (location.pathname === '/admin' || location.pathname === '/admin/dashboard');
 
               return (
                 <NavLink
@@ -109,8 +108,8 @@ const Admin = () => {
                     `flex items-center gap-3 px-4 py-2 rounded hover:bg-hoverCardBg transition
                   ${
                     isActive || isDashboard
-                      ? "bg-primary text-text font-semibold"
-                      : "text-mutedText"
+                      ? 'bg-primary text-text font-semibold'
+                      : 'text-mutedText'
                   }`
                   }
                   onClick={() => {
@@ -133,7 +132,7 @@ const Admin = () => {
         </aside>
 
         {/* Main content */}
-        <main className="flex-1 pb-10 w-full px-5 sm:px-7 lg:px-10">
+        <main className="flex-1 pb-10 w-full container px-5 sm:px-7 lg:px-10">
           <Outlet />
         </main>
       </div>

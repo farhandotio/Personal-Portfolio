@@ -58,7 +58,7 @@ const Services = () => {
   };
 
   return (
-    <div className="min-h-screen bg-bg py-30 px-5 sm:px-7 lg:px-10">
+    <div className="min-h-screen bg-bg py-30 container mx-auto px-5 sm:px-7 lg:px-10">
       {/* SEO / Social Metadata */}
       <Helmet>
         <title>Services I Offer — MD Farhan Sadik</title>

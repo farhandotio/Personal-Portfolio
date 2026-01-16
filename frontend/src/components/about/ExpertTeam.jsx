@@ -64,7 +64,7 @@ const ExpertTeam = () => {
 
   return (
     <section className="py-20 bg-bg" aria-labelledby="team-heading">
-      <div className="mx-auto text-center">
+      <div className="mx-auto container text-center">
         <header className="mb-16 md:mb-24">
           <h2
             id="team-heading"

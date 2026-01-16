@@ -41,7 +41,7 @@ const MeetOurFounder = () => {
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       </Helmet>
 
-      <section className="py-30 bg-bg" aria-labelledby="founder-heading">
+      <section className="py-30 bg-bg " aria-labelledby="founder-heading">
         <div className="flex flex-col lg:flex-row items-end gap-12">
           <div className="lg:w-3/4 w-full space-y-6">
             <h1 id="founder-heading" className="text-3xl font-extrabold text-text mb-5">

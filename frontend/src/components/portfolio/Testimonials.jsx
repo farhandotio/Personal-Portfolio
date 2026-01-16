@@ -47,7 +47,7 @@ const Testimonials = () => {
   return (
     <section
       aria-labelledby="testimonials-heading"
-      className="relative py-20 lg:py-30 p-5 md:p-7 lg:p-10 text-text overflow-hidden" // text-text changed to text-text
+      className="container mx-auto relative py-10 lg:py-30 p-5 md:p-7 lg:p-10 text-text overflow-hidden" // text-text changed to text-text
     >
       {/* 🌟 Background Lighting Effect Layer */}
       <div className="absolute inset-0 z-0 opacity-15 pointer-events-none">
@@ -57,11 +57,7 @@ const Testimonials = () => {
 
       <div className="relative z-10 max-w-[1900px] mx-auto">
         <SectionHeader
-          title={
-            <span className="bg-clip-text text-transparent bg-linear-to-r from-text to-primary">
-              What clients say about me
-            </span>
-          }
+          title={'What clients say about me'}
           description="Genuine feedback from clients and founders who trusted me to craft
             their product websites and digital experiences."
           size="xl"

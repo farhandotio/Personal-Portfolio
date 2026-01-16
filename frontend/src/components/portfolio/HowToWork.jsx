@@ -78,8 +78,8 @@ const HowToWork = () => {
   const [activeStep, setActiveStep] = useState(steps[0]);
 
   return (
-    <section className="py-24 lg:py-32 bg-bg">
-      <div className="mx-auto px-5 sm:px-7 lg:px-10">
+    <section className="py-10 bg-bg">
+      <div className="mx-auto container px-5 sm:px-7 lg:px-10">
         <SectionHeader
           title="How I Turn Ideas Into Working Products"
           description="A clear, structured process that minimizes risk and maximizes clarity."

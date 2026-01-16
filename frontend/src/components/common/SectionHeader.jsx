@@ -17,10 +17,10 @@ const SectionHeader = ({ title, description, size = 'lg', className = '' }) => {
 
   return (
     <header
-      className={`mb-16 md:mb-24 text-center bg-clip-text text-transparent bg-linear-to-r from-text to-primary mx-auto ${className}`}
+      className={`mb-16 md:mb-24 text-center bg-clip-text text-transparent bg-text mx-auto ${className}`}
     >
       <h2
-        className={`${titleSizes[size]} md:${titleSizes[size]} font-extrabold mb-8 leading-tight tracking-tight bg-clip-text text-transparent bg-linear-to-r from-white to-primary mx-auto max-w-3xl ${className}`}
+        className={`${titleSizes[size]} md:${titleSizes[size]} mb-8 tracking-tight text-4xl md:text-5xl xl:text-5xl font-bold leading-tight mx-auto max-w-3xl ${className}`}
       >
         {title}
       </h2>

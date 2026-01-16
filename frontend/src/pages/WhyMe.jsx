@@ -1,13 +1,11 @@
-import React from 'react';
+import React from 'react'
+import Problems from '../components/portfolio/Problems';
+import Solutions from '../components/portfolio/Solutions';
 import { Helmet } from 'react-helmet';
-import HeroSection from '../components/portfolio/HeroSection';
-import ProjectSection from '../components/portfolio/ProjectSection';
-import Testimonials from '../components/portfolio/Testimonials';
-import CallToAction from '../components/portfolio/CallToAction';
 
-const Portfolio = () => {
+const WhyMe = () => {
   return (
-    <div className="overflow-x-hidden">
+    <div className="overflow-x-hidden pt-20">
       {/* SEO Metadata */}
       <Helmet>
         <title>MD Farhan Sadik — Fullstack Developer Portfolio</title>
@@ -23,12 +21,10 @@ const Portfolio = () => {
       </Helmet>
 
       {/* Portfolio Sections */}
-      <HeroSection />
-      <ProjectSection />
-      <Testimonials />
-      <CallToAction/>
+      <Problems />
+      <Solutions />
     </div>
   );
-};
+}
 
-export default Portfolio;
+export default WhyMe

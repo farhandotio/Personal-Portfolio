@@ -11,7 +11,7 @@ const navLinks = [
   { name: 'PROJECTS', href: '/projects' },
   { name: 'PROCESS', href: '/process' },
   { name: 'ABOUT', href: '/about' },
-  { name: 'CONTACT', href: '/contact' },
+  { name: 'WHY ME', href: '/whyme' },
 ];
 
 const Navbar = () => {
@@ -95,15 +95,15 @@ const Navbar = () => {
                       to={link.href}
                       className={({ isActive }) =>
                         isActive
-                          ? 'text-primary font-semibold border-b-2 border-primary pb-1'
-                          : 'text-gray-400 hover:text-primary transition'
+                          ? 'text-primary font-semibold border-b-2 border-primary pb-1 whitespace-nowrap'
+                          : 'text-gray-400 whitespace-nowrap hover:text-primary transition'
                       }
                     >
                       {link.name}
                     </NavLink>
                   </li>
                 ))}
-                <li>
+                {/* <li>
                   <NavLink
                     to={profileLink}
                     className={({ isActive }) =>
@@ -114,12 +114,12 @@ const Navbar = () => {
                   >
                     {user ? (user.role === 'admin' ? 'ADMIN' : 'PROFILE') : 'LOGIN'}
                   </NavLink>
-                </li>
+                </li> */}
               </ul>
 
               <PrimaryButton
                 text={'Book A Call'}
-                url={'/bookacall'}
+                url={'/book-a-call'}
                 className="rounded-full min-w-32 shadow-lg shadow-primary/40"
               />
             </nav>
@@ -148,8 +148,8 @@ const Navbar = () => {
       ========================= */}
       <aside
         className={`fixed top-0 right-0 h-screen w-full sm:w-[60%] z-999
-        p-5 transform transition-transform duration-500 ${
-          menuOpen ? 'translate-x-0' : 'translate-x-full'
+        p-5 transform transition-all duration-500 ${
+          menuOpen ? 'translate-y-0' : 'translate-y-20 opacity-0 pointer-events-none'
         }`}
       >
         <div className="p-5 bg-bg/60 backdrop-blur-2xl rounded-2xl border border-border h-fit">
@@ -176,7 +176,7 @@ const Navbar = () => {
                 </NavLink>
               </li>
             ))}
-            <li>
+            {/* <li>
               <NavLink
                 to={profileLink}
                 onClick={() => setMenuOpen(false)}
@@ -184,7 +184,7 @@ const Navbar = () => {
               >
                 {user ? (user.role === 'admin' ? 'ADMIN' : 'PROFILE') : 'LOGIN'}
               </NavLink>
-            </li>
+            </li> */}
           </ul>
 
           <PrimaryButton

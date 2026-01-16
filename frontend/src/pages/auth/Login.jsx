@@ -1,10 +1,10 @@
 // File: Login.jsx
-import React, { useState } from "react";
-import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
-import { loginUser } from "../../app/features/auth/authSlice";
-import { useNavigate, Link } from "react-router-dom";
-import { AiOutlineMail, AiOutlineLock, AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
+import { loginUser } from '../../app/features/auth/authSlice';
+import { useNavigate, Link } from 'react-router-dom';
+import { AiOutlineMail, AiOutlineLock, AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -12,21 +12,32 @@ const Login = () => {
   const { loading, error } = useSelector((state) => state.auth);
   const [showPassword, setShowPassword] = useState(false);
 
-  const { register, handleSubmit, formState: { errors } } = useForm({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
     defaultValues: {
-      email: "",
-      password: "",
+      email: '',
+      password: '',
     },
   });
 
   const onSubmit = async (data) => {
     const resultAction = await dispatch(loginUser(data));
     if (loginUser.fulfilled.match(resultAction)) {
-      navigate("/")
+      navigate('/');
     }
   };
 
-  const InputWithIcon = ({ icon: Icon, type = "text", placeholder, registerProps, error, showToggle }) => (
+  const InputWithIcon = ({
+    icon: Icon,
+    type = 'text',
+    placeholder,
+    registerProps,
+    error,
+    showToggle,
+  }) => (
     <div className="flex flex-col w-full mb-4">
       <div className="relative w-full">
         <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400 pointer-events-none">
@@ -37,7 +48,7 @@ const Login = () => {
           placeholder={placeholder}
           {...registerProps}
           className={`w-full border border-border px-10 py-2 rounded focus:outline-none focus:ring-2 focus:ring-primary
-            ${error ? "border-red-500" : ""}`}
+            ${error ? 'border-red-500' : ''}`}
         />
         {showToggle && (
           <span
@@ -53,7 +64,7 @@ const Login = () => {
   );
 
   return (
-    <div className="min-h-screen w-full flex items-center justify-center py-20 bg-bg px-5 sm:px-7 lg:px-10">
+    <div className="min-h-screen w-full flex items-center justify-center py-20 bg-bg container px-5 sm:px-7 lg:px-10">
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="bg-cardBg p-8 rounded-lg shadow-lg w-full max-w-sm flex flex-col"
@@ -67,16 +78,16 @@ const Login = () => {
           icon={AiOutlineMail}
           type="email"
           placeholder="Email"
-          registerProps={register("email", { required: "Email is required" })}
+          registerProps={register('email', { required: 'Email is required' })}
           error={errors.email}
         />
 
         {/* Password */}
         <InputWithIcon
           icon={AiOutlineLock}
-          type={showPassword ? "text" : "password"}
+          type={showPassword ? 'text' : 'password'}
           placeholder="Password"
-          registerProps={register("password", { required: "Password is required" })}
+          registerProps={register('password', { required: 'Password is required' })}
           error={errors.password}
           showToggle={{ show: showPassword, toggle: () => setShowPassword(!showPassword) }}
         />
@@ -86,11 +97,11 @@ const Login = () => {
           disabled={loading}
           className="w-full bg-primary text-text py-2 rounded hover:bg-hoverPrimary cursor-pointer transition mb-4"
         >
-          {loading ? "Logging in..." : "Login"}
+          {loading ? 'Logging in...' : 'Login'}
         </button>
 
         <p className="text-center text-sm text-pText">
-          Don't have an account?{" "}
+          Don't have an account?{' '}
           <Link to="/register" className="text-primary font-semibold hover:underline">
             Register
           </Link>

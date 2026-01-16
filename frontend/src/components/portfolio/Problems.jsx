@@ -30,8 +30,8 @@ const problems = [
 
 const Problems = () => {
   return (
-    <section className="relative py-24 lg:py-32">
-      <div className="mx-auto px-5 sm:px-7 lg:px-10">
+    <section className="relative py-10">
+      <div className="mx-auto container px-5 sm:px-7 lg:px-10">
         <SectionHeader
           title={
             <span>

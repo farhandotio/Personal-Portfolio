@@ -28,7 +28,7 @@ const ServiceSection = () => {
   if (loading) {
     // ... (Loading state remains the same, assuming Skeleton and Loading components handle dark theme correctly)
     return (
-      <div className="min-h-[300px] flex flex-col gap-6 px-5 sm:px-7 lg:px-10">
+      <div className="min-h-[300px] flex flex-col gap-6 container px-5 sm:px-7 lg:px-10">
         {Array.from({ length: 6 }).map((_, i) => (
           <div key={i} className="rounded-lg">
             <Skeleton width="100%" height="180px" rounded />
@@ -42,7 +42,7 @@ const ServiceSection = () => {
 
   return (
     <section
-      className="relative py-16 md:py-24 overflow-hidden bg-bg" // Added relative & bg-bg
+      className="relative py-10 overflow-hidden bg-bg" // Added relative & bg-bg
       aria-labelledby="services-heading"
       itemScope
       itemType="https://schema.org/Service"
@@ -53,7 +53,7 @@ const ServiceSection = () => {
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-4/5 h-4/5 bg-secondary rounded-full mix-blend-multiply filter blur-3xl opacity-10"></div>
       </div>
 
-      <div className="relative z-10 mx-auto px-5 sm:px-7 lg:px-10 max-w-[1900px]">
+      <div className="relative z-10 mx-auto container px-5 sm:px-7 lg:px-10 max-w-[1900px]">
         {/* Header Section */}
         <SectionHeader
           title={

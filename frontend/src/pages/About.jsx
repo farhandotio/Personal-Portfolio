@@ -7,7 +7,7 @@ import SectionHeader from "../components/common/SectionHeader";
 
 const About = () => {
   return (
-    <main className="bg-bg text-text p-5 md:p-7 lg:p-10 mt-20">
+    <main className="bg-bg text-text p-5 md:p-7 lg:p-10 mt-20 mx-auto container">
       <SectionHeader
         title="About Me"
         description="I am Farhan Sadik, a passionate web developer committed to turning ideas into high-quality digital products that create real impact. I focus on building experiences that solve problems, support business growth, and feel effortless for users."
@@ -21,10 +21,10 @@ const About = () => {
       <section aria-labelledby="founder-section">
         <MeetOurFounder />
       </section>
-
+      {/* 
       <section aria-labelledby="team-section">
         <ExpertTeam />
-      </section>
+      </section> */}
 
       <section aria-labelledby="techstack-section">
         <OurTechnologyStack />

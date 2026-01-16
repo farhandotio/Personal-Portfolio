@@ -4,51 +4,36 @@ import { gsap } from 'gsap';
 
 const HeroSection = () => {
   const heroRef = useRef(null);
-  const h1TextRef = useRef(null);
-  const pTextRef = useRef(null);
-  const buttonRef = useRef(null);
+  const h1Ref = useRef(null);
+  const pRef = useRef(null);
+  const btnRef = useRef(null);
+  const imageRef = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      const h1Spans = Array.from(h1TextRef.current.querySelectorAll('span'));
-      const pText = pTextRef.current;
-      const button = buttonRef.current;
-
-      /* ---------------- INITIAL STATE (GSAP.SET) ---------------- */
-      gsap.set(h1Spans, {
-        opacity: 0,
-        x: (i) => (i % 2 === 0 ? -80 : 80),
-      });
-
-      gsap.set([pText, button], {
-        opacity: 0,
-        y: 30,
-      });
-
-      const appearTl = gsap.timeline({
-        defaults: {
-          ease: 'power3.out',
-          duration: 1,
-        },
-      });
-
-      appearTl
-        .to(h1Spans, {
+      gsap.fromTo(
+        [h1Ref.current, pRef.current, btnRef.current],
+        { opacity: 0, y: 30 },
+        {
           opacity: 1,
-          x: 0,
+          y: 0,
+          duration: 0.9,
           stagger: 0.15,
-        })
-        .to(
-          [pText, button],
-          {
-            opacity: 1,
-            y: 0,
-            stagger: 0.15,
-          },
-          '-=0.6'
-        );
+          ease: 'power2.out',
+        }
+      );
 
-      /* ---------------- SCROLL ANIMATION REMOVED ---------------- */
+      gsap.fromTo(
+        imageRef.current,
+        { opacity: 0, y: 20 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: 'power2.out',
+          delay: 0.2,
+        }
+      );
     }, heroRef);
 
     return () => ctx.revert();
@@ -57,62 +42,73 @@ const HeroSection = () => {
   return (
     <section
       ref={heroRef}
-      className="relative min-h-[650px] pt-15 flex items-center"
-      aria-label="MD Farhan Sadik Portfolio"
-      role="region"
+      className="relative min-h-screen flex items-center justify-between"
+      aria-label="MD Farhan Sadik Hero Section"
     >
-      {/* Background Lighting */}
-      <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
-        <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-primary rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse-slow"></div>
-        <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-secondary rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse-slow delay-1000"></div>
-      </div>
+      <div className="mx-auto container px-5 sm:px-7 lg:px-10 pt-30 max-md:pb-15 md:pt-15">
+        <div className="flex flex-col-reverse lg:flex-row items-center gap-10">
+          {/* LEFT CONTENT */}
+          <div className="w-full lg:w-8/12 text-center lg:text-left">
+            {/* Role Badge */}
+            <div className="inline-block mb-6 px-4 py-1.5 text-sm rounded-full border border-white/15 text-mutedText">
+              MERN Stack • Full-Stack Developer
+            </div>
 
-      <div className="relative z-10 p-5 sm:p-7 lg:p-10 flex flex-col items-center w-full">
-        <div className="mb-12 lg:mb-0 justify-center text-center mx-auto py-5">
-          <h1 ref={h1TextRef} className="text-4xl md:text-6xl font-extrabold leading-tight">
-            <span className="relative inline-block will-change-transform text-white text-shadow-lg-white">
-              <span className="absolute -top-3 -left-11 md:-left-13 -rotate-30 bg-cardBg rounded-full text-base px-5 font-panda">
-                hi, i'm
-              </span>
-              MD Farhan Sadik
-            </span>
-            <br />
-            <span className="block pt-2 text-primary will-change-transform text-shadow-lg-cyan">
-              — Full Stack,
-            </span>
-            <span className="max-lg:block text-secondary inline-block will-change-transform text-shadow-lg-fuchsia">
-              Web Developer focused on
-            </span>
-            <span className="max-lg:block inline-block will-change-transform text-white text-shadow-lg-white">
-              Scalable & High-Performance Web Apps
-            </span>
-          </h1>
+            <h1 ref={h1Ref} className="text-4xl md:text-5xl xl:text-5xl font-bold leading-tight">
+              <span className="">Hi, I’m </span> <br className='md:hidden' /> <span className="text-white">MD Farhan Sadik</span>
+              <br />
+              <span className="text-primary">I build scalable web products</span>
+            </h1>
 
-          <p
-            ref={pTextRef}
-            className="mt-6 text-lg md:text-2xl leading-relaxed text-mutedText will-change-transform"
-          >
-            I help startups, founders, and growing businesses turn ideas into fast, scalable, and
-            user-focused web applications using modern JavaScript and the MERN stack.
-          </p>
+            <p
+              ref={pRef}
+              className="mt-6 text-lg md:text-xl text-mutedText max-w-xl mx-auto lg:mx-0"
+            >
+              I help startups and growing businesses design and develop fast, reliable, and scalable
+              web applications using modern JavaScript and the MERN stack.
+            </p>
 
-          <div
-            ref={buttonRef}
-            className="md:mt-8 mt-5 inline-flex max-md:flex max-md:flex-col gap-5 will-change-transform"
-          >
-            <PrimaryButton
-              text="View My Work"
-              href="#projects"
-              size="lg"
-              className="rounded-full"
-            />
-            <PrimaryButton
-              text="Download Resume"
-              href="/resume/Resume.pdf"
-              size="lg"
-              bgColor={'bg-secondary'}
-              className="rounded-full"
-            />
+            <div
+              ref={btnRef}
+              className="mt-10 flex flex-col sm:flex-row gap-5 justify-center lg:justify-start"
+            >
+              <div className="">
+                <PrimaryButton
+                  text="View Projects"
+                  href="#projects"
+                  size="lg"
+                  className="rounded-full"
+                />
+              </div>
+              <div className="">
+                <PrimaryButton
+                  text="Download Resume"
+                  href="/resume/Resume.pdf"
+                  size="lg"
+                  bgColor="bg-secondary"
+                  className="rounded-full"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* RIGHT IMAGE */}
+          <div className="w-full lg:w-1/2 flex justify-center lg:justify-end">
+            <div className="relative">
+              {/* Offset background frame */}
+              <div className="absolute -top-4 -right-4 w-full h-full rounded-3xl border border-white/10" />
+
+              <div
+                ref={imageRef}
+                className="relative w-[260px] sm:w-[320px] md:w-[360px] aspect-square rounded-3xl overflow-hidden bg-neutral-900"
+              >
+                <img
+                  src="https://ik.imagekit.io/farhansadik/Agency/ppp.png?updatedAt=1761999834854"
+                  alt="MD Farhan Sadik"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>

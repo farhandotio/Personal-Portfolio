@@ -8,8 +8,6 @@ import Services from '../pages/Services';
 import ServiceDetailsPage from '../pages/ServiceDetailsPage';
 import Projects from '../pages/Projects';
 import Process from '../pages/Process';
-import Contact from '../pages/Contact';
-import Profile from '../pages/client/Profile';
 import Login from '../pages/auth/Login';
 import Register from '../pages/auth/Register';
 
@@ -25,21 +23,22 @@ import CreateProject from '../pages/admin/CreateProject';
 import CreateService from '../pages/admin/CreateService';
 import NotFound from '../pages/NotFound';
 import BookACall from '../pages/BookACall';
+import WhyMe from '../pages/WhyMe';
+import ProjectDetails from '../pages/ProjectDetails';
 
 const MainRoutes = () => {
   return (
     <Routes>
       {/* Public / Client routes */}
       <Route path="/" element={<Portfolio />} />
-      <Route path="/profile" element={<Profile />} />
       <Route path="/about" element={<About />} />
       <Route path="/services" element={<Services />} />
       <Route path="/services/:slug" element={<ServiceDetailsPage />} />
       <Route path="/projects" element={<Projects />} />
-      <Route path="/projects/:id" element={<Projects />} />
+      <Route path="/projects/:id" element={<ProjectDetails />} />
       <Route path="/process" element={<Process />} />
-      <Route path="/contact" element={<Contact />} />
-      <Route path="/bookacall" element={<BookACall />} />
+      <Route path="/book-a-call" element={<BookACall />} />
+      <Route path="/whyme" element={<WhyMe />} />
 
       {/* Auth routes */}
       <Route path="/login" element={<Login />} />

@@ -33,7 +33,7 @@ const ServiceDetailsPage = () => {
 
   if (loading) {
     return (
-      <div className="min-h-[300px] flex flex-col gap-6 px-5 sm:px-7 lg:px-10">
+      <div className="min-h-[300px] flex flex-col gap-6 container px-5 sm:px-7 lg:px-10">
         {Array.from({ length: 6 }).map((_, i) => (
           <div key={i} className="rounded-lg">
             <Skeleton width="100%" height="180px" rounded />
@@ -88,7 +88,7 @@ const ServiceDetailsPage = () => {
   // --- Reusable Components for Structure ---
   const HeroSection = ({ title, description, imageUrl }) => (
     <div className="bg-bg pt-30 pb-12 min-h-[600px] flex justify-between items-center">
-      <div className="px-5 sm:px-7 lg:px-10 flex flex-col lg:flex-row items-center">
+      <div className="container mx-auto px-5 sm:px-7 lg:px-10 flex flex-col lg:flex-row items-center">
         <div className="lg:w-1/2 lg:pr-12">
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-text mb-4">
             {title}
@@ -224,7 +224,7 @@ const ServiceDetailsPage = () => {
         imageUrl={pageImage}
       />
 
-      <div className="px-5 sm:px-7 lg:px-10 py-12">
+      <div className="container mx-auto px-5 sm:px-7 lg:px-10 py-12">
         {/* Service Overview */}
         <div className="grid lg:grid-cols-3 gap-10">
           <div className="lg:col-span-2">
