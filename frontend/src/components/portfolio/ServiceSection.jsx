@@ -56,14 +56,8 @@ const ServiceSection = () => {
       <div className="relative z-10 mx-auto container px-5 sm:px-7 lg:px-10 max-w-[1900px]">
         {/* Header Section */}
         <SectionHeader
-          title={
-            <span className="bg-clip-text text-transparent bg-linear-to-r from-text to-primary">
-              What I Do
-            </span>
-          }
-          description="I build modern web applications with clean, scalable code. From
-            responsive frontend interfaces to robust backend systems, I help
-            bring digital ideas to life."
+          title={'What I Do'}
+          description="I build modern web applications with clean, scalable code. From responsive frontend interfaces to robust backend systems, I help bring digital ideas to life."
           size="xl"
           className="text-center mb-16"
         />

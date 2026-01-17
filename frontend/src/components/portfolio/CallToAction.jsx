@@ -1,16 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router-dom'; // Next.js হলে next/link use করবে
 import PrimaryButton from '../common/PrimaryButton';
 import SectionHeader from '../common/SectionHeader';
 
 const CallToAction = () => {
   return (
-    <section className="relative overflow-hidden py-24 px-6 bg-bg">
+    <section className="relative overflow-hidden pt-10 pb-30 px-6 bg-bg">
       {/* Glow Background */}
       <div className="absolute bottom-0 left-50 flex justify-center">
         <div className="w-100 h-100 bg-primary/20 blur-3xl rounded-full"></div>
       </div>
-      <div className="absolute top-0 right-50 flex justify-center">
+      <div className="absolute top-30 right-50 flex justify-center">
         <div className="w-100 h-100 bg-primary/20 blur-3xl rounded-full"></div>
       </div>
       <div>

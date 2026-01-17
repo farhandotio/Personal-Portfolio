@@ -1,161 +1,140 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { IoArrowDown } from 'react-icons/io5';
-import ReviewStar from '../common/ReviewStar';
+import React, { useState } from 'react';
+import { ChevronLeft, ChevronRight, Quote, Star } from 'lucide-react';
 import SectionHeader from '../common/SectionHeader';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const testimonials = [
   {
     id: 1,
-    name: 'Afjal Hossain',
-    role: 'Founder, TechVerse Solutions',
+    name: 'Fahim Habib',
+    role: 'Founder, Gadget BDs',
     message:
-      'Farhan didn’t just redesign our website, he restructured the entire frontend for performance and scalability. Page load time dropped significantly, and the UI finally feels premium and intentional.',
+      "We wanted a website that could compete with global tech brands, and Farhan delivered exactly that. The 'Vault' interface he built is incredibly smooth, and our customers constantly compliment how premium the site feels. It’s fast, easy to navigate, and has completely changed how people perceive our products online.",
     rating: 5,
-    glowColor: 'primary',
-  },
-  {
-    id: 2,
-    name: 'Sarah Ahmed',
-    role: 'Marketing Lead, PureDrop',
-    message:
-      'What impressed me most was Farhan’s understanding of brand identity. The dark UI, smooth animations, and interactive elements aligned perfectly with our product vision.',
-    rating: 5,
-    glowColor: 'fuchsia',
-  },
-  {
-    id: 3,
-    name: 'Rafiul Islam',
-    role: 'Co-Founder, DripNest',
-    message:
-      'Communication was clear, timelines were respected, and every design decision had a reason behind it. The final product felt polished and production-ready.',
-    rating: 4.9,
-    glowColor: 'primary',
-  },
-  {
-    id: 4,
-    name: 'Nafisa Rahman',
-    role: 'Product Manager, Serve Studio',
-    message:
-      'Farhan’s workflow is very structured. From wireframes to final deployment, everything was transparent. It made collaboration extremely smooth.',
-    rating: 5,
-    glowColor: 'fuchsia',
-  },
+  }
 ];
 
 const Testimonials = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [direction, setDirection] = useState(0); // For slide direction
+
+  const handlePrev = () => {
+    setDirection(-1);
+    setCurrentIndex((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1));
+  };
+
+  const handleNext = () => {
+    setDirection(1);
+    setCurrentIndex((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1));
+  };
+
+  const current = testimonials[currentIndex];
+
+  // Animation Variants
+  const variants = {
+    enter: (direction) => ({
+      x: direction > 0 ? 50 : -50,
+      opacity: 0,
+    }),
+    center: {
+      x: 0,
+      opacity: 1,
+    },
+    exit: (direction) => ({
+      x: direction > 0 ? -50 : 50,
+      opacity: 0,
+    }),
+  };
+
   return (
-    <section
-      aria-labelledby="testimonials-heading"
-      className="container mx-auto relative py-10 lg:py-30 p-5 md:p-7 lg:p-10 text-text overflow-hidden" // text-text changed to text-text
-    >
-      {/* 🌟 Background Lighting Effect Layer */}
-      <div className="absolute inset-0 z-0 opacity-15 pointer-events-none">
-        {/* Soft radial linear for central focus */}
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-4/5 h-4/5 bg-fuchsia-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10"></div>
-      </div>
+    <section className="bg-bg min-h-[600px] flex flex-col justify-center items-center py-20 px-4 relative overflow-hidden">
+      <SectionHeader title={'Client Results Real Impact.'} size="xl" />
 
-      <div className="relative z-10 max-w-[1900px] mx-auto">
-        <SectionHeader
-          title={'What clients say about me'}
-          description="Genuine feedback from clients and founders who trusted me to craft
-            their product websites and digital experiences."
-          size="xl"
-          className="text-center"
-        />
-
-        {/* Grid: Uses flex overflow for horizontal scroll effect */}
-        <div className="flex gap-6 mt-12 flex-nowrap overflow-x-auto pb-5 hidden-scrollbar">
-          {testimonials.map((t, index) => (
-            <article
-              key={t.id}
-              className={`
-                relative group shrink-0 w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.33%-16px)] overflow-hidden 
-                bg-cardBg border border-border p-6 rounded-2xl 
-                shadow-md 
-                transition-all duration-300 ease-in-out
-                ${
-                  t.glowColor === 'primary'
-                    ? 'hover:shadow-primary/30'
-                    : 'hover:shadow-secondary/30'
-                } 
-              `}
-            >
-              {/* --- 💡 Dynamic Neon Corner Accent --- */}
-              <div
-                className={`absolute -top-1 -right-1 w-2 h-2 rounded-full ${
-                  t.glowColor === 'primary' ? 'bg-primary' : 'bg-secondary'
-                } 
-                  opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-lg ${
-                    t.glowColor === 'primary' ? 'shadow-primary/80' : 'shadow-fuchsia-500/80'
-                  }`}
-              ></div>
-
-              <div className="flex max-md:flex-col items-start gap-5">
-                <div className="flex-1">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h3 className="text-xl font-bold leading-tight text-text group-hover:text-primary transition-colors duration-300">
-                        {t.name}
-                      </h3>
-                      <p className="text-sm text-mutedText mt-1">{t.role}</p>
-                    </div>
-
-                    <div className="flex flex-col items-end max-md:hidden">
-                      {/* ReviewStar should use the appropriate color for the stars */}
-                      <ReviewStar
-                        value={t.rating}
-                        label={t.name}
-                        colorClass={t.glowColor === 'primary' ? 'text-primary' : 'text-secondary'}
-                      />
-                    </div>
-                  </div>
-                  <div className="flex flex-col md:hidden mt-2">
-                    <ReviewStar
-                      value={t.rating}
-                      label={t.name}
-                      colorClass={t.glowColor === 'primary' ? 'text-primary' : 'text-secondary'}
-                    />
+      {/* Content Container */}
+      <div className="max-w-4xl -mt-20 md:-mt-30 mx-auto w-full relative z-10">
+        <div className="flex flex-col items-center text-center">
+          <div className="relative min-h-[300px] flex flex-col items-center justify-center w-full">
+            <AnimatePresence mode="wait" custom={direction}>
+              <motion.div
+                key={currentIndex}
+                custom={direction}
+                variants={variants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={{ duration: 0.4, ease: 'easeInOut' }}
+                className="flex flex-col items-center w-full"
+              >
+                {/* Quote Icon & Message */}
+                <div className="relative mb-8 px-4 md:px-0 w-full">
+                  <div className="hidden md:block absolute -top-4 left-0 md:-left-12 lg:-left-20 opacity-20">
+                    {/* Fixed Primary Color */}
+                    <Quote size={80} className="text-primary" strokeWidth={1} />
                   </div>
 
-                  {/* Message: Increased font size for better readability */}
-                  <p className="mt-5 text-mutedText max-w-50 md:max-w-sm text-base leading-relaxed italic">
-                    <span
-                      className={`text-2xl font-serif mr-1 ${
-                        t.glowColor === 'primary' ? 'text-primary' : 'text-secondary'
-                      }`}
-                    >
-                      “
-                    </span>
-                    {t.message}
-                    <span
-                      className={`text-2xl font-serif ml-1 ${
-                        t.glowColor === 'primary' ? 'text-primary' : 'text-secondary'
-                      }`}
-                    >
-                      ”
-                    </span>
+                  <p className="text-xl md:text-2xl text-zinc-100 font-medium leading-relaxed max-w-3xl mx-auto relative z-10">
+                    "{current.message}"
                   </p>
                 </div>
-              </div>
 
-              {/* Decorative quote mark (Hidden in the background, adjusted opacity and position) */}
-              <svg
-                className="absolute right-4 bottom-4 w-12 h-12 text-[rgba(255,255,255,0.06)] opacity-50 group-hover:opacity-100 transition-opacity duration-300"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                aria-hidden="true"
-              >
-                <path d="M9.5 7a3.5 3.5 0 00-3.5 3.5V14H12V10.5A3.5 3.5 0 009.5 7zm8 0a3.5 3.5 0 00-3.5 3.5V14H20V10.5A3.5 3.5 0 0017.5 7z" />
-              </svg>
-            </article>
-          ))}
+                {/* Author Block */}
+                <div className="flex flex-col items-center gap-4 mb-8">
+                  <div className="flex items-center gap-4">
+                    <div className="text-center">
+                      <h4 className="text-text font-bold text-lg leading-none mb-1">
+                        {current.name}
+                      </h4>
+                      <p className="text-zinc-400 text-sm">{current.role}</p>
+                    </div>
+                  </div>
+
+                  {/* Rating Badge (Fixed Primary Color) */}
+                  <div className="px-4 py-1.5 rounded-full border text-sm font-bold flex items-center gap-2 bg-primary/10 text-primary border-primary/20">
+                    <Star size={14} fill="currentColor" />
+                    {current.rating} Rating
+                  </div>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* Navigation Controls */}
+          <div className="flex items-center gap-6 mt-4 z-20">
+            {/* Prev Button */}
+            <button
+              onClick={handlePrev}
+              className="p-3 rounded-full border border-zinc-700 text-zinc-400 hover:text-primary hover:border-primary hover:bg-primary/10 transition-all active:scale-95"
+              aria-label="Previous testimonial"
+            >
+              <ChevronLeft size={20} />
+            </button>
+
+            {/* Pagination Dots */}
+            <div className="flex items-center gap-2">
+              {testimonials.map((_, index) => (
+                <div
+                  key={index}
+                  onClick={() => {
+                    setDirection(index > currentIndex ? 1 : -1);
+                    setCurrentIndex(index);
+                  }}
+                  className={`cursor-pointer transition-all duration-300 rounded-full h-2 
+                    ${currentIndex === index ? 'w-8 bg-primary' : 'w-2 bg-zinc-700 hover:bg-zinc-600'}
+                  `}
+                />
+              ))}
+            </div>
+
+            {/* Next Button */}
+            <button
+              onClick={handleNext}
+              className="p-3 rounded-full border border-zinc-700 text-zinc-400 hover:text-primary hover:border-primary hover:bg-primary/10 transition-all active:scale-95"
+              aria-label="Next testimonial"
+            >
+              <ChevronRight size={20} />
+            </button>
+          </div>
         </div>
-
-        {/* Optional: Add a subtle scroll indicator for overflow-x-auto */}
-        <p className="text-center text-mutedText text-sm mt-8 animate-pulse">
-          Scroll to see more reviews &rarr;
-        </p>
       </div>
     </section>
   );
