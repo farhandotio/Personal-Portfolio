@@ -61,9 +61,9 @@ const ProjectDetails = () => {
         </div>
 
         {/* MAIN GRID */}
-        <div className="flex gap-14 w-full">
+        <div className="flex max-md:flex-col gap-14 w-full">
           {/* LEFT */}
-          <div className="w-5/12">
+          <div className="md:w-5/12">
             <div className="relative rounded-3xl overflow-hidden border border-white/10 shadow-2xl mb-5">
               <div className="aspect-video bg-black/20">
                 <img
@@ -95,7 +95,7 @@ const ProjectDetails = () => {
           </div>
 
           {/* RIGHT */}
-          <div className="w-7/12">
+          <div className="md:w-7/12">
             <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">{project.title}</h1>
 
             <p className="text-lg text-mutedText leading-relaxed">{project.description}</p>
